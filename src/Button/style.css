@@ -1,0 +1,31 @@
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    border-radius: 25px;
+    white-space: nowrap;
+    border: none;
+}
+
+.button.primary {
+    background-color: black;
+    color: white;
+}
+
+.button.primary:hover {
+    background-color: white;
+    color: black;
+}
+
+.button.small {
+    padding: 0 20px;
+}
+
+.button.secondary {
+    background-color: transparent;
+}
+
+.button.large {
+    padding: 0 50px;
+}

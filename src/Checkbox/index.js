@@ -12,7 +12,6 @@ const Checkbox = (props) => {
             type="checkbox"
             name="checkbox"
             disabled={props.disabled}
-            onChange={props.onChange}
         />
     )
 };

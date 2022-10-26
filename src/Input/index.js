@@ -9,6 +9,7 @@ const Input = (props) => {
         <div>
             <input
                 className="input"
+                placeholder="What will you do?"
                 value={props.value}
                 onChange={props.onChange}
                 type={props.type}

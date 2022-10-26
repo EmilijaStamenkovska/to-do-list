@@ -2,10 +2,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 50px;
+    height: 40px;
     border-radius: 25px;
     white-space: nowrap;
     border: none;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
 }
 
 .button.primary {
@@ -19,6 +22,7 @@
 }
 
 .button.small {
+    width: 50px;
     padding: 0 20px;
 }
 

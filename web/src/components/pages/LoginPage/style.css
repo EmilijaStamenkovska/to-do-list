@@ -1,0 +1,14 @@
+.login-page {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.input.login-input {
+    height: 50px;
+}
+
+.button.login-button {
+    float: right;
+    margin-top: 30px;
+}

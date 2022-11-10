@@ -1,0 +1,17 @@
+label {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.input {
+    height: 40px;
+    border-radius: 20px;
+    padding: 0 15px;
+    font-size: 15px;
+    border: none;
+    background-color: rgb(233, 232, 232);
+    color: rgb(139, 134, 134);
+}

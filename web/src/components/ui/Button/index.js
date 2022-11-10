@@ -12,6 +12,7 @@ const Button = (props) => {
             button 
             ${props.size} 
             ${props.type}
+            ${props.customClassName}
             `}
         >
             {props.children}
@@ -24,11 +25,13 @@ export default Button;
 Button.defaultProps = {
     onClick: () => { },
     size: "small",
-    type: "primary"
+    type: "primary",
+    customClassName: ''
 };
 
 Button.propTypes = {
     onClick: PropTypes.func,
     size: PropTypes.string,
-    type: PropTypes.string
-}
+    type: PropTypes.string,
+    customClassName: PropTypes.string
+};

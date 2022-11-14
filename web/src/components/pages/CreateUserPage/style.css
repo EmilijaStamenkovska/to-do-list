@@ -1,0 +1,10 @@
+.create-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.create-user-input {
+    height: 60px;
+}

@@ -5,14 +5,19 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
 const config = require('./../packages/config');
+const {
+    UserCreate,
+    UserLogin,
+    UserUpdate
+} = require('./../packages/user/validator');
 
 const createUser = async (req, res) => {
 
     try {
-        await validator.validate(req.body, 'CREATE');
+        await validate(req.body, UserCreate);
     } catch (err) {
         console.log(err);
-        return res.status(400).send('CREATE, Bad Request')
+        return res.status(404).send('CREATE, Bad Request');
     }
 
     try {
@@ -22,17 +27,23 @@ const createUser = async (req, res) => {
             return res.status(409).send('User Already Exists');
         }
 
-        let token = uuidv4();
-        let data = await users.create({
-            ...req.body,
-            _created: new Date().toISOString(),
-            verification_token: token
-        });
-        console.log(data);
-        res.status(201).send('User Successfully Created');
+        if(!userExists) {
+
+            let payload = {
+                uid: req.body._id,
+                email: req.body.email,
+                username: req.body.username,
+                _created: new Date().toISOString()
+            }
+            
+            let user = await users.create(payload);
+            
+            console.log(user);
+            res.status(201).send(user);
+        }
     } catch (err) {
         console.log(err);
-        return res.status(409).send('User Not Created Bad Request')
+        return res.status(409).send('User Not Created Bad Request');
     }
 };
 
@@ -44,7 +55,7 @@ const getAll = async (req, res) => {
         return res.status(200).send(u);
     } catch (err) {
         console.log(err);
-        return res.status(400).send('Cannot Get All Users')
+        return res.status(400).send('Cannot Get All Users');
     }
 };
 
@@ -65,32 +76,33 @@ const getOne = async (req, res) => {
 const loginUser = async (req, res) => {
 
     try {
-        await validate(req.body, 'LOGIN')
+        await validate(req.body, UserLogin)
     } catch (err) {
         console.log(err);
-        return res.status(400).send('Login Validate Bad Request')
+        return res.status(400).send('Login Validate Bad Request');
     }
 
     try {
-        let u = await users.getByEmail(req.body.email);
-        if (!u) { 
+        let user = await users.getByEmail(req.body.email);
+        if (!user) {
             return res.status(400).send('Bad request');
         }
 
-        // if (!bcrypt.compareSync(req.body.password, u.password)) { // not working
+        // if (!bcrypt.compareSync(req.body.password, user.password)) { // not working
         //   return res.status(400).send('Bad request. Wrong password');
         // }
+
         if (u) {
             let expirationToken = parseInt((new Date().getTime() + 60 * 60 * 24 * 365 * 1000) / 1000);
 
             let payload = {
-                uid: u._id,
-                email: u.email,
-                username: u.username,
+                uid: user._id,
+                email: user.email,
+                username: user.username,
                 exp: expirationToken
             };
 
-            let key = config.get('security').secret;
+            let key = config.get('security').jwt_key;
             let token = jwt.sign(payload, key);
 
             return res.status(200).send({ jwt: token, userdata: payload });
@@ -99,17 +111,17 @@ const loginUser = async (req, res) => {
         return res.status(401).send('Unauthorized!');
     } catch (err) {
         console.log(err);
-        return res.status(401).send('Login Failed')
+        return res.status(401).send('Login Failed');
     }
 };
 
 const updateUser = async (req, res) => {
 
     try {
-        await validate(req.body, 'UPDATE')
+        await validate(req.body, UserUpdate)
     } catch (err) {
         console.log(err);
-        return res.status(400).send('Update Validate Bad Request')
+        return res.status(400).send('Update Validate Bad Request');
     }
 
     try {
@@ -122,7 +134,7 @@ const updateUser = async (req, res) => {
         return res.status(404).send('User For Update Not Found');
     } catch (err) {
         console.log(err);
-        return res.status(401).send('Update User Failed')
+        return res.status(401).send('Update User Failed');
     }
 };
 

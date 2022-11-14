@@ -1,8 +1,9 @@
 .page-title {
-    font-size: 33px;
+    font-size: 53px;
     display: flex;
     justify-content: center;
-    margin-top: 5%;
-    font-weight: 600;
+    margin: 57px auto;
+    font-weight: 700;
+    color: rgb(241, 187, 200);
 }
 

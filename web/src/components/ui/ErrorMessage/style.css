@@ -1,0 +1,11 @@
+.error-message {
+    display: flex;
+    align-items: center;
+    color: rgb(252, 104, 104);
+    font-weight: 700;
+    border: 2px solid rgb(252, 104, 104);
+    border-radius: 20px;
+    height: 40px;
+    margin-top: 18px;
+    padding: 0 6px;
+}

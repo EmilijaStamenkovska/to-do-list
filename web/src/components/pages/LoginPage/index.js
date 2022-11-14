@@ -1,135 +1,112 @@
 // Core
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../../../services/rest/users/auth';
+// Redux
+import { useDispatch } from 'react-redux';
+import { setToken, setUserData } from '../../../services/redux/reducers';
+// UI
 import Input from '../../ui/Input/index';
 import Button from '../../ui/Button/index';
+import PageTitle from '../../ui/PageTitle';
+import ErrorMessage from '../../ui/ErrorMessage';
+// Auth
+import { loginUser } from '../../../services/rest/users/auth';
 // Validation
 import { PASSWORD_VALIDATOR, EMAIL_VALIDATOR } from '../../../services/data/validators/index';
+// Data
+import { EMPTY_FIELD, INVALID_EMAIL, INVALID_PASSWORD } from '../../../services/data/errors/client';
+import { fieldsInit } from '../../../services/data/inits/fields/index';
+import { errorsInit } from '../../../services/data/inits/errors/index';
+// Rest
+import { handleServerError } from '../../../services/rest/errors/server/index';
+// Style
 import './style.css';
-import PageTitle from '../../ui/PageTitle';
+
 
 const LoginPage = () => {
     const navigate = useNavigate();
-
-    const fieldsInit = {
-        email: '',
-        password: ''
-    };
-
-    const errorsInit = {
-        email: { errorMessage: '' },
-        password: { errorMessage: '' },
-    };
+    const dispatch = useDispatch();
 
     const [fields, setFields] = useState(fieldsInit);
-    const [errors, setErrors] = useState(errorsInit);
-    const [errorServerMsg, setErrorsServerMsg] = useState('');
+    const [error, setError] = useState(errorsInit);
+    const [serverError, setServerError] = useState('');
 
     const onChangeHandler = (e) => { setFields({ ...fields, [e.target.name]: e.target.value }) };
 
     const validate = () => {
-        setErrors(errorsInit);
+        setError(errorsInit);
         let errors = false;
 
         if (fields.email.length === 0) {
-            setErrors(prevstate => ({ ...prevstate, email: { errorMessage: "empty" } }));
+            setError(prevstate => ({ ...prevstate, email: { errorMessage: EMPTY_FIELD } }));
             errors = true;
         }
         if (fields.password.length === 0) {
-            setErrors(prevstate => ({ ...prevstate, password: { errorMessage: "empty" } }));
+            setError(prevstate => ({ ...prevstate, password: { errorMessage: EMPTY_FIELD } }));
             errors = true;
         }
         if (!EMAIL_VALIDATOR.test(fields.email) && (fields.email.length > 0)) {
-            setErrors(prevstate => ({ ...prevstate, email: { errorMessage: "invalid" } }));
+            setError(prevstate => ({ ...prevstate, email: { errorMessage: INVALID_EMAIL } }));
             errors = true;
         }
         if (!PASSWORD_VALIDATOR.test(fields.password) && (fields.password.length > 0)) {
-            setErrors(prevstate => ({ ...prevstate, password: { errorMessage: "invalid" } }));
+            setError(prevstate => ({ ...prevstate, password: { errorMessage: INVALID_PASSWORD } }));
             errors = true;
         }
         return errors;
     };
 
-    const handleServerError = (err) => {
-        let error = "";
-        switch (err) {
-            case 400:
-                error = "email doesnt exist";
-                break;
-            case 401:
-                error = "aa";
-                break;
-            default:
-                error = "try again later";
-                break;
-        };
-        return error;
-    };
+    const loginSubmit = async () => {
+        if (validate()) {
+            return;
+        }
 
-    const nav = () => {
-        console.log('aaaaaaaa')
-        navigate("/home");
-    };
+        try {
+            let body = await loginUser(fields.email, fields.password);
+            const jwt_key = body.jwt;
 
-    const login = async () => {
-        // if (validate()) {
-        //     console.log('zzz')
-        //     // return;
-        // }
+            dispatch(setUserData({ email: fields.email }));
+            dispatch(setToken({ jwt_key: jwt_key }));
 
-        // try {
-        //     let body = await loginUser(fields.email, fields.password);
-        //     console.log(body)
-        //     let userData = body.userdata;
-        //     localStorage.setItem('jwt', body.jwt);
-        //     const data = { 
-        //         "id": userData.uid,
-        //         "username": userData.username,
-        //         "email": userData.email,
-        //         "role": userData.role
-        //     };
-        //     localStorage.setItem('userData', JSON.stringify(data));
-        // } catch (err) {
-        //     let er = handleServerError(err.status);
-        //     if (er) {
-        //         setErrorsServerMsg(er);
-        //     }
-        // }   
+            localStorage.setItem('jwt_key', jwt_key);
+
+            navigate('/create-user');
+        } catch (err) {
+            return setServerError(handleServerError(err.status));
+        }
     };
 
     return (
         <>
-            <PageTitle title="Login" />
+            <PageTitle title="Sign In" />
             <div className="login-page">
-                <div>
-                    <Input
-                        placeholder="email"
-                        value={fields.email}
-                        onChange={onChangeHandler}
-                        type="email"
-                        name="email"
-                        error={errors.email}
-                        customClassName="login-input"
-                    />
-                    <Input
-                        placeholder="password"
-                        value={fields.password}
-                        onChange={onChangeHandler}
-                        type="password"
-                        name="password"
-                        error={errors.password}
-                        customClassName="login-input"
-                    />
-                    <Button 
-                        customClassName="login-button"
-                        onClick={nav}
-                        size="small"
-                    >
-                        login
-                    </Button>
-                </div>
-                {errorServerMsg ? errorServerMsg : null}
+                <Input
+                    placeholder="E-mail"
+                    value={fields.email}
+                    onChange={onChangeHandler}
+                    type="email"
+                    name="email"
+                    error={error.email}
+                    customClassName="login-input"
+                />
+                <Input
+                    placeholder="Password"
+                    value={fields.password}
+                    onChange={onChangeHandler}
+                    type="password"
+                    name="password"
+                    error={error.password}
+                    customClassName="login-input"
+                />
+
+                <Button
+                    customClassName="login-button"
+                    onClick={loginSubmit}
+                    size="small"
+                >
+                    Sign In
+                </Button>
+                {serverError ? <ErrorMessage errorMsg={serverError} /> : null}
             </div>
         </>
     )

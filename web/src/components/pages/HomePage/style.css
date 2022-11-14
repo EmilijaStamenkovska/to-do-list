@@ -1,0 +1,62 @@
+.main-page {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 90%;
+    padding-top: 10%;
+}
+
+    .main-page a {
+        text-decoration: none;
+        color: rgb(104, 104, 98);
+        
+    }
+
+    .main-page__profile {
+        font-size: 38px;
+        font-weight: 700;
+    }
+
+    .main-page__videos {
+        font-size: 32px;
+    }
+    
+    .main-page__profile:hover,
+    .main-page__videos:hover,
+    .main-page__create__todos:hover,
+    .main-page__pictures:hover,
+    .main-page__books:hover {
+        font-size: 42px;
+    }
+
+    .main-page__create__todos {
+        font-size: 32px;
+    }
+
+    .main-page__text {
+        font-size: 40px;
+        color: rgb(193, 188, 188);
+        position: absolute;
+        bottom: 50px;
+        right: 25px;
+    }
+    
+    .main-page__pictures {
+        font-size: 32px;
+    }
+
+    .main-page__books {
+        font-size: 32px;
+    }
+
+    .imgs {
+        width: 150px;
+        height: 150px;
+        opacity: 0.07;
+        position: absolute;
+        left: 50px;
+        bottom: 50px;
+    }

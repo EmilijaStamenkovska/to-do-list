@@ -18,24 +18,7 @@ const UserUpdate = {
 };
 
 const validate = async (data, schema) => {
-    let sch;
-
-    switch (schema) {
-        case 'CREATE':
-            sch = UserCreate;
-            break;
-        case 'LOGIN':
-            sch = UserLogin;
-            break;
-        case 'UPDATE': 
-            sch = UserUpdate;
-            break;
-        
-        default:
-            break;
-    }
-
-    let v = new Validator(data, sch);
+    let v = new Validator(data, schema);
     let e = await v.check();
   
     if (!e) {
@@ -44,5 +27,7 @@ const validate = async (data, schema) => {
 };
 
 module.exports = {
-    validate
+    UserCreate,
+    UserLogin,
+    UserUpdate
 };

@@ -1,17 +1,32 @@
 label {
     display: flex;
     justify-content: center;
-    flex-direction: row;
+    align-items: center;
+    flex-direction: column;
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
-.input {
+.form-input__field {
     height: 40px;
     border-radius: 20px;
     padding: 0 15px;
-    font-size: 15px;
+    font-size: 22px;
     border: none;
-    background-color: rgb(233, 232, 232);
+    background-color: rgb(248, 240, 240);
     color: rgb(139, 134, 134);
+}
+
+.form-input__field::placeholder {
+    color: rgb(105, 189, 189);
+}
+
+/* .form-input__field__error {
+    color: rgb(252, 104, 104);ad
+} */
+
+.form-input__field__error-span{
+    margin-top: 3px;
+    color: rgb(252, 104, 104);
+    font-weight: 700;
 }

@@ -1,0 +1,13 @@
+.relax-page {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.relax-page__images {
+    width: 550px;
+    height: 500px;
+}

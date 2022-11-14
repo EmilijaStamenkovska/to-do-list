@@ -8,7 +8,11 @@ const Input = (props) => {
     return (
         <label>
             <input
-                className={`input ${props.customClassName}`}
+                className={`
+                form-input__field
+                ${props.customClassName}
+                ${props.error.errorMessage ? 'error' : null} // ?
+                `}
                 placeholder={props.placeholder}
                 value={props.value}
                 onChange={props.onChange}
@@ -19,8 +23,8 @@ const Input = (props) => {
             {
                 props.error?.errorMessage
                     ?
-                    <span>
-                        {props.error.errorMessage}
+                    <span className='form-input__field__error-span'>
+                        {props.error.errorMessage} 
                     </span>
                     :
                     null
@@ -31,7 +35,7 @@ const Input = (props) => {
 
 export default Input;
 
-Input.defaultProps = {  
+Input.defaultProps = {
     value: '',
     onChange: () => { },
     type: '',

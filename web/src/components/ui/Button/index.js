@@ -31,7 +31,7 @@ Button.defaultProps = {
 
 Button.propTypes = {
     onClick: PropTypes.func,
-    size: PropTypes.string,
-    type: PropTypes.string,
+    size: PropTypes.oneOf(['small', 'large']),
+    type: PropTypes.oneOf(['primary', 'secondary']),
     customClassName: PropTypes.string
 };

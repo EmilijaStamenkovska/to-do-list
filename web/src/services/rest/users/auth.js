@@ -2,12 +2,11 @@
 import { API_BASE_URL } from "../../data/constants/index";
 
 export const createUser = async (username, email, password) => {
-    let data = {
+    let payload = {
         username,
         email,
         password
     };
-
     return await fetch(
         `${API_BASE_URL}/api/v1/user/create-user`,
         {
@@ -15,19 +14,18 @@ export const createUser = async (username, email, password) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
-        }.then(res => {
-            if (!res.ok) {
-                return Promise.reject(res);
-            }
-
-            if (res.headers.get('content-type').includes('application/json')) {
-                return res.json();
-            } else if (res.headers.get('content-type').includes('text/plain')) {
-                return res.text();
-            }
-        })
-    )
+            body: JSON.stringify(payload)
+        }
+    ).then(res => {
+        if(!res.ok) {
+            return Promise.reject(res);
+        }
+        if(res.headers.get('content-type').includes('application/json')) {
+            return res.json();
+        } else if(res.headers.get('content-type').includes('text/plain')) {
+            return res.text();
+        }
+    })
 };
 
 export const loginUser = async (email, password) => {

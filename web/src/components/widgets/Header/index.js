@@ -5,7 +5,7 @@ import './style.css';
 
 const Header = () => {
     return (
-        <span className="title">To Do List</span>
+        <span className="title">🦋</span>
     );
 };
 

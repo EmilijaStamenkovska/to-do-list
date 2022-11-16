@@ -92,7 +92,7 @@ const loginUser = async (req, res) => {
         //   return res.status(400).send('Bad request. Wrong password');
         // }
 
-        if (u) {
+        if (user) {
             let expirationToken = parseInt((new Date().getTime() + 60 * 60 * 24 * 365 * 1000) / 1000);
 
             let payload = {

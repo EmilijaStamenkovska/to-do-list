@@ -53,7 +53,7 @@ api.put('/api/v1/user/:id/update', user.updateUser);
 api.delete('/api/v1/user/:id/delete', user.removeUser); // done
 
 api.use(function (err, req, res, next) {
-    if (err.name === 'UnauthorizedError') {
+    if (err.username === 'UnauthorizedError') {
         res.status(401).send('Unauthorized JWT');
     }
 });

@@ -1,2 +1,6 @@
 export const SET_TOKEN = 'SET_TOKEN';
 export const SET_USER = 'SET_USER';
+export const GET_ALL_TODOS = "GET_ALL_TODOS";
+export const GET_ONE_TODO = "ONE_GET_TODO";
+export const GET_FINISHED_TODOS = "GET_FINISHED_TODOS";
+export const GET_UNFINISHED_TODOS = "GET_UNFINISHED_TODOS";

@@ -1,0 +1,38 @@
+.create-todos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+    .create-todos__back {
+        position: absolute;
+        top: 155px;
+        left: 100px;
+        text-decoration: none;
+        font-size: 33px;
+    }
+
+    .create-todos__input {
+        width: 320px;
+        height: 200px;
+        border-radius: 30px;
+        padding: 15px 22px;
+        overflow: scroll;
+        font-size: 22px;
+        margin-bottom: 30px;
+        color: rgb(139, 134, 134);
+        background-color: rgb(248, 240, 240);
+        border: none;
+    }
+
+        .create-todos__input::placeholder {
+            color: rgb(209, 203, 200);
+        }
+
+        .create-todos__input::-webkit-scrollbar {
+            display: none; 
+        }
+

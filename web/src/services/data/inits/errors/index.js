@@ -3,3 +3,9 @@ export const errorsInit = {
     email: { errorMessage: '' },
     password: { errorMessage: '' },
 };
+
+export const todosErrorsInit = {
+    title: {errorMessage: ''},
+    description: { errorMessage: '' }
+};
+

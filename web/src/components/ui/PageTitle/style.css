@@ -1,9 +1,21 @@
-.page-title {
-    font-size: 53px;
+.page__title__back {
     display: flex;
     justify-content: center;
     margin: 57px auto;
-    font-weight: 700;
-    color: rgb(241, 187, 200);
+    align-items: center;
+    gap: 10px;
 }
+
+    .back {
+        font-size: 32px;
+        color: rgb(192, 173, 177);
+        text-decoration: none;
+    }
+
+    .page-title {
+        font-size: 53px;
+        font-weight: 700;
+        color: rgb(192, 173, 177);
+    }
+
 

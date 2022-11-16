@@ -31,7 +31,7 @@ const LoginPage = () => {
     const [error, setError] = useState(errorsInit);
     const [serverError, setServerError] = useState('');
 
-    const onChangeHandler = (e) => { setFields({ ...fields, [e.target.name]: e.target.value }) };
+    const onChangeHandler = (e) => { setFields({ ...fields, [e.target.name]: e.target.value }); };
 
     const validate = () => {
         setError(errorsInit);
@@ -64,13 +64,20 @@ const LoginPage = () => {
         try {
             let body = await loginUser(fields.email, fields.password);
             const jwt_key = body.jwt;
-
-            dispatch(setUserData({ email: fields.email }));
+            const username = body.userdata.username;
+            const email = body.userdata.email;
+            
+            dispatch(setUserData({ 
+                email: fields.email,
+                username: fields.username
+             }));
             dispatch(setToken({ jwt_key: jwt_key }));
 
-            localStorage.setItem('jwt_key', jwt_key);
+            // localStorage.setItem('jwt_key', jwt_key);
+            localStorage.setItem('username', username);
+            localStorage.setItem('email', email);
 
-            navigate('/create-user');
+            navigate('/');
         } catch (err) {
             return setServerError(handleServerError(err.status));
         }

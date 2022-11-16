@@ -26,7 +26,12 @@
 }
 
 .button.secondary {
-    background-color: transparent;
+    background-color: rgb(182, 180, 180);
+}
+
+.button.secondary:hover {
+    color: rgb(255, 248, 240);
+    background-color: rgb(93, 89, 89);
 }
 
 .button.large {

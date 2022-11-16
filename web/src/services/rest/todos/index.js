@@ -1,5 +1,5 @@
 // Constants
-import API_BASE_URL from "../../data/constants/index";
+import { API_BASE_URL } from "../../data/constants/index";
 
 export const allTodos = async () => {
     return await fetch(
@@ -44,6 +44,7 @@ export const oneTodo = async (id) => {
 };
 
 export const createTodo = async (title, description) => {
+    const token = localStorage.getItem('jwt_key');
     let data = {
         title,
         description
@@ -54,10 +55,12 @@ export const createTodo = async (title, description) => {
         {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(data)
-        }.then(res => {
+        }
+        ).then(res => {
             if (!res.ok) {
                 return Promise.reject(res);
             }
@@ -68,7 +71,6 @@ export const createTodo = async (title, description) => {
                 return res.text();
             }
         })
-    )
 };
 
 export const finishedTodos = async () => {

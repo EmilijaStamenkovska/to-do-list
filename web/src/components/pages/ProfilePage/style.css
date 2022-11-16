@@ -1,0 +1,50 @@
+.profile-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.profile-page__user {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding-top: 40px;
+}
+
+    .profile-page__name {
+        color: rgb(162, 156, 157);
+        font-size: 27px;
+    }
+
+    .profile-page__email {
+        color: rgb(215, 204, 204);
+        font-size: 18px;
+    }
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    font-size: 22px;
+    padding-top: 10vh;
+}
+
+    .tasks a {
+        color: rgb(136, 112, 112);
+        text-decoration: none;
+    }
+
+.profile-page__logout-button-and-delete-user {
+    bottom: 44px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+    .profile-page__delete-user {
+        color: rgb(164, 160, 160);
+        font-size: 15px;
+    }

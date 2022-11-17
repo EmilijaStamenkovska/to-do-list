@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import PageTitle from '../../ui/PageTitle/index';
 import Input from '../../ui/Input/index';
 import Button from '../../ui/Button';
+// Redux
+import { useDispatch } from 'react-redux';
 // Rest
 import { createTodo } from '../../../services/rest/todos';
 // Data
@@ -13,9 +15,11 @@ import { todosErrorsInit } from '../../../services/data/inits/errors';
 import { todosFieldsInit } from '../../../services/data/inits/fields';
 // Style
 import './style.css';
+import { setOneTodo } from '../../../services/redux/todos-reducer';
 
 const CreateTodosPage = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch()
 
     const [fields, setFields] = useState(todosFieldsInit);
     const [error, setError] = useState(todosErrorsInit);
@@ -43,7 +47,13 @@ const CreateTodosPage = () => {
         }
 
         try {
-            await createTodo(fields.title, fields.description);
+            let body = await createTodo(
+                fields.title, 
+                fields.description, 
+                fields.done, 
+                fields.not_done
+            );
+            dispatch(setOneTodo(body))
             navigate('/my-profile');
         } catch (err) {
             console.log(err);
@@ -69,7 +79,8 @@ const CreateTodosPage = () => {
                     type="description"
                     name="description"
                     className="create-todos__input"
-                />
+                >
+                </textarea>
                 <Button
                     type="secondary"
                     onClick={submitTodo}

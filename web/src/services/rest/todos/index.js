@@ -2,12 +2,15 @@
 import { API_BASE_URL } from "../../data/constants/index";
 
 export const allTodos = async () => {
+    let token = localStorage.getItem('token');
+    
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/getAll`,
         {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             }
         }
     ).then(res => {
@@ -23,12 +26,15 @@ export const allTodos = async () => {
 };
 
 export const oneTodo = async (id) => {
+    let token = localStorage.getItem('jwt_key');
+
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/${id}`,
         {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             }
         }
     ).then(res => {
@@ -43,11 +49,13 @@ export const oneTodo = async (id) => {
     })
 };
 
-export const createTodo = async (title, description) => {
+export const createTodo = async (title, description, done, not_done) => {
     const token = localStorage.getItem('jwt_key');
     let data = {
         title,
-        description
+        description,
+        done,
+        not_done
     };
 
     return await fetch(
@@ -60,17 +68,17 @@ export const createTodo = async (title, description) => {
             },
             body: JSON.stringify(data)
         }
-        ).then(res => {
-            if (!res.ok) {
-                return Promise.reject(res);
-            }
+    ).then(res => {
+        if (!res.ok) {
+            return Promise.reject(res);
+        }
 
-            if (res.headers.get('content-type').includes('application/json')) {
-                return res.json();
-            } else if (res.headers.get('content-type').includes('text/plain')) {
-                return res.text();
-            }
-        })
+        if (res.headers.get('content-type').includes('application/json')) {
+            return res.json();
+        } else if (res.headers.get('content-type').includes('text/plain')) {
+            return res.text();
+        }
+    })
 };
 
 export const finishedTodos = async () => {

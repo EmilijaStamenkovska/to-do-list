@@ -8,6 +8,7 @@ import CreateUserPage from './components/pages/CreateUserPage';
 import RelaxPage from './components/pages/RelaxPage';
 import ProfilePage from './components/pages/ProfilePage';
 import CreateTodosPage from './components/pages/CreateTodos';
+import AllTodosPage from './components/pages/AllTodosPage';
 // Widgets
 import Header from './components/widgets/Header';
 import OneTodo from './components/widgets/OneTodo';
@@ -26,6 +27,7 @@ const App = () => {
 				<Route path='/my-profile' element={<ProfilePage />} />
 				<Route path='/create-tasks' element={<CreateTodosPage />} />
 				<Route path='/my-task' element={<OneTodo />} />
+				<Route path='/my-tasks' element={<AllTodosPage />} />
 			</Routes>
 		</>
 	);

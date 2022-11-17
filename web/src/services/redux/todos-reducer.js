@@ -7,9 +7,12 @@ import {
 
 const initialState = {
     todos: [],
-    todo: {
+    todo_body: {
         title: '',
-        description: ''
+        description: '',
+        done: 0,
+        not_done: 1,
+        _created: ''
     },
     finished_todos: [],
     unfinished_todos: []
@@ -26,7 +29,7 @@ export default function Todo (state = initialState, action) {
         case SET_ONE_TODO:
             return {
                 ...state,
-                todo: action.payload
+                todo_body: action.payload
             };
         case SET_FINISHED_TODOS:
             return {

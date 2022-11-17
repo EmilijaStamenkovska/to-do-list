@@ -12,10 +12,14 @@ const create = async (req, res) => {
 
     try {
         let data = await todos.create({
-            ...req.body,
-            // uid: req.user.uid,
+            uid: req.body._id,
+            title: req.body.title,
+            description: req.body.description,
+            done: req.body.done,
+            not_done: req.body.not_done,
             _created: new Date().toISOString()
         });
+        
         res.status(201).send(data);
     } catch (err) {
         console.log(err);

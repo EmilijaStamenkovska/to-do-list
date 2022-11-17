@@ -11,6 +11,10 @@ export const fieldsInit = {
 };
 
 export const todosFieldsInit = {
+    _id: '',
     title: '',
-    description: ''
-}
+    description: '',
+    done: false,
+    not_done: true,
+    _created: ''
+};

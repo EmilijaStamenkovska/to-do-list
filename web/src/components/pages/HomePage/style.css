@@ -11,37 +11,24 @@
 
     .main-page a {
         text-decoration: none;
-        color: rgb(104, 104, 98);
+        color: rgb(138, 126, 126);
         
     }
 
-    .main-page__profile {
-        font-size: 38px;
-        font-weight: 700;
-    }
-
-    .main-page__videos {
-        font-size: 32px;
-    }
-
+    .main-page__profile,
+    .main-page__videos,
+    .main-page__pictures,
+    .main-page__books,
     .main-page__create__todos {
-        font-size: 32px;
+        font-size: 25px;
     }
 
     .main-page__text {
-        font-size: 40px;
-        color: rgb(193, 188, 188);
+        font-size: 20px;
+        color: rgb(211, 203, 205);
         position: absolute;
         bottom: 50px;
         right: 25px;
-    }
-    
-    .main-page__pictures {
-        font-size: 32px;
-    }
-
-    .main-page__books {
-        font-size: 32px;
     }
 
     .imgs {

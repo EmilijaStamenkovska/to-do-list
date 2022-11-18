@@ -9,9 +9,9 @@ import RelaxPage from './components/pages/RelaxPage';
 import ProfilePage from './components/pages/ProfilePage';
 import CreateTodosPage from './components/pages/CreateTodos';
 import AllTodosPage from './components/pages/AllTodosPage';
+import OneTodoPage from './components/pages/OneTodoPage';
 // Widgets
 import Header from './components/widgets/Header';
-import OneTodo from './components/widgets/OneTodo';
 // Style
 import './assets/style/style.css';
 
@@ -26,8 +26,8 @@ const App = () => {
 				<Route path='/relax' element={<RelaxPage />} />
 				<Route path='/my-profile' element={<ProfilePage />} />
 				<Route path='/create-tasks' element={<CreateTodosPage />} />
-				<Route path='/my-task' element={<OneTodo />} />
 				<Route path='/my-tasks' element={<AllTodosPage />} />
+				<Route path='/my-tasks/:id' element={<OneTodoPage />} />
 			</Routes>
 		</>
 	);

@@ -1,36 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import { oneTodo } from '../../../services/rest/todos';
-import { todosFieldsInit } from '../../../services/data/inits/fields/index';
-import Button from '../../ui/Button/index';
-import { useDispatch, useSelector } from 'react-redux';
-import { setOneTodo } from '../../../services/redux/todos-reducer';
+// Core
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
+// Widgets
+import OneTodoDetails from '../OneTodoDetails';
+// Style
+import './style.css';
 
 const OneTodo = (props) => {
 
-    const [fields, setFields] = useState(todosFieldsInit);
-
-    const TEST = async () => {
-        try { 
-            let id = "63766a09e9a756249d6cb250"
-            let data = await oneTodo(id, fields.title);
-            setFields({
-                title: data.title
-            });
-            // console.log(e);
-        } catch (err) {
-            console.log(err);
-        }
-    }; 
-
-    useEffect(() => {
-        TEST();
-    }, []);
-
     return (
-        <div>
-            <span>{fields.data}</span>
-        </div>
+        <Link
+            to={`${props._id}`}
+            state={{
+                title: props.title,
+                description: props.description,
+                _created: props._created
+            }}
+        >
+                <OneTodoDetails 
+                    title={props.title}
+                    description={props.description}
+                    _created={props._created}
+                    className={`one-todo-details ${props.customClassName}`}
+                />
+        </Link>
     );
 };
 
 export default OneTodo;
+
+OneTodo.defaultProps = {
+    _id: '',
+    title: '',
+    description: '',
+    _created: '',
+    customClassName: ''
+};
+
+OneTodo.propTypes = {
+    _id: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    _created: PropTypes.string,
+    customClassName: PropTypes.string
+};

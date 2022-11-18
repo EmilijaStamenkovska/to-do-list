@@ -1,6 +1,6 @@
 // Core
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // Redux
 import { useDispatch } from 'react-redux';
 import { setToken, setUserData } from '../../../services/redux/reducers';
@@ -87,7 +87,7 @@ const LoginPage = () => {
 
     return (
         <>
-            <PageTitle title="Sign In" />
+            <PageTitle title="Sign In" customClassName="back__display-none" />
             <div className="login-page">
                 <Input
                     placeholder="E-mail"
@@ -107,7 +107,6 @@ const LoginPage = () => {
                     error={error.password}
                     customClassName="login-input"
                 />
-
                 <Button
                     customClassName="login-button"
                     onClick={loginSubmit}
@@ -115,10 +114,14 @@ const LoginPage = () => {
                 >
                     Sign In
                 </Button>
+                <div className="login-page__sign-up">
+                    <span>Don't have an account?</span>
+                    <Link to='/create-user'>Sign Up.</Link>
+                </div>
                 {serverError ? <ErrorMessage errorMsg={serverError} /> : null}
             </div>
         </>
-    )
+    );
 };
 
 export default LoginPage;

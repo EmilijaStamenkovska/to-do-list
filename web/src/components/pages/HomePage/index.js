@@ -1,9 +1,6 @@
 // Core
 import React from 'react';
 import { Link } from "react-router-dom";
-// Assets
-import img from '../../../assets/images/img.png';
-import paw from '../../../assets/images/paw.png';
 // Style
 import './style.css';
 
@@ -45,20 +42,10 @@ const HomePage = () => {
                 >
                     Take a deep breath and relax your brain🌼
                 </Link>
+            </div>
                 <span className="main-page__text">
                     ...organize your time 🦋
                 </span>
-            </div>
-            <img
-                className="imgs"
-                src={img}
-                alt=""
-            />
-            <img
-                className="imgs"
-                src={paw}
-                alt=""
-            />
         </>
     );
 };

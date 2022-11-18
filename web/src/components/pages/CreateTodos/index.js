@@ -7,6 +7,7 @@ import Input from '../../ui/Input/index';
 import Button from '../../ui/Button';
 // Redux
 import { useDispatch } from 'react-redux';
+import { setOneTodo } from '../../../services/redux/todos-reducer';
 // Rest
 import { createTodo } from '../../../services/rest/todos';
 // Data
@@ -15,7 +16,6 @@ import { todosErrorsInit } from '../../../services/data/inits/errors';
 import { todosFieldsInit } from '../../../services/data/inits/fields';
 // Style
 import './style.css';
-import { setOneTodo } from '../../../services/redux/todos-reducer';
 
 const CreateTodosPage = () => {
     const navigate = useNavigate();
@@ -62,7 +62,7 @@ const CreateTodosPage = () => {
 
     return (
         <>  
-            <PageTitle title="Create task" />
+            <PageTitle title="Create a task" />
             <div className="create-todos">
                 <Input
                     placeholder="...and eat a cookie 🍪"

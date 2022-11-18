@@ -5,10 +5,29 @@
     justify-content: center;
 }
 
-.login-input {
-    height: 60px;
-}
+    .login-input {
+        height: 60px;
+    }
 
-.button.login-button {
-    margin-top: 20px;
-}
+    .button.login-button {
+        margin-top: 20px;
+    }
+
+    .login-page__sign-up {
+        color: rgb(177, 172, 173);
+        font-size: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        bottom: 35px;
+        position: absolute;
+    }
+
+        .login-page__sign-up a {
+            color: rgb(129, 93, 101);
+        }
+
+
+    .back__display-none {
+        display: none;
+    }

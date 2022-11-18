@@ -1,9 +1,16 @@
+// Core
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { todosFieldsInit } from '../../../services/data/inits/fields';
+// Redux
+import { useDispatch } from 'react-redux';
 import { setAllTodos } from '../../../services/redux/todos-reducer';
-import { allTodos } from '../../../services/rest/todos';
+// UI
+import PageTitle from '../../ui/PageTitle/index';
+// Widgets
 import OneTodo from '../../widgets/OneTodo';
+// Rest
+import { allTodos } from '../../../services/rest/todos';
+// Style
+import './style.css';
 
 const AllTodosPage = () => {
     const dispatch = useDispatch();
@@ -14,7 +21,7 @@ const AllTodosPage = () => {
         try {
             let data = await allTodos();
             setTodos(data);
-            dispatch(setAllTodos(data))
+            dispatch(setAllTodos(data));
         } catch (err) {
             console.log(err);
         }
@@ -23,21 +30,25 @@ const AllTodosPage = () => {
     useEffect(() => {
         getAll()
     }, []);
-
+    
     return (
-        <></>
-        // <div>
-        //     {
-        //         todos.map((i, key) => {
-        //             return (
-        //                 <OneTodo 
-        //                     key={key}
-        //                     data={fields.data}
-        //                 />
-        //             )
-        //         })
-        //     }
-        // </div>
+        <div className="all-todos-page">
+            <PageTitle title="My Tasks" />
+            {
+                todos.map((item, key) => {
+                    return (
+                        <OneTodo 
+                            key={key}
+                            title={item.title}
+                            description={item.description}
+                            _id={item._id}
+                            _created={item._created}
+                            customClassName="one-todo-details all-todos"
+                        />
+                    )
+                })
+            }
+        </div>
     );
 };  
 

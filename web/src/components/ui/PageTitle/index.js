@@ -8,7 +8,7 @@ import './style.css';
 const PageTitle = (props) => {
     return (
         <div className="page__title__back">
-            <Link to={(-1)} className="back">«</Link>
+            <Link to={(-1)} className={`back ${props.customClassName}`}>«</Link>
             <span className="page-title">
                 {props.title}
             </span>
@@ -19,9 +19,11 @@ const PageTitle = (props) => {
 export default PageTitle;
 
 PageTitle.defaultProps = {
-    title: ''
+    title: '',
+    customClassName: ''
 };
 
 PageTitle.propTypes = {
-    title: PropTypes.string
+    title: PropTypes.string,
+    customClassName: PropTypes.string
 };

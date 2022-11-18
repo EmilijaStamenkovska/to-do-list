@@ -1,6 +1,7 @@
 // Core
 import React, { useState } from 'react';
 import { useNavigate } from "react-router";
+import { Link } from 'react-router-dom';
 // Redux
 import { useDispatch } from 'react-redux';
 import { setUserData } from '../../../services/redux/reducers';
@@ -30,7 +31,7 @@ const CreateUserPage = () => {
     const [error, setError] = useState(errorsInit);
     const [serverError, setServerError] = useState('');
 
-    const onChangeHandler = (e) => { setFields({ ...fields, [e.target.name]: e.target.value }); }
+    const onChangeHandler = (e) => { setFields({ ...fields, [e.target.name]: e.target.value }); };
 
     const validate = () => {
         setError(errorsInit);
@@ -62,9 +63,9 @@ const CreateUserPage = () => {
 
 
     const signUpSubmit = async () => {
-        if(validate()) {
+        if (validate()) {
             return;
-        } 
+        }
 
         try {
             await createUser(fields.username, fields.email, fields.password);
@@ -80,7 +81,7 @@ const CreateUserPage = () => {
 
     return (
         <>
-            <PageTitle title="Sign Up" />
+            <PageTitle title="Sign Up" customClassName="back__display-none" />
             <div className="create-user">
                 <Input
                     placeholder='Username'
@@ -112,7 +113,11 @@ const CreateUserPage = () => {
                 <Button onClick={signUpSubmit}>
                     Sign Up
                 </Button>
-            {serverError ? <ErrorMessage errorMsg={serverError} /> : null}
+                <div className="create-user__sign-in">
+                    <span>Already have an account?</span>
+                    <Link to='/login'>Sign In.</Link>
+                </div>
+                {serverError ? <ErrorMessage errorMsg={serverError} /> : null}
             </div>
         </>
     );

@@ -5,6 +5,25 @@
     flex-direction: column;
 }
 
-.create-user-input {
-    height: 60px;
-}
+    .create-user-input {
+        height: 60px;
+    }
+
+    .create-user__sign-in {
+        color: rgb(177, 172, 173);
+        font-size: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        bottom: 35px;
+        position: absolute;
+    }
+
+        .create-user__sign-in a {
+            color: rgb(129, 93, 101);
+        }
+
+    .back__display-none {
+        display: none;
+    }
+    

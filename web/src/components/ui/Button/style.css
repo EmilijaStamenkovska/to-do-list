@@ -12,13 +12,13 @@
 }
 
 .button.primary {
-    background-color: rgb(118, 243, 137);
-    color: rgb(112, 111, 111);
+    background-color: rgb(231, 202, 199);
+    color: rgb(150, 148, 148);
 }
 
 .button.primary:hover {
-    background-color: rgb(213, 247, 203);
-    color: rgb(117, 121, 117);
+    background-color: rgb(228, 211, 209);
+    color: rgb(247, 244, 241);
 }
 
 .button.small {

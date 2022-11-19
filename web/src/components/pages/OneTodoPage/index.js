@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { dateFormat } from '../../../services/data/formats';
 import { todosFieldsInit } from '../../../services/data/inits/fields';
-import { setOneTodo } from '../../../services/redux/todos-reducer';
+import { setDeleteTodo, setOneTodo } from '../../../services/redux/todos-reducer';
 import { oneTodo } from '../../../services/rest/todos';
-import OneTodoDetails from '../../widgets/OneTodoDetails';
+import PageTitle from '../../ui/PageTitle/index';
+import Button from '../../ui/Button/index';
+import { deleteTodo } from '../../../services/rest/todos';
+import './style.css';
 
 const OneTodoPage = () => {
     const dispatch = useDispatch();
     const params = useParams();
+    const navigate = useNavigate();
 
     const [fields, setFields] = useState(todosFieldsInit);
+    const [fetch, setFetch] = useState(false);
 
     const getOneTodo = async () => {
-
         try {
             let id = params.id;
             let data = await oneTodo(id);
@@ -29,19 +34,53 @@ const OneTodoPage = () => {
         }
     };
 
+    const deleteOneTodo = async () => {
+        //  if (window.confirm('Are you sure you want to delete this task?')) {
+        try {
+            let id = params.id;
+            await deleteTodo(id);
+            // dispatch(setDeleteTodo(id));
+            // setFetch(!fetch);
+            // navigate('/my-tasks');
+        } catch (err) {
+            console.log(err);
+        }
+      //  }
+    };
+
     useEffect(() => {
         getOneTodo();
     }, []);
 
 
     return (
-        <div>
-            <OneTodoDetails 
-                title={fields.title}
-                description={fields.description}
-                _created={fields._created}
-            />
-        </div>
+        <>
+            <PageTitle title="My Task" />
+            <div className="one-todo-page">
+                <span className="one-todo-page__title">
+                    {fields.title}
+                </span>
+                <span className="one-todo-page__created">
+                    {dateFormat(fields._created)}
+                </span>
+                <p className="one-todo-page__description">
+                    {fields.description}
+                </p>
+                <div className="one-todo-page__buttons">
+                    <Button
+                    // onClick={editTodo}
+                    >
+                        Edit Task
+                    </Button>
+                    <Button
+                        type="secondary"
+                        onClick={deleteOneTodo}
+                    >
+                        Delete Task
+                    </Button>
+                </div>
+            </div>
+        </>
     );
 };
 

@@ -1,8 +1,12 @@
 .all-todos-page {
     display: grid;
     grid-gap: 20px;
-    grid-template-columns: 120px 120px;
+    grid-template-columns: repeat(auto-fit,  minmax(220px, 3fr));
+    justify-content: center;
     width: 90%;
     margin: 0 auto;
-    /* justify-items: center; */
 }
+
+.all-todos-page a {
+    text-decoration: none;
+}   

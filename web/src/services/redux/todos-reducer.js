@@ -2,7 +2,8 @@ import {
     SET_ALL_TODOS,
     SET_ONE_TODO,
     SET_FINISHED_TODOS,
-    SET_UNFINISHED_TODOS
+    SET_UNFINISHED_TODOS,
+    SET_DELETE_TODO
 } from './actions';
 
 const initialState = {
@@ -12,13 +13,15 @@ const initialState = {
         description: '',
         done: 0,
         not_done: 1,
-        _created: ''
+        _created: '',
+        _id: '',
+        _deleted: false
     },
     finished_todos: [],
     unfinished_todos: []
 };
 
-export default function Todo (state = initialState, action) {
+export default function Todo(state = initialState, action) {
 
     switch (action.type) {
         case SET_ALL_TODOS:
@@ -41,6 +44,8 @@ export default function Todo (state = initialState, action) {
                 ...state,
                 unfinished_todos: action.payload
             };
+        case SET_DELETE_TODO:
+            return state.filter(todo => todo._id !== action.payload);
     };
 };
 
@@ -69,5 +74,12 @@ export const setUnfinishedTodos = (data) => {
     return {
         type: SET_UNFINISHED_TODOS,
         payload: data
+    };
+};
+
+export const setDeleteTodo = (id) => {
+    return {
+        type: SET_DELETE_TODO,
+        id
     };
 };

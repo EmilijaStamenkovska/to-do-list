@@ -25,31 +25,33 @@ const AllTodosPage = () => {
         } catch (err) {
             console.log(err);
         }
-    };  
+    };
 
     useEffect(() => {
         getAll()
     }, []);
-    
+
     return (
-        <div className="all-todos-page">
+        <>
             <PageTitle title="My Tasks" />
-            {
-                todos.map((item, key) => {
-                    return (
-                        <OneTodo 
-                            key={key}
-                            title={item.title}
-                            description={item.description}
-                            _id={item._id}
-                            _created={item._created}
-                            customClassName="one-todo-details all-todos"
-                        />
-                    )
-                })
-            }
-        </div>
+            <div className="all-todos-page">
+                {
+                    todos.map((item, key) => {
+                        return (
+                            <OneTodo
+                                key={key}
+                                title={item.title}
+                                description={item.description}
+                                _id={item._id}
+                                _created={item._created}
+                                customClassNameDescription="aa"
+                            />
+                        )
+                    })
+                }
+            </div>
+        </>
     );
-};  
+};
 
 export default AllTodosPage;

@@ -1,6 +1,8 @@
 // Core
 import React from 'react'
 import PropTypes from 'prop-types';
+// Formats
+import { dateFormat } from '../../../services/data/formats';
 // Style
 import './style.css';
 
@@ -8,9 +10,9 @@ const OneTodoDetails = (props) => {
 
     return (
         <div className={`one-todo-details ${props.customClassName}`}>
-            <span className="one-todo-details__title">Title: {props.title}</span>
+            <span className="one-todo-details__title">{props.title}</span>
             <span className="one-todo-details__description">{props.description}</span>
-            <span>Created on: <br /> {props._created}</span>
+            <span>Created on: <br /> {dateFormat(props._created)}</span>
         </div>
     );
 };

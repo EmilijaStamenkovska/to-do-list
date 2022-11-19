@@ -1,0 +1,43 @@
+.one-todo-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    margin: 0 auto;
+}
+
+    .one-todo-page__title {
+        width: 60%;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        font-size: 55px;
+        color: rgb(215, 160, 160);
+        font-weight: 700;
+    }
+
+    .one-todo-page__created {
+        font-size: 15px;
+        color: rgb(199, 149, 149);
+        font-weight: 500;
+    }
+
+    .one-todo-page__description {
+        font-size: 20px;
+        margin-top: 50px;
+        color: rgb(132, 107, 113);
+        height: 400px;
+        overflow: scroll;
+    }
+
+        .one-todo-page__description::-webkit-scrollbar {
+            display: none;
+        }
+
+    .one-todo-page__buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        position: absolute;
+        bottom: 20px;
+    }

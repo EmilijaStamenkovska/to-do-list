@@ -42,7 +42,7 @@ const not_finished = async () => {
 };
 
 const remove = async (id) => {
-    return await Todos.deleteOne({ _id: id });
+    return await Todos.updateOne({ _id: id }, { _deleted: true });
 };
 
 module.exports = {

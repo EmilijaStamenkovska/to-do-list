@@ -18,7 +18,7 @@ const HomePage = () => {
                     to="/create-tasks"
                     className="main-page__create__todos"
                 >
-                    Create task
+                    Create a task
                 </Link>
                 <a
                     href="https://www.junkybooks.com/"

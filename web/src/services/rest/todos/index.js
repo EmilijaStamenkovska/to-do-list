@@ -139,6 +139,5 @@ export const deleteTodo = async (id) => {
         if (!res.ok) {
             return Promise.reject(res);
         }
-        return Promise.resolve(true);
     })
 };

@@ -25,6 +25,7 @@ api.use(
             '/api/v1/todos/finished',
             '/api/v1/todos/not-finished',
             '/api/v1/todos/create',
+            '/api/v1/todos/update/:id',
             '/api/v1/todos/delete/:id', 
             '/api/v1/user/create-user',
             '/api/v1/user/login',

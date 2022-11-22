@@ -45,7 +45,10 @@ export default function Todo(state = initialState, action) {
                 unfinished_todos: action.payload
             };
         case SET_DELETE_TODO:
-            return state.filter(todo => todo._id !== action.payload);
+            return {
+                ...state,
+                todos: state.todos.filter(item => item._id !== action.payload)
+            };
     };
 };
 
@@ -80,6 +83,6 @@ export const setUnfinishedTodos = (data) => {
 export const setDeleteTodo = (id) => {
     return {
         type: SET_DELETE_TODO,
-        id
+        payload: id
     };
 };

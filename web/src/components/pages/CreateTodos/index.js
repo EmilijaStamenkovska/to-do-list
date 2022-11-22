@@ -65,7 +65,7 @@ const CreateTodosPage = () => {
             <PageTitle title="Create a task" />
             <div className="create-todos">
                 <Input
-                    placeholder="...and eat a cookie 🍪"
+                    placeholder="Eat a cookie 🍪"
                     value={fields.title}
                     onChange={onChangeHandler}
                     type="title"
@@ -82,7 +82,7 @@ const CreateTodosPage = () => {
                 >
                 </textarea>
                 <Button
-                    type="secondary"
+                    type="primary"
                     onClick={submitTodo}
                 >
                     Create task

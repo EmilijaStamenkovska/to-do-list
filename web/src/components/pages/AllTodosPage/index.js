@@ -1,5 +1,6 @@
 // Core
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 // Redux
 import { useDispatch } from 'react-redux';
 import { setAllTodos } from '../../../services/redux/todos-reducer';
@@ -33,7 +34,15 @@ const AllTodosPage = () => {
 
     return (
         <>
-            <PageTitle title="My Tasks" />
+            <div className="all-todos-page__title-and-navigation">
+                <PageTitle title="My Tasks" customClassName="back__display-none" />
+                <Link
+                    to="/my-profile"
+                    className="back-to-profile"
+                >
+                    Back to profile
+                </Link>
+            </div>
             <div className="all-todos-page">
                 {
                     todos.map((item, key) => {

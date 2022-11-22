@@ -123,13 +123,13 @@ export const notFinishedTodos = async () => {
     })
 };
 
-export const deleteTodo = async (id) => {
-    const token = localStorage.getItem('jwt');
+export const updateTodo = async (id) => {
+    const token = localStorage.getItem('jwt_key');
 
     return await fetch(
-        `${API_BASE_URL}/api/v1/todos/delete/${id}`,
+        `${API_BASE_URL}/api/v1/todos/${id}/update`,
         {
-            method: 'DELETE',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
@@ -139,5 +139,26 @@ export const deleteTodo = async (id) => {
         if (!res.ok) {
             return Promise.reject(res);
         }
+        return Promise.resolve(true);
+    })
+};
+
+export const deleteTodo = async (id) => {
+    const token = localStorage.getItem('jwt_key');
+
+    return await fetch(
+        `${API_BASE_URL}/api/v1/todos/delete/${id}`, 
+        {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        }
+    ).then(res => {
+        if(!res.ok) {
+            return Promise.reject(res);
+        }
+        return Promise.resolve(true);
     })
 };

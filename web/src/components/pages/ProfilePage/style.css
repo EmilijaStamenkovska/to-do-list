@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
+    position: relative;
 }
 
 .profile-page__user {
@@ -28,6 +28,7 @@
     flex-direction: column;
     font-size: 22px;
     padding-top: 10vh;
+    margin-bottom: 10px;
 }
 
     .tasks a {
@@ -36,8 +37,8 @@
     }
 
 .profile-page__logout-button-and-delete-user {
-    bottom: 44px;
-    position: absolute;
+    /* bottom: 44px; */
+    /* position: relative; */
     display: flex;
     flex-direction: column;
     align-items: center;

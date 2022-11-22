@@ -66,7 +66,7 @@ const update = async (req, res) => {
             return res.status(404).send('Todo Not Found');
         }
 
-        return res.status(204).send('Todo Successfully Updated');
+        return res.status(204).send();
     } catch (err) {
         console.log(err);
         return res.status(400).send('Todo Not Updated, Bad Request');
@@ -107,10 +107,10 @@ const remove = async (req, res) => {
 
     try {
         const removeTodo = await todos.remove(req.params.id);
-        if (!removeTodo.deletedCount) {
-            return res.status(404).send('Remove Todo Not Found')
+        if(removeTodo) {
+            return res.status(204).send();
         }
-        return res.status(204).send();
+        return res.status(404).send('Todo not found');
     } catch (err) {
         console.log(err);
         return res.status(500).send('Internal Server Error');

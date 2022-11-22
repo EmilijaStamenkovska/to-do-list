@@ -1,7 +1,7 @@
 .page__title__back {
     display: flex;
     justify-content: center;
-    margin: 57px auto;
+    margin-top: 57px;
     align-items: center;
     gap: 10px;
 }

@@ -30,7 +30,7 @@ const getByID = async (id) => {
 };
 
 const update = async (id, data) => {
-    return await Todos.updateOne({ _id: id }, data);
+    return await Todos.updateOne({ _id: id, deleted: false }, data);
 };
 
 const finished = async () => {
@@ -42,7 +42,8 @@ const not_finished = async () => {
 };
 
 const remove = async (id) => {
-    return await Todos.updateOne({ _id: id }, { _deleted: true });
+    let data = await Todos.updateOne({ _id: id, _deleted: false }, { _deleted: true });
+    return data.nModified !== 0;
 };
 
 module.exports = {

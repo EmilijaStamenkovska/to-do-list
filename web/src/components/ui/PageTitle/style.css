@@ -1,21 +1,21 @@
 .page__title__back {
     display: flex;
     justify-content: center;
-    margin-top: 57px;
+    margin: 57px 0;
     align-items: center;
     gap: 10px;
 }
 
     .back {
         font-size: 32px;
-        color: rgb(192, 173, 177);
+        color: var(--color-title);
         text-decoration: none;
     }
 
     .page-title {
         font-size: 53px;
         font-weight: 700;
-        color: rgb(192, 173, 177);
+        color: var(--color-title);
     }
 
 

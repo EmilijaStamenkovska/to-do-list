@@ -10,7 +10,7 @@ const PageTitle = (props) => {
         <div className="page__title__back">
             <Link to={(-1)} className={`back ${props.customClassName}`}>«</Link>
             <span className="page-title">
-                {props.title}
+                {props.title} 
             </span>
         </div>
     );

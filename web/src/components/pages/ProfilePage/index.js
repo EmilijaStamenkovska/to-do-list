@@ -23,21 +23,27 @@ const ProfilePage = () => {
             <div className="profile-page">
                 <div className="profile-page__user">
                     <span className="profile-page__email">{email}</span>
-                    <span className="profile-page__name">Hi {username}!ッ Let's create some tasks!</span>
+                    <p className="profile-page__name">Hi <span className="profile-page__name-user">{username}!</span>ッ Let's create some tasks!</p>
                 </div>
                 <div className="tasks">
                     <Link to="/my-tasks">❥ My tasks</Link>
                     <Link to="/create-tasks">❥ Create tasks</Link>
+                    <Link to="/">❥ Back to home page</Link>
                 </div>
                 <div className="profile-page__logout-button-and-delete-user">
                     <Button
                         onClick={onLogout}
                         customClassName="profile-page__logout-button"
-                        type="secondary"
+                        type="primary"
                     >
                         Sign Out
                     </Button>
-                    <Link to="/delete-user" className="profile-page__delete-user">delete profile</Link>
+                    <Link
+                        to="/delete-user"
+                        className="profile-page__delete-user"
+                    >
+                        delete profile
+                    </Link>
                 </div>
             </div>
         </>

@@ -7,12 +7,10 @@
     margin: 100px auto auto auto;
 }
 
-    .create-todos__back {
-        position: absolute;
-        top: 155px;
-        left: 100px;
-        text-decoration: none;
-        font-size: 33px;
+    .create-todos__title-input,
+    .create-todos__input {
+        border: 3px solid var(--color-title);
+        background-color: var(--color-background-light);
     }
 
     .create-todos__input {
@@ -20,21 +18,22 @@
         height: 200px;
         border-radius: 30px;
         padding: 15px 22px;
+        color: var(--color-primary-light);
         overflow: scroll;
         font-size: 22px;
         margin-bottom: 30px;
-        color: rgb(139, 134, 134);
-        background-color: rgb(248, 240, 240);
-        border: none;
         display: flex;
         text-align: start;
     }
 
         .create-todos__input::placeholder {
-            color: rgb(209, 203, 200);
+            color: var(--color-secondary-dark);
         }
 
         .create-todos__input::-webkit-scrollbar {
             display: none; 
         }
 
+    .create-todos__btn {
+        margin-top: 40px;
+    }

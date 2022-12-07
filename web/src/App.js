@@ -5,7 +5,6 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from './components/pages/HomePage';
 import LoginPage from './components/pages/LoginPage';
 import CreateUserPage from './components/pages/CreateUserPage';
-import RelaxPage from './components/pages/RelaxPage';
 import ProfilePage from './components/pages/ProfilePage';
 import CreateTodosPage from './components/pages/CreateTodos';
 import AllTodosPage from './components/pages/AllTodosPage';
@@ -23,7 +22,6 @@ const App = () => {
 				<Route path='/' element={<HomePage />} />
 				<Route path='/login' element={<LoginPage />} />
 				<Route path='/create-user' element={<CreateUserPage />} />
-				<Route path='/relax' element={<RelaxPage />} />
 				<Route path='/my-profile' element={<ProfilePage />} />
 				<Route path='/create-tasks' element={<CreateTodosPage />} />
 				<Route path='/my-tasks' element={<AllTodosPage />} />

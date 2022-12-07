@@ -1,15 +1,22 @@
+// Core
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { dateFormat } from '../../../services/data/formats';
-import { todosFieldsInit } from '../../../services/data/inits/fields';
-import { setDeleteTodo, setOneTodo } from '../../../services/redux/todos-reducer';
-import { oneTodo, updateTodo } from '../../../services/rest/todos';
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
+import { setDeleteTodo, setOneTodo, setOneTodoUpdate } from '../../../services/redux/todos-reducer';
+// UI
 import PageTitle from '../../ui/PageTitle/index';
 import Button from '../../ui/Button/index';
+import Input from '../../ui/Input/index';
+// Rest
+import { oneTodo, updateTodo } from '../../../services/rest/todos';
 import { deleteTodo } from '../../../services/rest/todos';
+// Data
+import { todosFieldsInit } from '../../../services/data/inits/fields';
+// Format
+import { dateFormat } from '../../../services/format/index';
+// Style
 import './style.css';
-
 
 const OneTodoPage = () => {
     const dispatch = useDispatch();
@@ -38,16 +45,26 @@ const OneTodoPage = () => {
         }
     };
 
-    const saveTodo = async () => {
+    const handleChange = (e) => { setFields({ ...fields, [e.target.name]: e.target.value }) };
+
+    const handleEditTodo = () => {
+        setEdit(state => !state);
+    };
+
+    const handleUpdateTodo = async () => {
         try {
             let id = params.id;
-            await updateTodo(id);
+            let data = await updateTodo(id, fields.title, fields.description);
+            let todo_data = data.find(state => state._id === id);
+            console.log(todo_data);
+            let a = setFields(todo_data);
+            console.log(a);
         } catch (err) {
             console.log(err);
         }
-    }
+    };
 
-    const deleteOneTodo = async () => {
+    const handleDeleteTodo = async () => {
         if (window.confirm('Are you sure you want to delete this task?')) {
             try {
                 let id = params.id;
@@ -64,51 +81,62 @@ const OneTodoPage = () => {
         getOneTodo();
     }, [fetch]);
 
-
     return (
         <>
             <PageTitle title="My Task" />
             <div className="one-todo-page">
-                <span className="one-todo-page__title">
-                    {fields.title}
-                </span>
-                <span className="one-todo-page__created">
-                    {dateFormat(fields._created)}
-                </span>
-                <p className="one-todo-page__description">
-                    {fields.description}
-                </p>
-                <div className="one-todo-page__buttons">
-                    {
-                        !edit ?
-                            <>
+                {
+                    !edit ?
+                        <>
+                            <span className="one-todo-page__title">
+                                {fields.title}
+                            </span>
+                            <p className="one-todo-page__description">
+                                {fields.description}
+                            </p>
+                            <span className="one-todo-page__created">
+                                {dateFormat(fields._created)}
+                            </span>
+                            <div className="one-todo-page__buttons">
                                 <Button
-                                // onClick={editOneTodo}
+                                    onClick={handleEditTodo}
                                 >
                                     Edit
                                 </Button>
                                 <Button
                                     type="secondary"
-                                    onClick={deleteOneTodo}
+                                    onClick={handleDeleteTodo}
                                 >
                                     Delete
                                 </Button>
-                            </> :
-                            <>
+                            </div>
+
+                        </> :
+                        <>
+                            <Input
+                                placeholder={fields.title}
+                                value={fields.title}
+                                onChange={handleChange}
+                                type="title"
+                                name="title"
+                            />
+                            <textarea
+                                placeholder={fields.description}
+                                value={fields.description}
+                                onChange={handleChange}
+                                type="description"
+                                name="description"
+                            />
+                            <div className="one-todo-page__buttons">
                                 <Button
-                                // onClick={saveOneTodo}
+                                    type="primary"
+                                    onClick={handleUpdateTodo}
                                 >
-                                    Save
+                                    Finish
                                 </Button>
-                                <Button
-                                    type="secondary"
-                                    // onClick={cancelOneTodo}
-                                >
-                                    Cancel
-                                </Button>
-                            </>
-                    }
-                </div>
+                            </div>
+                        </>
+                }
             </div>
         </>
     );

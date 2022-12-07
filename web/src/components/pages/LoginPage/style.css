@@ -14,7 +14,7 @@
     }
 
     .login-page__sign-up {
-        color: rgb(177, 172, 173);
+        color: var(--color-secondary);
         font-size: 20px;
         display: flex;
         flex-direction: column;
@@ -24,7 +24,7 @@
     }
 
         .login-page__sign-up a {
-            color: rgb(129, 93, 101);
+            color: var(--color-secondary-light);
         }
 
 

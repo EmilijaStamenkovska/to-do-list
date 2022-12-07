@@ -8,17 +8,17 @@
     border: none;
     font-size: 17px;
     font-weight: 700;
-    cursor: pointer;
+    cursor: progress;
 }
 
 .button.primary {
-    background-color: rgb(231, 202, 199);
-    color: rgb(150, 148, 148);
+    background-color: var(--color-secondary-light);
+    color: var(--color-secondary-dark);
 }
 
 .button.primary:hover {
-    background-color: rgb(228, 211, 209);
-    color: rgb(247, 244, 241);
+    background-color: var(--color-orange-primary);
+    color: var(--color-title);
 }
 
 .button.small {
@@ -26,12 +26,12 @@
 }
 
 .button.secondary {
-    background-color: rgb(182, 180, 180);
+    color: var(--color-primary-light-first);
+    background-color: var(--color-secondary-dark);
 }
 
 .button.secondary:hover {
-    color: rgb(255, 248, 240);
-    background-color: rgb(93, 89, 89);
+    background-color: var(--color-orange-secondary);
 }
 
 .button.large {

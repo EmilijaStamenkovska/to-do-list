@@ -1,11 +1,11 @@
 const { Validator } = require('node-input-validator');
 
 const TodoCreate = {
-    title: 'required|minLength:5'
+    title: 'required'
 };
 
 const TodoUpdate = {
-    title: 'required|minLength:5'
+    title: 'required'
 };
 
 const validate = async(data, schema) => {

@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 // Formats
-import { dateFormat } from '../../../services/data/formats';
+import { dateFormat } from '../../../services/format/index';
 // Style
 import './style.css';
 

@@ -3,7 +3,8 @@ import {
     SET_ONE_TODO,
     SET_FINISHED_TODOS,
     SET_UNFINISHED_TODOS,
-    SET_DELETE_TODO
+    SET_DELETE_TODO,
+    SET_ONE_TODO_UPDATE
 } from './actions';
 
 const initialState = {
@@ -16,6 +17,10 @@ const initialState = {
         _created: '',
         _id: '',
         _deleted: false
+    },
+    todo_body_update: {
+        title: '',
+        description: ''
     },
     finished_todos: [],
     unfinished_todos: []
@@ -33,7 +38,12 @@ export default function Todo(state = initialState, action) {
             return {
                 ...state,
                 todo_body: action.payload
-            };
+            }; 
+        case SET_ONE_TODO_UPDATE:
+            return {
+                ...state,
+                todo_body_update: action.payload
+            }; 
         case SET_FINISHED_TODOS:
             return {
                 ...state,
@@ -62,6 +72,13 @@ export const setAllTodos = (data) => {
 export const setOneTodo = (data) => {
     return {
         type: SET_ONE_TODO,
+        payload: data
+    };
+};
+
+export const setOneTodoUpdate = (data) => {
+    return {
+        type: SET_ONE_TODO_UPDATE,
         payload: data
     };
 };

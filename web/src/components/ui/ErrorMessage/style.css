@@ -1,9 +1,9 @@
 .error-message {
     display: flex;
     align-items: center;
-    color: rgb(252, 104, 104);
+    color: var(--color-red-primary);
     font-weight: 700;
-    border: 2px solid rgb(252, 104, 104);
+    border: 2px solid var( --color-red-secondary);
     border-radius: 20px;
     height: 40px;
     margin-top: 18px;

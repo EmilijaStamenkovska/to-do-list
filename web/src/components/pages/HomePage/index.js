@@ -6,47 +6,22 @@ import './style.css';
 
 const HomePage = () => {
     return (
-        <>
-            <div className="main-page">
+        <div className="main-page">
+            <div className="main-page__my-profile">
                 <Link
                     to="/my-profile"
-                    className="main-page__profile"
                 >
-                    Go to profile 
+                    My profile
                 </Link>
+            </div>
+            <div className="main-page__create-tasks">
                 <Link
                     to="/create-tasks"
-                    className="main-page__create__todos"
                 >
                     Create a task
                 </Link>
-                <a
-                    href="https://www.junkybooks.com/"
-                    target="_blank"
-                    className="main-page__books"
-                    rel="noreferrer"
-                >
-                     Read a book
-                </a>
-                <a
-                    href="https://www.youtube.com"
-                    target="_blank"
-                    className="main-page__videos"
-                    rel="noreferrer"
-                >
-                    Listen to some music 
-                </a>
-                <Link
-                    to="/relax"
-                    className="main-page__pictures"
-                >
-                    Take a deep breath and relax your brain🌼
-                </Link>
             </div>
-                <span className="main-page__text">
-                    ...organize your time 🦋
-                </span>
-        </>
+        </div>
     );
 };
 

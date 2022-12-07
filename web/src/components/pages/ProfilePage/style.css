@@ -3,49 +3,60 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: relative;
+    position: static;
 }
 
-.profile-page__user {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    padding-top: 40px;
-}
-
-    .profile-page__name {
-        color: rgb(162, 156, 157);
-        font-size: 27px;
+    .profile-page__user {
+        display: flex;
+        flex-direction: column;
+        margin: auto 25px;
+        text-align: center;
     }
 
-    .profile-page__email {
-        color: rgb(215, 204, 204);
-        font-size: 18px;
-    }
+        .profile-page__name {
+            color: var(--color-secondary-dark);
+            font-size: 28px;
+        }
 
-.tasks {
-    display: flex;
-    flex-direction: column;
-    font-size: 22px;
-    padding-top: 10vh;
-    margin-bottom: 10px;
-}
+            .profile-page__name-user {
+                color: var(--color-title);
+            }
+
+        .profile-page__email {
+            color: var(--color-title);
+            font-size: 15px;
+        }
+
+    .tasks {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        font-size: 22px;
+        border-radius: 20px;
+        margin: 50px;
+        padding: 15px;
+        gap: 20px;
+        border: 3px solid var(--color-title);
+        background-color: var(--color-background-light);
+    }
 
     .tasks a {
-        color: rgb(136, 112, 112);
+        color: var(--color-title);
         text-decoration: none;
     }
 
-.profile-page__logout-button-and-delete-user {
-    /* bottom: 44px; */
-    /* position: relative; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-    .profile-page__delete-user {
-        color: rgb(164, 160, 160);
-        font-size: 15px;
+    .profile-page__logout-button-and-delete-user {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-top: 8rem;
+        padding: 15px;
     }
+
+        .profile-page__delete-user {
+            color: var(--color-black-primary);
+            font-size: 15px;
+            text-decoration: underline;
+            font-weight: 700;
+        }

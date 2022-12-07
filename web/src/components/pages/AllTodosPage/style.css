@@ -6,7 +6,7 @@
 }
 
 .back-to-profile {
-    color: rgba(195, 170, 170, 0.793);
+    color: var(--color-primary);
     font-size: 25px;
     margin-bottom: 35px;
 }

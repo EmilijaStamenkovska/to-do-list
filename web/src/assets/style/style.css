@@ -1,19 +1,49 @@
+:root {
+
+    --color-white-primary: rgb(228, 212, 212);
+
+    --color-primary: rgba(146, 136, 136, 0.793);
+    --color-primary-light: rgb(139, 134, 134);
+    --color-primary-light-first: rgb(255, 249, 249);
+    --color-primary-light-second: rgb(138, 126, 126);
+
+    --color-secondary: rgb(177, 172, 173);
+    --color-secondary-light: rgb(129, 93, 101);
+    --color-secondary-dark: rgb(202, 151, 118);
+    --color-secondary-light-first: rgb(99, 86, 85);
+    --color-secondary-light-second: rgb(192, 173, 177);
+    
+    --color-orange-primary: rgb(207, 150, 142);
+    --color-orange-secondary: rgb(199, 149, 149);
+
+    --color-red-primary: rgb(252, 104, 104);
+    --color-red-secondary: rgb(252, 104, 104);
+
+    --color-black-primary: rgb(78, 76, 76);
+
+    --color-title: rgb(167, 92, 92);
+    --color-background-light: rgb(248, 238, 234);
+}   
+
 html, body, #root {
     width: 100%;
     height: 100%;
-    background-color: rgb(235, 235, 235);
-    /* background-image: url('../images/img.png'); */
-    /* transform: scale(1.06); */
-    /* background-position: center; */
-    /* background-size: contain; */
-    /* background-repeat: no-repeat; */
-    /* position: fixed; */
+    background-image: url('../images/background.jpg');
+    background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+    overflow: hidden;
+    background-size: auto;
 }
-
 
 * {
     padding: 0;
     margin: 0;
+    list-style: none;
     box-sizing: border-box;
-    font-family: 'EB Garamond', serif;
-}
+    -webkit-tap-highlight-color: transparent;
+    font-family: 'Indie Flower', cursive;
+    text-decoration: none;
+  }
+  

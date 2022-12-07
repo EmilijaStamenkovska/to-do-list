@@ -28,6 +28,8 @@ const ProfilePage = () => {
                 <div className="tasks">
                     <Link to="/my-tasks">❥ My tasks</Link>
                     <Link to="/create-tasks">❥ Create tasks</Link>
+                    <Link to="/finished-tasks">❥ Finished tasks</Link>
+                    <Link to="/unfinished-tasks">❥ Unfinished tasks</Link>
                     <Link to="/">❥ Back to home page</Link>
                 </div>
                 <div className="profile-page__logout-button-and-delete-user">

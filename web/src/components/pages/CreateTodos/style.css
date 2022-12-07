@@ -30,6 +30,11 @@
             color: var(--color-secondary-dark);
         }
 
+        .create-todos__input:focus {
+            outline: none;
+            border-color: var(--color-primary-light-first);
+        }
+
         .create-todos__input::-webkit-scrollbar {
             display: none; 
         }

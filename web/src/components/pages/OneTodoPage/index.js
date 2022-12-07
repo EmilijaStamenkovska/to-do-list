@@ -1,6 +1,6 @@
 // Core
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
 import { setDeleteTodo, setOneTodo, setOneTodoUpdate } from '../../../services/redux/todos-reducer';
@@ -47,6 +47,10 @@ const OneTodoPage = () => {
 
     const handleChange = (e) => { setFields({ ...fields, [e.target.name]: e.target.value }) };
 
+    const handleFinishedTodos = () => {
+        // navigate('/finished-tasks');
+    };
+
     const handleEditTodo = () => {
         setEdit(state => !state);
     };
@@ -83,15 +87,30 @@ const OneTodoPage = () => {
 
     return (
         <>
-            <PageTitle title="My Task" />
+            <PageTitle title={fields.title} />
             <div className="one-todo-page">
                 {
                     !edit ?
                         <>
-                            <span className="one-todo-page__title">
-                                {fields.title}
-                            </span>
-                            <p className="one-todo-page__description">
+                            <Link 
+                                className="one-todo-page__title"
+                                to="/finished-tasks"
+                            >
+                                view finished tasks
+                            </Link>
+                            <div className="one-todo-page__finished-todos__button">
+                                <Button
+                                    onClick={handleFinishedTodos}
+                                    type="secondary"
+                                >
+                                    Done
+                                </Button>
+                            </div>
+                            <p className={`
+                            ${fields.description === "" ?
+                                    'one-todo-page__description_display-none' :
+                                    'one-todo-page__description'}
+                            `}>
                                 {fields.description}
                             </p>
                             <span className="one-todo-page__created">
@@ -100,17 +119,16 @@ const OneTodoPage = () => {
                             <div className="one-todo-page__buttons">
                                 <Button
                                     onClick={handleEditTodo}
+                                    type="secondary"
                                 >
                                     Edit
                                 </Button>
                                 <Button
-                                    type="secondary"
                                     onClick={handleDeleteTodo}
                                 >
                                     Delete
                                 </Button>
                             </div>
-
                         </> :
                         <>
                             <Input

@@ -6,7 +6,8 @@
 }
 
 .back-to-profile {
-    color: var(--color-primary);
+    color: var(--color-orange-primary);
+    text-decoration: underline;
     font-size: 25px;
     margin-bottom: 35px;
 }

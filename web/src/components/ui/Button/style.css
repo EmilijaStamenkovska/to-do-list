@@ -8,6 +8,9 @@
     border: none;
     font-size: 17px;
     font-weight: 700;
+}
+
+.button:active {
     cursor: progress;
 }
 

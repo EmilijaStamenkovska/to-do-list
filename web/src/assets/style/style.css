@@ -33,9 +33,15 @@ html, body, #root {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
-    overflow: hidden;
     background-size: auto;
 }
+
+html::-webkit-scrollbar, 
+body::-webkit-scrollbar, 
+#root::-webkit-scrollbar {
+    display: none;
+}
+
 
 * {
     padding: 0;

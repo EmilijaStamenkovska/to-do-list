@@ -21,8 +21,14 @@ label {
             color: var(--color-secondary-dark);
         }
 
-    .form-input__field__error-span{
+        .form-input__field:focus {
+            outline: none;
+            border-color: var(--color-primary-light-first);
+        }
+
+    .form-input__field__error-span {
         margin-top: 3px;
-        color: var(--color-red-primary);
+        font-size: 18px;
+        color: var(--color-red-secondary);
         font-weight: 700;
     }

@@ -9,18 +9,21 @@
         height: 60px;
     }
 
+    .create-user__sign-up {
+        margin-bottom: 57px;
+    }
+
     .create-user__sign-in {
-        color: var(--color-secondary);
-        font-size: 20px;
+        color: var(--color-secondary-dark);
+        font-size: 25px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        bottom: 35px;
-        position: absolute;
     }
 
         .create-user__sign-in a {
             color: var(--color-secondary-light);
+            text-decoration: underline;
         }
 
     .back__display-none {

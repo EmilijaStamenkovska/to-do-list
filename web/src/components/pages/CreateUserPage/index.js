@@ -110,7 +110,10 @@ const CreateUserPage = () => {
                     error={error.password}
                     customClassName='create-user-input'
                 />
-                <Button onClick={signUpSubmit}>
+                <Button 
+                    onClick={signUpSubmit}
+                    customClassName="create-user__sign-up"
+                >
                     Sign Up
                 </Button>
                 <div className="create-user__sign-in">

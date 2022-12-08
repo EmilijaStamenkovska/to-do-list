@@ -13,6 +13,10 @@ import OneTodoPage from './components/pages/OneTodoPage';
 import Header from './components/widgets/Header';
 // Style
 import './assets/style/style.css';
+import FinishedTodosPage from './components/pages/FinishedTodosPage';
+import OneFinishedTodoPage from './components/pages/OneFinishedTodoPage';
+import UnfinishedTodosPage from './components/pages/UnfinishedTodosPage';
+import OneUnfinishedTodoPage from './components/pages/OneUnfinishedTodoPage';
 
 const App = () => {
 	return (
@@ -26,9 +30,13 @@ const App = () => {
 				<Route path='/create-tasks' element={<CreateTodosPage />} />
 				<Route path='/my-tasks' element={<AllTodosPage />} />
 				<Route path='/my-tasks/:id' element={<OneTodoPage />} />
+				<Route path='/finished-tasks' element={<FinishedTodosPage />} />
+				<Route path='/finished-tasks/:id' element={<OneFinishedTodoPage />} />
+				<Route path='/unfinished-tasks' element={<UnfinishedTodosPage />} />
+				<Route path='/unfinished-tasks/:id' element={<OneUnfinishedTodoPage />} />
 			</Routes>
 		</>
 	);
-}
+};
 
 export default App;

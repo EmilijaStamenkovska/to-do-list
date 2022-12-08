@@ -91,7 +91,7 @@ const finished = async (req, res) => {
 const notFinished = async (req, res) => {
 
     try {
-        let nft = await todos.finished();
+        let nft = await todos.not_finished();
         console.log(nft);
         if (!nft) {
             return res.status(404).send('Not Finished Todo Not Found');

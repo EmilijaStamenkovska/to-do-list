@@ -26,19 +26,19 @@ const getAll = async () => {
 };
 
 const getByID = async (id) => {
-    return await Todos.find({ _id: id, deleted: false });
+    return await Todos.find({ _id: id, _deleted: false });
 };
 
 const update = async (id, data) => {
-    return await Todos.updateOne({ _id: id, deleted: false }, data);
+    return await Todos.updateOne({ _id: id, _deleted: false }, data);
 };
 
 const finished = async () => {
-    return await Todos.find({ done: 1, not_done: 0 });
+    return await Todos.find({ done: 1, not_done: 0, _deleted: false });
 };
 
 const not_finished = async () => {
-    return await Todos.find({ done: 0, not_done: 1 });
+    return await Todos.find({ done: 0, not_done: 1, _deleted: false });
 };
 
 const remove = async (id) => {

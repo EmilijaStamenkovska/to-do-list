@@ -53,7 +53,7 @@ const CreateTodosPage = () => {
                 fields.done, 
                 fields.not_done
             );
-            dispatch(setOneTodo(body))
+            dispatch(setOneTodo(body));
             navigate('/my-profile');
         } catch (err) {
             console.log(err);

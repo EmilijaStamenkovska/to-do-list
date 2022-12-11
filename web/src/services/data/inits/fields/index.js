@@ -14,7 +14,8 @@ export const todosFieldsInit = {
     _id: '',
     title: '',
     description: '',
-    done: false,
-    not_done: true,
-    _created: ''
+    done: 0,
+    not_done: 1,
+    _created: '',
+    _deleted: false
 };

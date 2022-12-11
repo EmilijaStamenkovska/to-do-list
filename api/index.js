@@ -43,6 +43,8 @@ api.get('/api/v1/todos/finished', todos.finished); // done
 api.get('/api/v1/todos/not-finished', todos.notFinished); // done
 api.get('/api/v1/todos/:id', todos.getOne); // done
 api.put('/api/v1/todos/:id/update', todos.update);
+api.put('/api/v1/todos/:id/update-finished', todos.updateFinishedTodo);
+api.put('/api/v1/todos/:id/update-unfinished', todos.updateUnfinishedTodo);
 api.delete('/api/v1/todos/delete/:id', todos.remove); // done
 
 // USER

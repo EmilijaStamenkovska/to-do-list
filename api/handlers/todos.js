@@ -27,6 +27,32 @@ const create = async (req, res) => {
     }
 };
 
+const createUnfinishedTodo = async (req, res) => {
+    try {
+        await validator.validate(req.body, 'CREATE')
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send('CREATE, Bad Request');
+    }
+
+    try {
+        let data = await todos.createUnfinished({
+            uid: req.body._id,
+            title: req.body.title,
+            description: req.body.description,
+            done: 0,
+            not_done: 1,
+            _created: new Date().toISOString()
+        });
+
+        res.status(201).send(data);
+
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send('Todo Not Created, Bad Request');
+    }
+};
+
 const getAll = async (req, res) => {
 
     try {
@@ -72,6 +98,39 @@ const update = async (req, res) => {
         return res.status(400).send('Todo Not Updated, Bad Request');
     }
 };
+
+const updateFinishedTodo = async (req, res) => {
+
+    try {
+        let updateTodo = await todos.updateFinished(req.params.id);
+        if (!updateTodo) {
+            return res.status(404).send('Todo Not Found');
+        }
+
+        return res.status(204).send();
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send('Todo Not Updated, Bad Request');
+    }
+};
+
+
+const updateUnfinishedTodo = async (req, res) => {
+
+    try {
+        let updateTodo = await todos.updateUnfinished(req.params.id);
+
+        if (!updateTodo) {
+            return res.status(404).send('Todo Not Found');
+        }
+
+        return res.status(204).send();
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send('Todo Not Updated, Bad Request');
+    }
+};
+
 
 const finished = async (req, res) => {
 
@@ -119,10 +178,13 @@ const remove = async (req, res) => {
 
 module.exports = {
     create, // works
+    createUnfinishedTodo,
     getAll, // works
     getOne, // works
     update, // works
     finished, // works
     notFinished, // works
-    remove // works
+    remove, // works
+    updateFinishedTodo,
+    updateUnfinishedTodo
 };

@@ -152,6 +152,46 @@ export const notFinishedTodos = async () => {
     })
 };
 
+export const updateUnfinishedTodos = async (id) => {
+    const token = localStorage.getItem('jwt');
+
+    return await fetch (
+        `${API_BASE_URL}/api/v1/todos/${id}/update-unfinished`,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        }
+    ).then(res => {
+        if(!res.ok) {
+            return Promise.reject(res);
+        }
+        return Promise.resolve(true);
+    })
+};
+
+export const updateFinishedTodos = async (id) => {
+    const token = localStorage.getItem('jwt');
+
+    return await fetch (
+        `${API_BASE_URL}/api/v1/todos/${id}/update-finished`,
+        {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        }
+    ).then(res => {
+        if(!res.ok) {
+            return Promise.reject(res);
+        }
+        return Promise.resolve(true);
+    })
+};
+
 export const deleteTodo = async (id) => {
     const token = localStorage.getItem('jwt_key');
 

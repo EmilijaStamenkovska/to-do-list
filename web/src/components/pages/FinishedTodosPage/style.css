@@ -19,7 +19,7 @@
 .finished-todos-page {
     display: grid;
     grid-gap: 20px;
-    grid-template-columns: repeat(auto-fit,  minmax(220px, 3fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 3fr));
     justify-content: center;
     width: 90%;
     margin: 0 auto;
@@ -27,4 +27,10 @@
 
     .finished-todos-page a {
         text-decoration: none;
+        width: 231px;
     }   
+
+
+    .aa {
+        width: 200px;
+    }

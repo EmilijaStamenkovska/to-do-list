@@ -10,7 +10,7 @@ import PageTitle from '../../ui/PageTitle';
 // Services 
 import { todosFieldsInit } from '../../../services/data/inits/fields';
 import { dateFormat } from '../../../services/format';
-import { createTodo, deleteTodo, oneTodo } from '../../../services/rest/todos';
+import { createTodo, deleteTodo, oneTodo, updateFinishedTodos } from '../../../services/rest/todos';
 // Style
 import './style.css';
 
@@ -21,7 +21,7 @@ const OneFinishedTodoPage = () => {
 
     const [fields, setFields] = useState(todosFieldsInit);
     const [fetch, setFetch] = useState(false);
-    console.log(fields)
+
     const getOneTodo = async () => {
         try {
             let id = params.id;
@@ -43,8 +43,12 @@ const OneFinishedTodoPage = () => {
         }
     };
 
-    const handleReturnToUnfinishedTodos = () => {
-           console.log('dasdasdas')
+    const handleReturnToUnfinishedTodos = async (id) => {
+        try {
+            await updateFinishedTodos(id);
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     const handleDeleteTodo = async () => {
@@ -53,7 +57,7 @@ const OneFinishedTodoPage = () => {
                 let id = params.id;
                 await deleteTodo(id);
                 setFetch(!fetch);
-                navigate('/my-tasks');
+                navigate('/finished-tasks');
             } catch (err) {
                 console.log(err);
             }
@@ -62,6 +66,7 @@ const OneFinishedTodoPage = () => {
 
     useEffect(() => {
         getOneTodo();
+        handleReturnToUnfinishedTodos();
     }, [fetch]);
 
     return (

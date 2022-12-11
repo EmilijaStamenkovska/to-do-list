@@ -11,17 +11,19 @@ const OneTodo = (props) => {
 
     return (
         <Link
-                to={`${props._id}`}
-            >
-        <div className="one-todo">
+            to={`${props._id}`}
+        >
+            <div className="one-todo">
                 <OneTodoDetails
                     title={props.title}
                     description={props.description}
                     _created={props._created}
                     className={`one-todo-details ${props.customClassName}`}
-                    />
-                    </div>
-            </Link>
+                    done={props.done}
+                    not_done={props.not_done}
+                />
+            </div>
+        </Link>
     );
 };
 

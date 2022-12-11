@@ -10,7 +10,7 @@ import PageTitle from '../../ui/PageTitle';
 // Services 
 import { todosFieldsInit } from '../../../services/data/inits/fields';
 import { dateFormat } from '../../../services/format';
-import { oneTodo } from '../../../services/rest/todos';
+import { oneTodo, updateUnfinishedTodos } from '../../../services/rest/todos';
 // Style
 import './style.css';
 
@@ -37,6 +37,14 @@ const OneUnfinishedTodoPage = () => {
                 _deleted: todo_data._deleted,
                 not_done: 1
             }));
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const sendToFinishedTodos = async (id) => {
+        try {
+            await updateUnfinishedTodos(id);
         } catch (err) {
             console.log(err);
         }
@@ -69,7 +77,7 @@ const OneUnfinishedTodoPage = () => {
                             Have you finished it?
                         </span>
                         <Button
-                            onClick={handleDeleteTodo}
+                            onClick={sendToFinishedTodos}
                             type="secondary"
                         >
                             yes!

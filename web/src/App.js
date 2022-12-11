@@ -9,14 +9,14 @@ import ProfilePage from './components/pages/ProfilePage';
 import CreateTodosPage from './components/pages/CreateTodos';
 import AllTodosPage from './components/pages/AllTodosPage';
 import OneTodoPage from './components/pages/OneTodoPage';
-// Widgets
-import Header from './components/widgets/Header';
-// Style
-import './assets/style/style.css';
 import FinishedTodosPage from './components/pages/FinishedTodosPage';
 import OneFinishedTodoPage from './components/pages/OneFinishedTodoPage';
 import UnfinishedTodosPage from './components/pages/UnfinishedTodosPage';
 import OneUnfinishedTodoPage from './components/pages/OneUnfinishedTodoPage';
+// Widgets
+import Header from './components/widgets/Header';
+// Style
+import './assets/style/style.css';
 
 const App = () => {
 	return (

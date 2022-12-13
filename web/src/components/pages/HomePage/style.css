@@ -19,5 +19,9 @@
         font-size: 50px;
         width: 430px;
         white-space: nowrap;
+        background-color: var(--color-orange-primary-light);
+    }
+    
+    .main-page a:hover {
         background-color: var(--color-secondary-dark);
     }

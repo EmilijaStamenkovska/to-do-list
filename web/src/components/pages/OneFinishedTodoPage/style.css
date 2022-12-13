@@ -17,7 +17,7 @@
     .one-finished-todo-page__first-wrapper {
         display: flex;
         flex-direction: row;
-        gap: 40px;
+        gap: 60px;
         align-items: center;
     }
 
@@ -26,7 +26,6 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            color: var(--color-orange-primary);
         }
 
             .one-finished-todo-page__task-completed {
@@ -35,28 +34,21 @@
                 color: var(--color-title);
             }
 
-            .one-finished-todo-page__delete-task {
-                font-size: 25px;
-            }
-
             .one-finished-todo-page__create-task {
                 margin-top: 40px;
                 font-size: 30px;
+                background-color: transparent !important;
+                color: var(--color-orange-secondary) !important; 
+                /* font-size: 50px; */
+                font-weight: 100;
+                border: none !important;
+                cursor: pointer;
             }
 
-            .one-finished-todo-page__create-task-link {
-                display: flex;
-                align-items: center;
-                font-size: 17px;
-                font-weight: 700;
-                color: var(--color-title);
-                text-decoration: underline;
+            .one-finished-todo-page__create-task:hover {
+                color: var(--color-title) !important;
             }
-
-            .one-finished-todo-page__create-task-link:hover {
-                color: var(--color-orange-primary);
-            }
-
+         
             .one-finished-todo-page__description {
                 font-size: 20px;
                 color: var(--color-secondary-light-first);

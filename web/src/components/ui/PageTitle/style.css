@@ -1,21 +1,19 @@
 .page__title__back {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    margin: 37px 0;
+    margin: 37px 0 0 0;
     align-items: center;
-    gap: 10px;
 }
-
-    .back {
-        font-size: 32px;
-        color: var(--color-title);
-        text-decoration: none;
-    }
-
     .page-title {
         font-size: 53px;
         font-weight: 700;
         color: var(--color-title);
     }
 
-
+    .back-to-profile {
+        color: var(--color-orange-primary);
+        text-decoration: underline;
+        font-size: 20px;
+        margin: 20px 0 30px 0;
+    }

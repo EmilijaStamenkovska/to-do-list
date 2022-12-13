@@ -17,7 +17,7 @@
     .one-unfinished-todo-page__first-wrapper {
         display: flex;
         flex-direction: row;
-        gap: 40px;
+        gap: 60px;
         align-items: center;
     }
     
@@ -26,24 +26,25 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            gap: 50px;
+            margin-bottom: 54px;
         }
-
-            .one-unfinished-todo-page__created {
-                font-size: 20px;
-                color: var(--color-title);
+        
+            .custom-btn__finish {
+                background-color: transparent !important;
+                color: var(--color-orange-secondary) !important; 
+                font-size: 50px;
                 font-weight: 100;
-                padding: 15px 50px;
-                margin-bottom: 25px;
-                border: 3px solid var(--color-title);
-                border-radius: 30px;
-                background-color: var(--color-secondary-dark);
-                font-weight: 700;
-                text-align: center;
+                border: none !important;
+                cursor: pointer;
             }
-            
-            .one-unfinished-todo-page__finished {
-                color: var(--color-title); 
-                font-size: 35px;
+
+            .custom-btn__finish:hover {
+                color: var(--color-title) !important;
+            }
+
+            .custom-btn__finish.first {
+                margin: 20px;
             }
 
         .one-unfinished-todo-page__description {
@@ -54,9 +55,10 @@
             border-radius: 25px;        
             height: 400px;
             overflow: scroll;
-            padding: 20px;
+            padding: 15px;
             cursor: not-allowed;
             width: 500px;
+            text-align: center;
         }
 
         .one-unfinished-todo-page__description_display-none {

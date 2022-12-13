@@ -1,6 +1,5 @@
 //Core
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 // Redux
 import { useDispatch } from 'react-redux';
 import { setUnfinishedTodos } from '../../../services/redux/todos-reducer';
@@ -34,15 +33,7 @@ const UnfinishedTodosPage = () => {
 
     return (
         <>
-            <div className="unfinished-todos-page__title-and-navigation">
-                <PageTitle title="Unfinished Tasks" customClassName="back__display-none" />
-                <Link
-                    to="/my-profile"
-                    className="back-to-profile"
-                >
-                    Back to profile
-                </Link>
-            </div>
+            <PageTitle title="Unfinished Tasks" back="back to profile page" />
             <div className="unfinished-todos-page">
                 {
                     allUnfinishedTodos.map((item, key) => {

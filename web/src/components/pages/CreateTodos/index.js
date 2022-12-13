@@ -48,9 +48,9 @@ const CreateTodosPage = () => {
 
         try {
             let body = await createTodo(
-                fields.title, 
-                fields.description, 
-                fields.done, 
+                fields.title,
+                fields.description,
+                fields.done,
                 fields.not_done
             );
             dispatch(setOneTodo(body));
@@ -61,8 +61,8 @@ const CreateTodosPage = () => {
     };
 
     return (
-        <>  
-            <PageTitle title="Create a task" />
+        <>
+            <PageTitle title="Create a task" back="back to profile page" />
             <div className="create-todos">
                 <Input
                     placeholder="Title..."

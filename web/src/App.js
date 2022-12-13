@@ -9,9 +9,9 @@ import ProfilePage from './components/pages/ProfilePage';
 import CreateTodosPage from './components/pages/CreateTodos';
 import AllTodosPage from './components/pages/AllTodosPage';
 import OneTodoPage from './components/pages/OneTodoPage';
-import FinishedTodosPage from './components/pages/FinishedTodosPage';
+import FinishedTodosPage from './components/pages/AllFinishedTodosPage';
 import OneFinishedTodoPage from './components/pages/OneFinishedTodoPage';
-import UnfinishedTodosPage from './components/pages/UnfinishedTodosPage';
+import UnfinishedTodosPage from './components/pages/AllUnfinishedTodosPage';
 import OneUnfinishedTodoPage from './components/pages/OneUnfinishedTodoPage';
 // Widgets
 import Header from './components/widgets/Header';

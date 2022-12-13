@@ -3,47 +3,50 @@
     justify-content: center;
     flex-direction: column;
     padding: 0 15px;
-    /* width: 230px; */
     height: 150px;
     border-radius: 25px;
-    color: var(--color-secondary-dark);
     border: 3px solid var(--color-title);
     background-color: var(--color-background-light);
     font-weight: 700;
     font-size: 20px;
-    text-decoration: none ;
+    text-decoration: none;
+    text-align: center;
 }
 
-    .one-todo-details__title {
-        font-size: 23px;
-        color: var(--color-title);
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-    }
+        .one-todo-details__title {
+            font-size: 28px;
+            color: var(--color-title);
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
 
-    .one-todo-details__description {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-        font-size: 15px;
-    }
+        .one-todo-details__created {
+            font-size: 15px;
+            white-space: nowrap;
+            margin-bottom: 20px;
+            color: var(--color-title); 
+        }
 
-    .one-todo-details__buttons {
-        display: flex;
-        flex-direction: row;
-        gap: 5px;
-        /* align-items: center; */
-        justify-content: center;
-        /* width: 230px; */
-    }
-    
-    .custom-button {
-        height: 30px;
-        width: 30px;
-        color: white !important;
-        /* background-color: var(--color-background-light) !important; */
-        /* text-decoration: underline; */
-        border: 2px solid var(--color-title);
-        border-radius: 0;
-    }
+        .one-todo-details__buttons {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+            justify-content: center;
+        }
+        
+            .custom-button {
+                height: 30px;
+                width: 30px;
+                color: var(--color-orange-primary) !important;
+                border: 2px solid var(--color-title);
+                border-radius: 4.5px;
+                background-color: var(--color-orange-secondary-light) !important;
+                cursor: pointer;
+            }
+
+            .custom-button:hover {
+                color: var(--color-title) !important;
+                background-color: transparent !important;
+                border: none !important;
+            }

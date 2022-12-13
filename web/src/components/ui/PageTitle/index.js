@@ -1,17 +1,22 @@
 // Core
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 // Style
 import './style.css';
 
 const PageTitle = (props) => {
     return (
         <div className="page__title__back">
-            <Link to={(-1)} className={`back ${props.customClassName}`}>«</Link>
             <span className="page-title">
-                {props.title} 
+                {props.title}
             </span>
+            <Link
+                to="/my-profile"
+                className="back-to-profile"
+            >
+                {props.back}
+            </Link>
         </div>
     );
 };

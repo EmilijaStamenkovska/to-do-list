@@ -9,7 +9,6 @@ import Button from '../../ui/Button';
 import PageTitle from '../../ui/PageTitle';
 // Services 
 import { todosFieldsInit } from '../../../services/data/inits/fields';
-import { dateFormat } from '../../../services/format';
 import { deleteTodo, oneTodo } from '../../../services/rest/todos';
 // Style
 import './style.css';
@@ -73,24 +72,20 @@ const OneFinishedTodoPage = () => {
                 <div className="one-finished-todo-page__first-wrapper">
                     <div className="one-finished-todo-page__second-wrapper">
                         <span className="one-finished-todo-page__task-completed">
-                            This task is completed!
-                        </span>
-                        <span className="one-finished-todo-page__delete-task">
-                            Would you like to delete it?
+                            This task is completed! ッ
                         </span>
                         <Button
                             onClick={handleDeleteTodo}
+                            customClassName="one-finished-todo-page__create-task"
                         >
-                            delete task
+                            Delete task?
                         </Button>
-                        <span className="one-finished-todo-page__create-task">
-                            Create another task?
-                        </span>
                         <Link
                             to="/create-tasks"
-                            className="one-finished-todo-page__create-task-link"
+                            className="one-finished-todo-page__create-task"
                         >
-                            yes!
+                            Create new?
+
                         </Link>
                     </div>
                     <p className={`

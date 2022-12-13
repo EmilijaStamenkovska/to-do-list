@@ -26,8 +26,8 @@ const ProfilePage = () => {
                     <p className="profile-page__name">Hi <span className="profile-page__name-user">{username}!</span>ッ Let's create some tasks!</p>
                 </div>
                 <div className="tasks">
-                    <Link to="/my-tasks">❥ My tasks</Link>
                     <Link to="/create-tasks">❥ Create tasks</Link>
+                    <Link to="/my-tasks">❥ All tasks</Link>
                     {/* <Link to="/important-tasks">❥ Important tasks</Link> */}
                     <Link to="/finished-tasks">❥ Finished tasks</Link>
                     <Link to="/unfinished-tasks">❥ Unfinished tasks</Link>

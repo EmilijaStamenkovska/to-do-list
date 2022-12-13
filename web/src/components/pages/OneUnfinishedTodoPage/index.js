@@ -70,25 +70,18 @@ const OneUnfinishedTodoPage = () => {
                 </Link>
                 <div className="one-unfinished-todo-page__first-wrapper">
                     <div className="one-unfinished-todo-page__second-wrapper">
-                        <span className="one-unfinished-todo-page__created">
-                            This task was created on {dateFormat(fields._created)}
-                        </span>
-                        <span className="one-unfinished-todo-page__finished">
-                            Have you finished it?
-                        </span>
+                        <Button
+                            type="secondary"
+                            customClassName="custom-btn__finish first"
+                        >
+                            Edit task?
+                        </Button>
                         <Button
                             onClick={sendToFinishedTodos}
                             type="secondary"
+                            customClassName="custom-btn__finish"
                         >
-                            yes!
-                        </Button>
-                        <span className="one-unfinished-todo-page__finished">
-                            Would you like to change something?
-                        </span>
-                        <Button
-                            type="secondary"
-                        >
-                            edit
+                            Finish?
                         </Button>
                     </div>
                     <p className={`
@@ -96,7 +89,13 @@ const OneUnfinishedTodoPage = () => {
                             "one-unfinished-todo-page__description_display-none" :
                             "one-unfinished-todo-page__description"}
                         `}>
+                        {fields.title}
+                        <br />
+                        Created on: {dateFormat(fields._created)}
+                        <br />
+                        <br />
                         {fields.description}
+                        <br />
                     </p>
                 </div>
             </div>

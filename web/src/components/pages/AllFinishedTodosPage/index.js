@@ -34,15 +34,7 @@ const FinishedTodosPage = () => {
 
     return (
         <>
-            <div className="finished-todos-page__title-and-navigation">
-                <PageTitle title="Finished Tasks" customClassName="back__display-none" />
-                <Link
-                    to="/my-profile"
-                    className="back-to-profile"
-                >
-                    Back to profile
-                </Link>
-            </div>
+            <PageTitle title="Finished Tasks" back="back to profile page" />
             <div className="finished-todos-page">
                 {
                     allFinishedTodos.map((item, key) => {

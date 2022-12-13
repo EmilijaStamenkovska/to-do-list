@@ -67,11 +67,11 @@ const LoginPage = () => {
             const username = body.userdata.username;
             const email = body.userdata.email;
             const id = body.userdata.uid
-            
-            dispatch(setUserData({ 
+
+            dispatch(setUserData({
                 email: fields.email,
                 username: fields.username
-             }));
+            }));
             dispatch(setToken({ jwt_key: jwt_key }));
 
             localStorage.setItem('jwt_key', jwt_key);

@@ -1,4 +1,4 @@
-.all-todos-page {
+.unfinished-todos-page {
     display: grid;
     grid-gap: 20px;
     grid-template-columns: repeat(auto-fill, minmax(220px, 3fr));
@@ -7,10 +7,6 @@
     margin: 0 auto;
 }
 
-    .all-todos-page a {
+    .unfinished-todos-page a {
         text-decoration: none;
     }   
-
-    .back__display-none {
-        display: none;
-    }

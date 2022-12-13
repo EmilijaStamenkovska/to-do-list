@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 // Redux
-import { useDispatch, useSelector } from 'react-redux';
-import { setDeleteTodo, setOneTodo, setOneTodoUpdate } from '../../../services/redux/todos-reducer';
+import { useDispatch } from 'react-redux';
+import { setOneTodo } from '../../../services/redux/todos-reducer';
 // UI
 import PageTitle from '../../ui/PageTitle/index';
 import Button from '../../ui/Button/index';
@@ -13,8 +13,6 @@ import { oneTodo, updateTodo } from '../../../services/rest/todos';
 import { deleteTodo } from '../../../services/rest/todos';
 // Data
 import { todosFieldsInit } from '../../../services/data/inits/fields';
-// Format
-import { dateFormat } from '../../../services/format/index';
 // Style
 import './style.css';
 
@@ -22,7 +20,7 @@ const OneTodoPage = () => {
     const dispatch = useDispatch();
     const params = useParams();
     const navigate = useNavigate();
-    
+
     const [fields, setFields] = useState(todosFieldsInit);
     const [fetch, setFetch] = useState(false);
     const [edit, setEdit] = useState(false);
@@ -47,10 +45,6 @@ const OneTodoPage = () => {
     };
 
     const handleChange = (e) => { setFields({ ...fields, [e.target.name]: e.target.value }) };
-
-    const handleFinishedTodos = () => {
-        // navigate('/finished-tasks');
-    };
 
     const handleEditTodo = () => {
         setEdit(state => !state);
@@ -93,14 +87,12 @@ const OneTodoPage = () => {
                 {
                     !edit ?
                         <>
-                            <div className="one-todo-page__finished-todos__button">
-                                <Button
-                                    onClick={handleFinishedTodos}
-                                    type="secondary"
-                                >
-                                    Done
-                                </Button>
-                            </div>
+                            <Link
+                                className="one-todo-page__title"
+                                to="/my-tasks"
+                            >
+                                back to all tasks
+                            </Link>
                             <p className={`
                             ${fields.description === "" ?
                                     'one-todo-page__description_display-none' :
@@ -108,9 +100,6 @@ const OneTodoPage = () => {
                             `}>
                                 {fields.description}
                             </p>
-                            <span className="one-todo-page__created">
-                                {dateFormat(fields._created)}
-                            </span>
                             <div className="one-todo-page__buttons">
                                 <Button
                                     onClick={handleEditTodo}

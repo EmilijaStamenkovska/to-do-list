@@ -14,7 +14,7 @@ const OneTodoDetails = (props) => {
         <div className={`one-todo-details ${props.customClassName}`}>
             <span className="one-todo-details__title">{props.title}</span>
             {/* <span className="one-todo-details__description">{props.description}</span> */}
-            <span>Created on: <br /> {dateFormat(props._created)}</span>
+            <span className="one-todo-details__created">Created on: {dateFormat(props._created)}</span>
             <div className="one-todo-details__buttons">
                 <Button
                     customClassName="custom-button"
@@ -24,7 +24,7 @@ const OneTodoDetails = (props) => {
                 <Button
                     customClassName="custom-button"
                 >
-                    not-done
+                    not done
                 </Button>
             </div>
         </div> 

@@ -1,4 +1,4 @@
-.all-todos-page {
+.finished-todos-page {
     display: grid;
     grid-gap: 20px;
     grid-template-columns: repeat(auto-fill, minmax(220px, 3fr));
@@ -7,10 +7,12 @@
     margin: 0 auto;
 }
 
-    .all-todos-page a {
+    .finished-todos-page a {
         text-decoration: none;
+        width: 231px;
     }   
 
-    .back__display-none {
-        display: none;
+
+    .aa {
+        width: 200px;
     }

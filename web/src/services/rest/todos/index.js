@@ -81,7 +81,7 @@ export const createTodo = async (title, description, done, not_done) => {
     })
 };
 
-export const updateTodo = async (id, title, description) => {
+export const updateTodo = async (id, title, description) => { // not-working
     const token = localStorage.getItem('jwt_key');
     let data = {
         title,
@@ -132,6 +132,7 @@ export const finishedTodos = async () => {
 };
 
 export const notFinishedTodos = async () => {
+
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/not-finished`,
         {
@@ -155,7 +156,7 @@ export const notFinishedTodos = async () => {
 export const updateUnfinishedTodos = async (id) => {
     const token = localStorage.getItem('jwt');
 
-    return await fetch (
+    return await fetch(
         `${API_BASE_URL}/api/v1/todos/${id}/update-unfinished`,
         {
             method: 'PUT',
@@ -165,7 +166,7 @@ export const updateUnfinishedTodos = async (id) => {
             }
         }
     ).then(res => {
-        if(!res.ok) {
+        if (!res.ok) {
             return Promise.reject(res);
         }
         return Promise.resolve(true);
@@ -175,7 +176,7 @@ export const updateUnfinishedTodos = async (id) => {
 export const updateFinishedTodos = async (id) => {
     const token = localStorage.getItem('jwt');
 
-    return await fetch (
+    return await fetch(
         `${API_BASE_URL}/api/v1/todos/${id}/update-finished`,
         {
             method: 'PUT',
@@ -185,7 +186,7 @@ export const updateFinishedTodos = async (id) => {
             }
         }
     ).then(res => {
-        if(!res.ok) {
+        if (!res.ok) {
             return Promise.reject(res);
         }
         return Promise.resolve(true);

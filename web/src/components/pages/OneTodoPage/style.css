@@ -31,6 +31,7 @@
         height: 400px;
         overflow: scroll;
         padding: 20px;
+        width: 500px;
     }
 
     .one-todo-page__description_display-none {

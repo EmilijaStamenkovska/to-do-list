@@ -93,12 +93,6 @@ const OneTodoPage = () => {
                 {
                     !edit ?
                         <>
-                            <Link 
-                                className="one-todo-page__title"
-                                to="/finished-tasks"
-                            >
-                                view finished tasks
-                            </Link>
                             <div className="one-todo-page__finished-todos__button">
                                 <Button
                                     onClick={handleFinishedTodos}

@@ -10,7 +10,7 @@ import PageTitle from '../../ui/PageTitle';
 // Services 
 import { todosFieldsInit } from '../../../services/data/inits/fields';
 import { dateFormat } from '../../../services/format';
-import { createTodo, deleteTodo, oneTodo, updateFinishedTodos } from '../../../services/rest/todos';
+import { deleteTodo, oneTodo } from '../../../services/rest/todos';
 // Style
 import './style.css';
 
@@ -43,14 +43,6 @@ const OneFinishedTodoPage = () => {
         }
     };
 
-    const handleReturnToUnfinishedTodos = async (id) => {
-        try {
-            await updateFinishedTodos(id);
-        } catch (err) {
-            console.log(err);
-        }
-    };
-
     const handleDeleteTodo = async () => {
         if (window.confirm('Are you sure you want to delete this task?')) {
             try {
@@ -66,7 +58,6 @@ const OneFinishedTodoPage = () => {
 
     useEffect(() => {
         getOneTodo();
-        handleReturnToUnfinishedTodos();
     }, [fetch]);
 
     return (
@@ -84,14 +75,13 @@ const OneFinishedTodoPage = () => {
                         <span className="one-finished-todo-page__task-completed">
                             This task is completed!
                         </span>
-                        <span className="one-finished-todo-page__created">
-                            Created on {dateFormat(fields._created)}
+                        <span className="one-finished-todo-page__delete-task">
+                            Would you like to delete it?
                         </span>
                         <Button
-                            customClassName="one-finished-todo-page__return-task"
-                            onClick={handleReturnToUnfinishedTodos}
+                            onClick={handleDeleteTodo}
                         >
-                            Return task to unfinished
+                            delete task
                         </Button>
                         <span className="one-finished-todo-page__create-task">
                             Create another task?
@@ -102,14 +92,6 @@ const OneFinishedTodoPage = () => {
                         >
                             yes!
                         </Link>
-                        <span className="one-finished-todo-page__delete-task">
-                            Would you like to delete it?
-                        </span>
-                        <Button
-                            onClick={handleDeleteTodo}
-                        >
-                            delete task
-                        </Button>
                     </div>
                     <p className={`
                             ${fields.description === "" ?

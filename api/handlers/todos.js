@@ -57,7 +57,6 @@ const getAll = async (req, res) => {
 
     try {
         let t = await todos.getAll();
-        console.log(t);
         return res.status(200).send(t);
     } catch (err) {
         console.log(err);
@@ -106,6 +105,7 @@ const updateFinishedTodo = async (req, res) => {
         if (!updateTodo) {
             return res.status(404).send('Todo Not Found');
         }
+        console.log(updateTodo);
 
         return res.status(204).send();
     } catch (err) {
@@ -119,6 +119,7 @@ const updateUnfinishedTodo = async (req, res) => {
 
     try {
         let updateTodo = await todos.updateUnfinished(req.params.id);
+        console.log(updateTodo);
 
         if (!updateTodo) {
             return res.status(404).send('Todo Not Found');
@@ -136,7 +137,6 @@ const finished = async (req, res) => {
 
     try {
         let ft = await todos.finished();
-        console.log(ft);
         if (!ft) {
             return res.status(404).send('Finished Todo Not Found');
         }
@@ -151,7 +151,6 @@ const notFinished = async (req, res) => {
 
     try {
         let nft = await todos.not_finished();
-        console.log(nft);
         if (!nft) {
             return res.status(404).send('Not Finished Todo Not Found');
         }

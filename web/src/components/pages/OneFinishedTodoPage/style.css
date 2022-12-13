@@ -26,47 +26,35 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            color: var(--color-orange-primary);
         }
 
             .one-finished-todo-page__task-completed {
-                font-size: 43px;
-                color: var(--color-orange-primary);
-                font-weight: 700;
+                font-size: 50px;
                 white-space: nowrap;
-            }
-            
-            .one-finished-todo-page__created {
                 color: var(--color-title);
-                font-weight: 700;
             }
 
-            .one-finished-todo-page__return-task {
-                color: var(--color-orange-primary);
-                font-size: 25px;
-                text-decoration: underline;
-                margin: 15px 0 10px 0;
-            }
-
-            .one-finished-todo-page__create-task,
             .one-finished-todo-page__delete-task {
+                font-size: 25px;
+            }
+
+            .one-finished-todo-page__create-task {
+                margin-top: 40px;
                 font-size: 30px;
-                color: var(--color-orange-primary);
             }
 
             .one-finished-todo-page__create-task-link {
                 display: flex;
                 align-items: center;
-                border-radius: 25px;
-                border: none;
-                padding: 6px 66px;
                 font-size: 17px;
                 font-weight: 700;
-                color: var(--color-primary-light-first);
-                background-color: var(--color-secondary-dark);
+                color: var(--color-title);
+                text-decoration: underline;
             }
 
             .one-finished-todo-page__create-task-link:hover {
-                background-color: var(--color-orange-secondary);
+                color: var(--color-orange-primary);
             }
 
             .one-finished-todo-page__description {

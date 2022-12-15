@@ -75,8 +75,35 @@ export const allUsers = async () => {
     })
 };
 
+export const validatePassword = async (uid, password) => {
+    const token = localStorage.getItem('jwt_key');
+    let payload = {
+        password
+    };
+    return await fetch(
+        `${API_BASE_URL}/api/v1/user/${uid}/check-password`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(payload)
+        }
+    ).then(res => {
+        if(!res.ok) {
+            return Promise.reject(res);
+        }
+        if(res.headers.get('content-type').includes('application/json')) {
+            return res.json();
+        } else if(res.headers.get('content-type').includes('text/plain')) {
+            return res.text();
+        }
+    })
+};
+
 export const deleteUser = async (id) => {
-    const token = localStorage.getItem('jwt');
+    const token = localStorage.getItem('jwt_key');
 
     return await fetch(
         `${API_BASE_URL}/api/v1/user/${id}/delete`,

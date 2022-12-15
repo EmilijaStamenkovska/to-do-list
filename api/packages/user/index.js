@@ -22,7 +22,7 @@ const create = async (data) => {
 };
 
 const getOne = async (id) => {
-    return await User.findOne({_deleted: false, _id: id});
+    return await User.findOne({ _deleted: false, _id: id });
 };
 
 const getAll = async () => {
@@ -44,7 +44,7 @@ const remove = async (id) => {
 };
 
 module.exports = {
-    create, 
+    create,
     getAll,
     getOne,
     getByEmail,

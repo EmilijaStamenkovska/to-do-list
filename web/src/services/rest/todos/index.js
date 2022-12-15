@@ -2,7 +2,7 @@
 import { API_BASE_URL } from "../../data/constants/index";
 
 export const allTodos = async () => {
-    let token = localStorage.getItem('token');
+    let token = localStorage.getItem('jwt_key');
 
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/getAll`,
@@ -154,12 +154,12 @@ export const notFinishedTodos = async () => {
 };
 
 export const updateUnfinishedTodos = async (id) => {
-    const token = localStorage.getItem('jwt');
+    const token = localStorage.getItem('jwt_key');
 
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/${id}/update-unfinished`,
         {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
@@ -174,12 +174,12 @@ export const updateUnfinishedTodos = async (id) => {
 };
 
 export const updateFinishedTodos = async (id) => {
-    const token = localStorage.getItem('jwt');
+    const token = localStorage.getItem('jwt_key');
 
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/${id}/update-finished`,
         {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`

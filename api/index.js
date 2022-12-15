@@ -30,7 +30,8 @@ api.use(
             '/api/v1/user/create-user',
             '/api/v1/user/login',
             '/api/v1/user/update-user',
-            '/api/v1/user/:id/delete'
+            '/api/v1/user/:id/delete',
+            '/api/v1/user/:id/check-password'
         ]
     }));
 
@@ -43,8 +44,8 @@ api.get('/api/v1/todos/finished', todos.finished); // done
 api.get('/api/v1/todos/not-finished', todos.notFinished); // done
 api.get('/api/v1/todos/:id', todos.getOne); // done
 api.put('/api/v1/todos/:id/update', todos.update);
-api.put('/api/v1/todos/:id/update-finished', todos.updateFinishedTodo);
-api.put('/api/v1/todos/:id/update-unfinished', todos.updateUnfinishedTodo);
+api.patch('/api/v1/todos/:id/update-finished', todos.updateFinishedTodo);
+api.patch('/api/v1/todos/:id/update-unfinished', todos.updateUnfinishedTodo);
 api.delete('/api/v1/todos/delete/:id', todos.remove); // done
 
 // USER
@@ -53,6 +54,7 @@ api.post('/api/v1/user/create-user', user.createUser); // done
 api.get('/api/v1/user/getAll', user.getAll); // done
 api.get('/api/v1/user/:id', user.getOne); // done
 api.put('/api/v1/user/:id/update', user.updateUser);
+api.post('/api/v1/user/:id/check-password', user.checkPassword);
 api.delete('/api/v1/user/:id/delete', user.removeUser); // done
 
 api.use(function (err, req, res, next) {

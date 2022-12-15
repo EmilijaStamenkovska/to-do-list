@@ -8,7 +8,7 @@ import PageTitle from '../../ui/PageTitle/index';
 // Widgets
 import OneTodo from '../../widgets/OneTodo';
 // Rest
-import { allTodos } from '../../../services/rest/todos';
+import { allTodos, updateFinishedTodos } from '../../../services/rest/todos';
 // Style
 import './style.css';
 
@@ -26,6 +26,15 @@ const AllTodosPage = () => {
             console.log(err);
         }
     };
+
+    const handleFinishedTodo = async (id) => {
+        try {
+            await updateFinishedTodos(id);
+            setTodos([...todos.filter( p => p._id !== id)]);
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     useEffect(() => {
         getAll()
@@ -45,6 +54,7 @@ const AllTodosPage = () => {
                                 _id={item._id}
                                 _created={item._created}
                                 customClassNameDescription="aa"
+                                finished={handleFinishedTodo}
                             />
                         )
                     })

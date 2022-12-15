@@ -1,20 +1,21 @@
-const { validate } = require('uuid');
 const users = require('../packages/user/index');
-const validator = require('../packages/user/validator');
-const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
+const bcrypt = require('bcryptjs');
 const config = require('./../packages/config');
 const {
     UserCreate,
     UserLogin,
-    UserUpdate
+    UserUpdate,
+    CheckPassword,
+    validator
 } = require('./../packages/user/validator');
+
 
 const createUser = async (req, res) => {
 
     try {
-        await validate(req.body, UserCreate);
+        await validator(req.body, UserCreate);
     } catch (err) {
         console.log(err);
         return res.status(404).send('CREATE, Bad Request');
@@ -27,17 +28,19 @@ const createUser = async (req, res) => {
             return res.status(409).send('User Already Exists');
         }
 
-        if(!userExists) {
+        if (!userExists) {
+            let token = uuidv4();
 
             let payload = {
                 uid: req.body._id,
                 email: req.body.email,
+                password: bcrypt.hashSync(req.body.password),
                 username: req.body.username,
-                _created: new Date().toISOString()
+                _created: new Date().toISOString(),
+                verification_token: token
             }
-            
+
             let user = await users.create(payload);
-            
             console.log(user);
             res.status(201).send(user);
         }
@@ -76,7 +79,7 @@ const getOne = async (req, res) => {
 const loginUser = async (req, res) => {
 
     try {
-        await validate(req.body, UserLogin)
+        await validator(req.body, UserLogin);
     } catch (err) {
         console.log(err);
         return res.status(400).send('Login Validate Bad Request');
@@ -88,13 +91,15 @@ const loginUser = async (req, res) => {
             return res.status(400).send('Bad request');
         }
 
-        // if (!bcrypt.compareSync(req.body.password, user.password)) { // not working
-        //   return res.status(400).send('Bad request. Wrong password');
-        // }
+        let expirationToken = parseInt((new Date().getTime() + 60 * 60 * 24 * 365 * 1000) / 1000);
 
-        if (user) {
-            let expirationToken = parseInt((new Date().getTime() + 60 * 60 * 24 * 365 * 1000) / 1000);
+        const compare = bcrypt.compareSync(req.body.password, user.password);
 
+        if(!compare) {
+            return res.status(401).send('Wrong password!');
+        }
+
+        if (compare) {
             let payload = {
                 uid: user._id,
                 email: user.email,
@@ -115,10 +120,38 @@ const loginUser = async (req, res) => {
     }
 };
 
+const checkPassword = async (req, res) => {
+    try {
+        await validator(req.body, CheckPassword);
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send(err);
+    }
+
+    try {
+        let user = await users.getOne(req.params.id);
+        if (!user) {
+            return res.status(404).send('User Not Found');
+        }
+
+        const compare = bcrypt.compareSync(req.body.password, user.password);
+
+        if (compare) {
+            return res.status(200).send('Correct password');
+        }
+        
+        return res.status(401).send('Wrong password!');
+    } catch (err) {
+        console.log(err);
+        res.status(500).send('Internal server error: Check Password');
+    }
+};
+
+
 const updateUser = async (req, res) => {
 
     try {
-        await validate(req.body, UserUpdate)
+        await validator(req.body, UserUpdate)
     } catch (err) {
         console.log(err);
         return res.status(400).send('Update Validate Bad Request');
@@ -148,7 +181,7 @@ const removeUser = async (req, res) => {
         return res.status(404).send('Delete User Not Found');
     } catch (err) {
         console.log(err);
-        return res.status(500).send('Internal Server Error');
+        return res.status(500).send('Internal Server Error: Delete User');
     }
 };
 
@@ -158,5 +191,6 @@ module.exports = {
     createUser, // works
     loginUser, // works
     updateUser, // works
-    removeUser // works
+    removeUser, // works
+    checkPassword 
 };

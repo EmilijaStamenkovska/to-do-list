@@ -8,7 +8,7 @@ const UserCreate = {
 
 const UserLogin = {
     email: 'required|email',
-    password: 'required|minLength:2'
+    password: 'required'
 };
 
 const UserUpdate = {
@@ -17,7 +17,11 @@ const UserUpdate = {
     password: 'required|minLength:2'
 };
 
-const validate = async (data, schema) => {
+const CheckPassword = {
+    password: 'required|minLength:2'
+};
+
+const validator = async (data, schema) => {
     let v = new Validator(data, schema);
     let e = await v.check();
   
@@ -29,5 +33,7 @@ const validate = async (data, schema) => {
 module.exports = {
     UserCreate,
     UserLogin,
-    UserUpdate
+    UserUpdate,
+    CheckPassword,
+    validator
 };

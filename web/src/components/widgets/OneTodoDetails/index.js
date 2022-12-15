@@ -7,27 +7,41 @@ import Button from '../../ui/Button/index';
 import { dateFormat } from '../../../services/format/index';
 // Style
 import './style.css';
+import { Link } from 'react-router-dom';
 
 const OneTodoDetails = (props) => {
 
+    const onDone = () => {
+        props.finished(props._id);
+    };
+
+    const onNotDone = () => {
+        props.unfinished(props._id)
+    };
     return (
         <div className={`one-todo-details ${props.customClassName}`}>
-            <span className="one-todo-details__title">{props.title}</span>
-            {/* <span className="one-todo-details__description">{props.description}</span> */}
-            <span className="one-todo-details__created">Created on: {dateFormat(props._created)}</span>
+            <Link
+                to={`${props._id}`}
+                className="one-todo-details__link"
+            >
+                <span className="one-todo-details__title">{props.title}</span>
+                <span className="one-todo-details__created">Created on: {dateFormat(props._created)}</span>
+            </Link>
             <div className="one-todo-details__buttons">
                 <Button
                     customClassName="custom-button"
+                    onClick={onDone}
                 >
                     done
                 </Button>
                 <Button
                     customClassName="custom-button"
+                    onClick={onNotDone}
                 >
                     not done
                 </Button>
             </div>
-        </div> 
+        </div>
     );
 };
 

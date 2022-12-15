@@ -1,0 +1,19 @@
+.delete-account-page__main {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}   
+
+    .delete-account-page {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+        border: 2px solid var(--color-title);
+        border-radius: 15px;
+        padding: 50px;
+        font-size: 25px;
+        background-color: var(--color-background-light);
+        color: var(--color-secondary-light-first);
+    }

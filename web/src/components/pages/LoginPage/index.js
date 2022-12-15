@@ -63,6 +63,7 @@ const LoginPage = () => {
 
         try {
             let body = await loginUser(fields.email, fields.password);
+
             const jwt_key = body.jwt;
             const username = body.userdata.username;
             const email = body.userdata.email;

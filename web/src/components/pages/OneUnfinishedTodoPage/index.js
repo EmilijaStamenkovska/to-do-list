@@ -81,7 +81,7 @@ const OneUnfinishedTodoPage = () => {
                             type="secondary"
                             customClassName="custom-btn__finish"
                         >
-                            Finish?
+                            Finished?
                         </Button>
                     </div>
                     <p className={`

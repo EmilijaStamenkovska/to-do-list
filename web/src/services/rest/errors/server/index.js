@@ -1,7 +1,7 @@
 import { 
     EMAIL_DOES_NOT_EXIST, 
     TRY_AGAIN_LATER, 
-    USER_DOES_NOT_EXIST,
+    WRONG_PASSWORD,
     USER_ALREADY_EXIST,
     SOMETHING_WENT_WRONG
 } from '../../../data/errors/server/index';
@@ -14,7 +14,7 @@ export const handleServerError = (err) => {
             error = EMAIL_DOES_NOT_EXIST;
             break;
         case 401:
-            error = USER_DOES_NOT_EXIST;
+            error = WRONG_PASSWORD;
             break;
         case 404:
             error = SOMETHING_WENT_WRONG;

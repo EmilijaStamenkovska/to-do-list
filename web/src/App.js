@@ -17,6 +17,7 @@ import OneUnfinishedTodoPage from './components/pages/OneUnfinishedTodoPage';
 import Header from './components/widgets/Header';
 // Style
 import './assets/style/style.css';
+import DeleteAccountPage from './components/pages/DeleteAccountPage';
 
 const App = () => {
 	return (
@@ -34,6 +35,7 @@ const App = () => {
 				<Route path='/finished-tasks/:id' element={<OneFinishedTodoPage />} />
 				<Route path='/unfinished-tasks' element={<UnfinishedTodosPage />} />
 				<Route path='/unfinished-tasks/:id' element={<OneUnfinishedTodoPage />} />
+				<Route path='/delete-user' element={<DeleteAccountPage />} />
 			</Routes>
 		</>
 	);

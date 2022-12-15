@@ -43,15 +43,9 @@
             .custom-button {
                 height: 30px;
                 width: 30px;
-                color: var(--color-orange-primary) !important;
+                color: var(--color-orange-primary);
                 border: 2px solid var(--color-title);
                 border-radius: 4.5px;
-                background-color: var(--color-orange-secondary-light) !important;
+                background-color: var(--color-orange-secondary-light);
                 cursor: pointer;
-            }
-
-            .custom-button:hover {
-                color: var(--color-title) !important;
-                background-color: transparent !important;
-                border: none !important;
             }

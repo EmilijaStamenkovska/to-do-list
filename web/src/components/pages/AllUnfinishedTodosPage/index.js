@@ -8,23 +8,35 @@ import PageTitle from '../../ui/PageTitle';
 // Widgets
 import OneTodo from '../../widgets/OneTodo';
 // Services
-import { notFinishedTodos } from '../../../services/rest/todos';
+import { notFinishedTodos, updateFinishedTodos } from '../../../services/rest/todos';
 // Style
 import './style.css';
 
 const UnfinishedTodosPage = () => {
     const dispatch = useDispatch();
 
-    const [allUnfinishedTodos, setallUnfinishedTodos] = useState([]);
+    const [allUnfinishedTodos, setAllUnfinishedTodos] = useState([]);
 
     const getAllUnfinishedTodos = async () => {
         try {
             let data = await notFinishedTodos();
-            setallUnfinishedTodos(data);
+            setAllUnfinishedTodos(data);
             dispatch(setUnfinishedTodos(data));
         } catch (err) {
             console.log(err);
         }
+    };
+
+    const handleFinishedTodo = async (id) => {
+        if (window.confirm('Send task to finished?')) {
+
+        try {
+            await updateFinishedTodos(id);
+            setAllUnfinishedTodos([...allUnfinishedTodos.filter(item => item._id !== id)]);
+        } catch (err) {
+            console.log(err);
+        }
+    }
     };
 
     useEffect(() => {
@@ -44,7 +56,8 @@ const UnfinishedTodosPage = () => {
                                 description={item.description}
                                 _id={item._id}
                                 _created={item._created}
-                                customClassNameDescription="aa"
+                                finished={handleFinishedTodo}
+                                buttonTypeU={true}
                             />
                         )
                     })

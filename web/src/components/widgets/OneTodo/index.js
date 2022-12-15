@@ -17,6 +17,9 @@ const OneTodo = (props) => {
                 className={`one-todo-details ${props.customClassName}`}
                 finished={props.finished}
                 unfinished={props.unfinished}
+                _id={props._id}
+                buttonTypeF={props.buttonTypeF}
+                buttonTypeU={props.buttonTypeU}
             />
         </div>
     );
@@ -29,7 +32,9 @@ OneTodo.defaultProps = {
     title: '',
     description: '',
     _created: '',
-    customClassName: ''
+    customClassName: '',
+    buttonTypeF: false,
+    buttonTypeU: false
 };
 
 OneTodo.propTypes = {
@@ -37,5 +42,7 @@ OneTodo.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     _created: PropTypes.string,
-    customClassName: PropTypes.string
+    customClassName: PropTypes.string,
+    buttonTypeF: PropTypes.bool,
+    buttonTypeU: PropTypes.bool
 };

@@ -9,6 +9,7 @@ const initialState = {
 };
 
 export default function User(state = initialState, action) {
+    
     switch (action.type) {
         case SET_TOKEN:
             return {

@@ -1,13 +1,13 @@
 // Core
 import React from 'react'
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 // UI
 import Button from '../../ui/Button/index';
 // Formats
 import { dateFormat } from '../../../services/format/index';
 // Style
 import './style.css';
-import { Link } from 'react-router-dom';
 
 const OneTodoDetails = (props) => {
 
@@ -31,12 +31,14 @@ const OneTodoDetails = (props) => {
                 <Button
                     customClassName="custom-button"
                     onClick={onDone}
+                    type={props.buttonTypeF ? "disabled" : ""}
                 >
                     done
                 </Button>
                 <Button
                     customClassName="custom-button"
                     onClick={onNotDone}
+                    type={props.buttonTypeU ? "disabled" : ""}
                 >
                     not done
                 </Button>
@@ -51,12 +53,20 @@ OneTodoDetails.defaultProps = {
     title: '',
     description: '',
     _created: '',
-    customClassName: ''
+    customClassName: '',
+    finished: () => {},
+    unfinished: () => {},
+    buttonTypeF: false,
+    buttonTypeU: false
+    
 };
 
 OneTodoDetails.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     _created: PropTypes.string,
-    customClassName: PropTypes.string
+    customClassName: PropTypes.string,
+    finished: PropTypes.func,
+    buttonTypeF: PropTypes.bool,
+    buttonTypeU: PropTypes.bool
 };

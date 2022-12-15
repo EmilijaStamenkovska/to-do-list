@@ -25,6 +25,10 @@
 
     --color-title: rgb(167, 92, 92);
     --color-background-light: rgb(248, 238, 234);
+
+    --color-disabled: rgb(225, 223, 223);
+    --color-disabled-primary: rgb(207, 205, 205);
+    --color-disabled-secondary: rgb(225, 223, 223);
 }   
 
 html, body, #root {

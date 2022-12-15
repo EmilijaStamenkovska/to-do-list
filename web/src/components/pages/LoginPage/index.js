@@ -88,7 +88,7 @@ const LoginPage = () => {
 
     return (
         <>
-            <PageTitle title="Sign In" customClassName="back__display-none" />
+            <PageTitle title="Sign In" />
             <div className="login-page">
                 <Input
                     placeholder="E-mail"

@@ -74,6 +74,8 @@ export default function Todo(state = initialState, action) {
                 ...state,
                 todos: state.todos.filter(item => item._id !== action.payload)
             };
+        default:
+            return state;
     };
 };
 

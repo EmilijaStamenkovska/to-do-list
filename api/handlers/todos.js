@@ -105,7 +105,6 @@ const updateFinishedTodo = async (req, res) => {
         if (!updateTodo) {
             return res.status(404).send('Todo Not Found');
         }
-        console.log(updateTodo);
 
         return res.status(204).send();
     } catch (err) {
@@ -119,7 +118,6 @@ const updateUnfinishedTodo = async (req, res) => {
 
     try {
         let updateTodo = await todos.updateUnfinished(req.params.id);
-        console.log(updateTodo);
 
         if (!updateTodo) {
             return res.status(404).send('Todo Not Found');

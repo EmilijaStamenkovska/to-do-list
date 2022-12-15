@@ -8,7 +8,7 @@ import PageTitle from '../../ui/PageTitle/index';
 // Widgets
 import OneTodo from '../../widgets/OneTodo';
 // Rest
-import { allTodos, updateFinishedTodos } from '../../../services/rest/todos';
+import { allTodos, updateFinishedTodos, updateUnfinishedTodos } from '../../../services/rest/todos';
 // Style
 import './style.css';
 
@@ -28,13 +28,26 @@ const AllTodosPage = () => {
     };
 
     const handleFinishedTodo = async (id) => {
-        try {
-            await updateFinishedTodos(id);
-            setTodos([...todos.filter( p => p._id !== id)]);
-        } catch (err) {
-            console.log(err);
+        if (window.confirm('Send task to finished?')) {
+            try {
+                await updateFinishedTodos(id);
+            } catch (err) {
+                console.log(err);
+            }
         }
-    }
+        alert('Task sent to finished!');
+    };
+
+    const handleUnfinishedTodo = async (id) => {
+        if (window.confirm('Send task to unfinished?')) {
+            try {
+                await updateUnfinishedTodos(id);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        alert('Task sent to unfinished!');
+    };
 
     useEffect(() => {
         getAll()
@@ -53,8 +66,8 @@ const AllTodosPage = () => {
                                 description={item.description}
                                 _id={item._id}
                                 _created={item._created}
-                                customClassNameDescription="aa"
                                 finished={handleFinishedTodo}
+                                unfinished={handleUnfinishedTodo}
                             />
                         )
                     })

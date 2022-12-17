@@ -17,6 +17,12 @@ const HomePage = () => {
                 >
                     Create a task
                 </Link>
+                <a
+                    href="https://www.youtube.com"
+                    target="_blank"
+                >
+                    Youtube
+                </a>
             </div>
     );
 };

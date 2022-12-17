@@ -42,9 +42,9 @@
 }
 
 .button.disabled {
-    /* background-color: var(--color-disabled);
+    background-color: var(--color-disabled);
     color: var(--color-disabled-primary);
     border: 2px solid var(--color-disabled-secondary);
-    cursor: not-allowed; */
-    display: none;
+    cursor: not-allowed;
+    /* display: none; */
 }

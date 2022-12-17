@@ -8,16 +8,16 @@ import CreateUserPage from './components/pages/CreateUserPage';
 import ProfilePage from './components/pages/ProfilePage';
 import CreateTodosPage from './components/pages/CreateTodos';
 import AllTodosPage from './components/pages/AllTodosPage';
-import OneTodoPage from './components/pages/OneTodoPage';
 import FinishedTodosPage from './components/pages/AllFinishedTodosPage';
-import OneFinishedTodoPage from './components/pages/OneFinishedTodoPage';
 import UnfinishedTodosPage from './components/pages/AllUnfinishedTodosPage';
+import OneTodoPage from './components/pages/OneTodoPage';
+import OneFinishedTodoPage from './components/pages/OneFinishedTodoPage';
 import OneUnfinishedTodoPage from './components/pages/OneUnfinishedTodoPage';
+import DeleteAccountPage from './components/pages/DeleteAccountPage';
 // Widgets
 import Header from './components/widgets/Header';
 // Style
 import './assets/style/style.css';
-import DeleteAccountPage from './components/pages/DeleteAccountPage';
 
 const App = () => {
 	return (
@@ -30,11 +30,11 @@ const App = () => {
 				<Route path='/my-profile' element={<ProfilePage />} />
 				<Route path='/create-tasks' element={<CreateTodosPage />} />
 				<Route path='/my-tasks' element={<AllTodosPage />} />
+				<Route path='/unfinished-tasks' element={<UnfinishedTodosPage />} />
+				<Route path='/unfinished-tasks/:id' element={<OneUnfinishedTodoPage />} />
 				<Route path='/my-tasks/:id' element={<OneTodoPage />} />
 				<Route path='/finished-tasks' element={<FinishedTodosPage />} />
 				<Route path='/finished-tasks/:id' element={<OneFinishedTodoPage />} />
-				<Route path='/unfinished-tasks' element={<UnfinishedTodosPage />} />
-				<Route path='/unfinished-tasks/:id' element={<OneUnfinishedTodoPage />} />
 				<Route path='/delete-user' element={<DeleteAccountPage />} />
 			</Routes>
 		</>

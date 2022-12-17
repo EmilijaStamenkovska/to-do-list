@@ -7,7 +7,7 @@ import Button from '../../ui/Button/index';
 import PageTitle from '../../ui/PageTitle/index';
 import ErrorMessage from '../../ui/ErrorMessage';
 // Auth
-import {validatePassword, deleteUser} from '../.././../services/rest/users/auth';
+import { validatePassword, deleteUser } from '../.././../services/rest/users/auth';
 // Validation
 import { PASSWORD_VALIDATOR } from '../../../services/data/validators/index';
 // Data
@@ -22,13 +22,13 @@ import './style.css';
 const DeleteAccountPage = () => {
     const navigate = useNavigate();
     const userId = localStorage.getItem('id');
-    
+
     const [fields, setFields] = useState(fieldsInit);
     const [error, setError] = useState(errorsInit);
     const [serverError, setServerError] = useState('');
-    
+
     const onChangeHandler = (e) => { setFields({ ...fields, [e.target.name]: e.target.value }); }
-    
+
     const validate = () => {
         setError(errorsInit);
         let errors = false;
@@ -45,18 +45,18 @@ const DeleteAccountPage = () => {
     };
 
     const handleDeleteAccount = async () => {
-
         if (validate()) {
             return;
         }
-
-        try {
-            await validatePassword(userId, fields.password);
-            await deleteUser(userId);
-            localStorage.clear();
-            navigate('/login');
-        } catch (err) {
-            return setServerError(handleServerError(err.status));
+        if (window.confirm('Delete account?')) {
+            try {
+                await validatePassword(userId, fields.password);
+                await deleteUser(userId);
+                localStorage.clear();
+                navigate('/login');
+            } catch (err) {
+                return setServerError(handleServerError(err.status));
+            }
         }
     };
 
@@ -64,12 +64,12 @@ const DeleteAccountPage = () => {
         <>
             <PageTitle title="Delete Account" back="back to profile page" />
             <div className="delete-account-page__main">
-                <div className="delete-account-page">
+                <div className="delete-account-page__text-wrapper">
                     <span className="delete-account-page__text">༄ Are you sure you want to delete your account?</span>
                     <span className="delete-account-page__text">༄ Once your account is deleted, all of your tasks will be permanently deleted!</span>
                     <span className="delete-account-page__text">༄ Please enter your password to confirm you would like to permanently delete your account.</span>
                 </div>
-                <Input 
+                <Input
                     placeholder="password..."
                     name="password"
                     type="password"

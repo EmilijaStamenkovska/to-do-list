@@ -5,7 +5,7 @@
     align-items: center;
 }   
 
-    .delete-account-page {
+    .delete-account-page__text-wrapper {
         display: flex;
         flex-direction: column;
         text-align: center;

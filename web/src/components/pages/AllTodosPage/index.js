@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 // Redux
 import { useDispatch } from 'react-redux';
 import { setAllTodos } from '../../../services/redux/todos-reducer';
+import { setPopupActivation, setPopupMessage } from '../../../services/redux/popup-reducer';
 // UI
 import PageTitle from '../../ui/PageTitle/index';
 // Widgets
@@ -16,7 +17,11 @@ const AllTodosPage = () => {
     const dispatch = useDispatch();
 
     const [todos, setTodos] = useState([]);
-
+    const popup_activation = dispatch(setPopupActivation(true));
+    const popup_message = dispatch(setPopupMessage("Task done?"));
+    const popup_message2 = dispatch(setPopupMessage("Task done?"));
+    const popup_message_complete = dispatch(setPopupMessage("Complete!"));
+ 
     const getAll = async () => {
         try {
             let data = await allTodos();
@@ -28,26 +33,26 @@ const AllTodosPage = () => {
     };
 
     const handleFinishedTodo = async (id) => {
-        if (window.confirm('Send task to finished?')) { //demo
+        if (dispatch(setPopupActivation(true)) && dispatch(setPopupMessage("Task done?"))) { //demo
             try {
                 await updateFinishedTodos(id);
             } catch (err) {
                 console.log(err);
             }
-            alert('Task sent to finished!'); //demo
+            // popup_activation && popup_message_complete; //demo
         } else {
             return;
         }
     };
 
     const handleUnfinishedTodo = async (id) => {
-        if (window.confirm('Send task to unfinished?')) { //demo
+        if (dispatch(setPopupActivation(true)) && dispatch(setPopupMessage("Task not done?"))) { //demo
             try {
                 await updateUnfinishedTodos(id);
             } catch (err) {
                 console.log(err);
             }
-            alert('Task sent to unfinished!'); //demo
+            // popup_activation && popup_message_complete; //demo
         } else {
             return;
         }

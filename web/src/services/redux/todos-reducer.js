@@ -19,21 +19,12 @@ const initialState = {
         _id: '',
         _deleted: false
     },
-    finished_todo_body: {
-        title: '',
-        description: '',
-        done: 1,
-        not_done: 0,
-        _created: '',
-        _id: '',
-        _deleted: false
-    },
-    todo_body_update: {
-        title: '',
-        description: ''
-    },
     finished_todos: [],
     unfinished_todos: []
+    // todo_body_update: {
+    //     title: '',
+    //     description: ''
+    // },
 };
 
 export default function Todo(state = initialState, action) {

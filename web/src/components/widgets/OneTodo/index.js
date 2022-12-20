@@ -37,8 +37,8 @@ OneTodo.defaultProps = {
     customClassName: '',
     buttonTypeF: false,
     buttonTypeU: false,
-    state: [],
-    setState: []
+    state: () => {},
+    setState: () => {}
 };
 
 OneTodo.propTypes = {
@@ -49,6 +49,6 @@ OneTodo.propTypes = {
     customClassName: PropTypes.string,
     buttonTypeF: PropTypes.bool,
     buttonTypeU: PropTypes.bool,
-    state: PropTypes.array,
-    setState: PropTypes.array
+    state: PropTypes.func,
+    setState: PropTypes.func
 };

@@ -3,28 +3,28 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 // Redux
 import { useDispatch } from 'react-redux';
-import { setOneTodo } from '../../../services/redux/todos-reducer';
+import { setDeleteTodo, setOneTodo } from '../../../services/redux/todos-reducer';
 // UI
 import Button from '../../ui/Button';
 import PageTitle from '../../ui/PageTitle';
 // Services 
 import { todosFieldsInit } from '../../../services/data/inits/fields';
+import { dateFormat } from '../../../services/format';
 import { deleteTodo, oneTodo, updateUnfinishedTodos } from '../../../services/rest/todos';
 // Style
 import './style.css';
-import { dateFormat } from '../../../services/format';
 
 const OneFinishedTodoPage = () => {
     const dispatch = useDispatch();
     const params = useParams();
     const navigate = useNavigate();
+    let id = params.id;
 
     const [fields, setFields] = useState(todosFieldsInit);
     const [fetch, setFetch] = useState(false);
 
     const getOneTodo = async () => {
         try {
-            let id = params.id;
             let data = await oneTodo(id);
             let todo_data = data.find(state => state._id === id);
 
@@ -46,7 +46,6 @@ const OneFinishedTodoPage = () => {
     const handleUpdateTodo = async () => {
         if (window.confirm('Send task to unfinished?')) {
             try {
-                let id = params.id;
                 await updateUnfinishedTodos(id);
             } catch (err) {
                 console.log(err);
@@ -61,8 +60,8 @@ const OneFinishedTodoPage = () => {
     const handleDeleteTodo = async () => {
         if (window.confirm('Are you sure you want to delete this task?')) {
             try {
-                let id = params.id;
                 await deleteTodo(id);
+                dispatch(setDeleteTodo(id));
                 setFetch(!fetch);
                 navigate('/finished-tasks');
             } catch (err) {

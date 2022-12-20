@@ -1,6 +1,8 @@
 // Core
 import React from 'react';
 import { Route, Routes } from "react-router-dom";
+// Redux
+import { useSelector } from 'react-redux';
 // Pages
 import HomePage from './components/pages/HomePage';
 import LoginPage from './components/pages/LoginPage';
@@ -16,12 +18,16 @@ import OneUnfinishedTodoPage from './components/pages/OneUnfinishedTodoPage';
 import DeleteAccountPage from './components/pages/DeleteAccountPage';
 // Widgets
 import Header from './components/widgets/Header';
+import Popup from './components/widgets/Popup';
 // Style
 import './assets/style/style.css';
 
 const App = () => {
+    const active = useSelector(state => state.popup.active);
+
 	return (
 		<>
+			{ active && <Popup /> }
 			<Header />
 			<Routes>
 				<Route path='/' element={<HomePage />} />

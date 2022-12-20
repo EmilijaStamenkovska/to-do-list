@@ -50,14 +50,14 @@ const OneTodoDetails = (props) => {
                 <Button
                     customClassName="custom-button"
                     onClick={done}
-                    type={props.buttonTypeF ? "disabled" : ""}
+                    type={props.buttonTypeF ? "disabled" : ""} // change this
                 >
                     done
                 </Button>
                 <Button
                     customClassName="custom-button"
                     onClick={notDone}
-                    type={props.buttonTypeU ? "disabled" : ""}
+                    type={props.buttonTypeU ? "disabled" : ""} // change this
                 >
                     not done
                 </Button>
@@ -77,8 +77,8 @@ OneTodoDetails.defaultProps = {
     unfinished: () => {},
     buttonTypeF: false,
     buttonTypeU: false,
-    state: [],
-    setState: []
+    state: () => {},
+    setState: () => {}
 };
 
 OneTodoDetails.propTypes = {
@@ -89,6 +89,6 @@ OneTodoDetails.propTypes = {
     finished: PropTypes.func,
     buttonTypeF: PropTypes.bool,
     buttonTypeU: PropTypes.bool,
-    state: PropTypes.array,
-    setState: PropTypes.array
+    state: PropTypes.func,
+    setState: PropTypes.func
 };

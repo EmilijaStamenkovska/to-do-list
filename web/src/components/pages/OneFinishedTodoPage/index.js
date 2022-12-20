@@ -9,9 +9,10 @@ import Button from '../../ui/Button';
 import PageTitle from '../../ui/PageTitle';
 // Services 
 import { todosFieldsInit } from '../../../services/data/inits/fields';
-import { deleteTodo, oneTodo } from '../../../services/rest/todos';
+import { deleteTodo, oneTodo, updateUnfinishedTodos } from '../../../services/rest/todos';
 // Style
 import './style.css';
+import { dateFormat } from '../../../services/format';
 
 const OneFinishedTodoPage = () => {
     const dispatch = useDispatch();
@@ -39,6 +40,21 @@ const OneFinishedTodoPage = () => {
             }));
         } catch (err) {
             console.log(err);
+        }
+    };
+
+    const handleUpdateTodo = async () => {
+        if (window.confirm('Send task to unfinished?')) {
+            try {
+                let id = params.id;
+                await updateUnfinishedTodos(id);
+            } catch (err) {
+                console.log(err);
+            }
+            alert('Task sent to unfinished!');
+            navigate('/finished-tasks');
+        } else {
+            return;
         }
     };
 
@@ -75,10 +91,10 @@ const OneFinishedTodoPage = () => {
                             This task is completed! ッ
                         </span>
                         <Button
-                            onClick={handleDeleteTodo}
+                            onClick={handleUpdateTodo}
                             customClassName="one-finished-todo-page__create-task"
                         >
-                            Delete task?
+                            Not done?
                         </Button>
                         <Link
                             to="/create-tasks"
@@ -87,13 +103,21 @@ const OneFinishedTodoPage = () => {
                             Create new?
 
                         </Link>
+                        <Button
+                            onClick={handleDeleteTodo}
+                            customClassName="one-finished-todo-page__create-task"
+                        >
+                            Delete?
+                        </Button>
                     </div>
-                    <p className={`
-                            ${fields.description === "" ?
-                            'one-finished-todo-page__description_display-none' :
-                            'one-finished-todo-page__description'}
-                            `}>
+                    <p className="one-finished-todo-page__description">
+                        {fields.title}
+                        <br />
+                        Created on: {dateFormat(fields._created)}
+                        <br />
+                        <br />
                         {fields.description}
+                        <br />
                     </p>
                 </div>
             </div>

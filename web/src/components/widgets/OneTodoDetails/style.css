@@ -15,7 +15,7 @@
     .one-todo-details__link {
         display: flex;
         flex-direction: column;
-        padding: 0 20px;
+        padding: 0 5px 0 5px;
     }
 
         .one-todo-details__title {
@@ -25,6 +25,16 @@
             overflow: hidden;
             white-space: nowrap;
             margin-bottom: 25px;
+            padding: 0 35px 0 25px;
+        }
+
+        .x {
+            position: absolute;
+            margin-left: 200px;
+            margin-bottom: 95px;
+            background-color: transparent !important;
+            cursor: pointer;
+            padding: 0 !important;
         }
 
         .one-todo-details__created {

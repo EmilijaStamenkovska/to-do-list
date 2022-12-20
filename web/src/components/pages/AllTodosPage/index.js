@@ -28,25 +28,29 @@ const AllTodosPage = () => {
     };
 
     const handleFinishedTodo = async (id) => {
-        if (window.confirm('Send task to finished?')) {
+        if (window.confirm('Send task to finished?')) { //demo
             try {
                 await updateFinishedTodos(id);
             } catch (err) {
                 console.log(err);
             }
+            alert('Task sent to finished!'); //demo
+        } else {
+            return;
         }
-        alert('Task sent to finished!');
     };
 
     const handleUnfinishedTodo = async (id) => {
-        if (window.confirm('Send task to unfinished?')) {
+        if (window.confirm('Send task to unfinished?')) { //demo
             try {
                 await updateUnfinishedTodos(id);
             } catch (err) {
                 console.log(err);
             }
+            alert('Task sent to unfinished!'); //demo
+        } else {
+            return;
         }
-        alert('Task sent to unfinished!');
     };
 
     useEffect(() => {
@@ -68,6 +72,8 @@ const AllTodosPage = () => {
                                 _created={item._created}
                                 finished={handleFinishedTodo}
                                 unfinished={handleUnfinishedTodo}
+                                state={todos}
+                                setState={setTodos}
                             />
                         )
                     })

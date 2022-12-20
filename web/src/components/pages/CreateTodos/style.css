@@ -7,6 +7,11 @@
     margin: auto;
 }
 
+    .back__ {
+        color: var(--color-orange-primary);
+        font-size: 40px;
+    }
+
     .create-todos__title-input,
     .create-todos__input {
         border: 3px solid var(--color-title);

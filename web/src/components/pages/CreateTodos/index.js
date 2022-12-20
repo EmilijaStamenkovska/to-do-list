@@ -1,6 +1,6 @@
 // Core
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // UI
 import PageTitle from '../../ui/PageTitle/index';
 import Input from '../../ui/Input/index';
@@ -54,7 +54,8 @@ const CreateTodosPage = () => {
                 fields.not_done
             );
             dispatch(setOneTodo(body));
-            navigate('/my-profile');
+            alert('Task created!');
+            navigate('/my-tasks');
         } catch (err) {
             console.log(err);
         }
@@ -62,8 +63,9 @@ const CreateTodosPage = () => {
 
     return (
         <>
-            <PageTitle title="Create a task" back="back to profile page" />
+            <PageTitle title="Create a task" />
             <div className="create-todos">
+                <Link to={(-1)} className="back__">⤺</Link>
                 <Input
                     placeholder="Title..."
                     value={fields.title}

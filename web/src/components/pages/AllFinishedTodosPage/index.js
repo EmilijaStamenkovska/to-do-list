@@ -57,6 +57,8 @@ const FinishedTodosPage = () => {
                                 _created={item._created}
                                 unfinished={handleUnfinishedTodo}
                                 buttonTypeF={true}
+                                state={allFinishedTodos}
+                                setState={setAllFinishedTodos}
                             />
                         )
                     })

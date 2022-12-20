@@ -10,7 +10,7 @@ import PageTitle from '../../ui/PageTitle';
 // Services 
 import { todosFieldsInit } from '../../../services/data/inits/fields';
 import { dateFormat } from '../../../services/format';
-import { oneTodo, updateUnfinishedTodos } from '../../../services/rest/todos';
+import { deleteTodo, oneTodo, updateFinishedTodos } from '../../../services/rest/todos';
 // Style
 import './style.css';
 
@@ -42,16 +42,36 @@ const OneUnfinishedTodoPage = () => {
         }
     };
 
-    const sendToFinishedTodos = async (id) => {
-        try {
-            await updateUnfinishedTodos(id);
-        } catch (err) {
-            console.log(err);
+    const handleEditTodo = async () => {
+        console.log('x')
+    };
+
+    const handleUpdateTodo = async () => {
+        if (window.confirm('Send task to finished?')) { //demo
+            try {
+                let id = params.id;
+                await updateFinishedTodos(id);
+            } catch (err) {
+                console.log(err);
+            }
+            alert('Task sent to finished!'); //demo
+            navigate('/unfinished-tasks');
+        } else {
+            return;
         }
     };
 
     const handleDeleteTodo = async () => {
-        console.log('x')
+        if (window.confirm('Are you sure you want to delete this task?')) {
+            try {
+                let id = params.id;
+                await deleteTodo(id);
+                setFetch(!fetch);
+                navigate('/finished-tasks');
+            } catch (err) {
+                console.log(err);
+            }
+        }
     };
 
     useEffect(() => {
@@ -71,24 +91,28 @@ const OneUnfinishedTodoPage = () => {
                 <div className="one-unfinished-todo-page__first-wrapper">
                     <div className="one-unfinished-todo-page__second-wrapper">
                         <Button
-                            type="secondary"
-                            customClassName="custom-btn__finish first"
-                        >
-                            Edit task?
-                        </Button>
-                        <Button
-                            onClick={sendToFinishedTodos}
+                            onClick={handleEditTodo}
                             type="secondary"
                             customClassName="custom-btn__finish"
                         >
-                            Finished?
+                            Edit?
+                        </Button>
+                        <Button
+                            onClick={handleUpdateTodo}
+                            type="secondary"
+                            customClassName="custom-btn__finish"
+                        >
+                            Done?
+                        </Button>
+                        <Button
+                            onClick={handleDeleteTodo}
+                            type="secondary"
+                            customClassName="custom-btn__finish"
+                        >
+                            Delete?
                         </Button>
                     </div>
-                    <p className={`
-                            ${fields.description === "" ?
-                            "one-unfinished-todo-page__description_display-none" :
-                            "one-unfinished-todo-page__description"}
-                        `}>
+                    <p className="one-unfinished-todo-page__description">
                         {fields.title}
                         <br />
                         Created on: {dateFormat(fields._created)}

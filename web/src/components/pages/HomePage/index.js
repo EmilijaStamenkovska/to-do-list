@@ -23,6 +23,11 @@ const HomePage = () => {
                 >
                     Youtube
                 </a>
+                <Link
+                    to="/calendar"
+                >
+                    Calendar
+                </Link>
             </div>
     );
 };

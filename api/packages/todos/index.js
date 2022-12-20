@@ -49,11 +49,11 @@ const updateUnfinished = async (id) => {
 };
 
 const finished = async () => {
-    return await Todos.find({ done: 1, not_done: 0, _deleted: false });
+    return await Todos.find({ done: 1, not_done: 0, _deleted: false }).sort('-_created');
 };
 
 const not_finished = async () => {
-    return await Todos.find({ done: 0, not_done: 1, _deleted: false });
+    return await Todos.find({ done: 0, not_done: 1, _deleted: false }).sort('-_created');
 };
 
 const remove = async (id) => {

@@ -1,7 +1,10 @@
 // Core
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+// Redux
+import { useDispatch } from 'react-redux';
+import { setPopupActivation, setPopupMessage } from '../../../services/redux/popup-reducer';
 // UI
 import Button from '../../ui/Button/index';
 // Formats
@@ -12,14 +15,21 @@ import { deleteTodo } from '../../../services/rest/todos';
 import './style.css';
 
 const OneTodoDetails = (props) => {
+    const dispatch = useDispatch();
 
+    const handlePopup = () => {
+    };
+    
     const done = () => {
+        // dispatch(setPopupActivation(true));
+        // dispatch(setPopupMessage("blabla"));
         props.finished(props._id);
     };
 
     const notDone = () => {
         props.unfinished(props._id)
     };
+
 
     const handleDeleteTodo = async () => {
         if (window.confirm('Delete task?')) {
@@ -50,14 +60,14 @@ const OneTodoDetails = (props) => {
                 <Button
                     customClassName="custom-button"
                     onClick={done}
-                    type={props.buttonTypeF ? "disabled" : ""} // change this
+                    type={props.buttonTypeF ? "disabled" : ""}
                 >
                     done
                 </Button>
                 <Button
                     customClassName="custom-button"
                     onClick={notDone}
-                    type={props.buttonTypeU ? "disabled" : ""} // change this
+                    type={props.buttonTypeU ? "disabled" : ""}
                 >
                     not done
                 </Button>
@@ -77,7 +87,7 @@ OneTodoDetails.defaultProps = {
     unfinished: () => {},
     buttonTypeF: false,
     buttonTypeU: false,
-    state: () => {},
+    state: [],
     setState: () => {}
 };
 
@@ -89,6 +99,6 @@ OneTodoDetails.propTypes = {
     finished: PropTypes.func,
     buttonTypeF: PropTypes.bool,
     buttonTypeU: PropTypes.bool,
-    state: PropTypes.func,
+    state: PropTypes.array,
     setState: PropTypes.func
 };

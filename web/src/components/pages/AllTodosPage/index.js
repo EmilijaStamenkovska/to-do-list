@@ -17,11 +17,8 @@ const AllTodosPage = () => {
     const dispatch = useDispatch();
 
     const [todos, setTodos] = useState([]);
-    const popup_activation = dispatch(setPopupActivation(true));
-    const popup_message = dispatch(setPopupMessage("Task done?"));
-    const popup_message2 = dispatch(setPopupMessage("Task done?"));
-    const popup_message_complete = dispatch(setPopupMessage("Complete!"));
- 
+    const [fetch, setFetch] = useState(false);
+
     const getAll = async () => {
         try {
             let data = await allTodos();
@@ -32,27 +29,32 @@ const AllTodosPage = () => {
         }
     };
 
+    const handlePopup = () => {
+        let a = dispatch(setPopupActivation(true));
+        console.log(a)
+        let b = dispatch(setPopupMessage("bladfsdfsdbla"));
+        console.log(b)
+    };
+
+    
     const handleFinishedTodo = async (id) => {
-        if (dispatch(setPopupActivation(true)) && dispatch(setPopupMessage("Task done?"))) { //demo
-            try {
-                await updateFinishedTodos(id);
-            } catch (err) {
-                console.log(err);
-            }
-            // popup_activation && popup_message_complete; //demo
-        } else {
-            return;
+        try {
+            await updateFinishedTodos(id);
+            setFetch(!fetch);
+        } catch (err) {
+            console.log(err);
         }
+        alert('Task sent to finished!'); //demo
     };
 
     const handleUnfinishedTodo = async (id) => {
-        if (dispatch(setPopupActivation(true)) && dispatch(setPopupMessage("Task not done?"))) { //demo
+        if (window.confirm('Send task to unfinished?')) { //demo
             try {
                 await updateUnfinishedTodos(id);
             } catch (err) {
                 console.log(err);
             }
-            // popup_activation && popup_message_complete; //demo
+            alert('Task sent to unfinished!'); //demo
         } else {
             return;
         }
@@ -60,7 +62,7 @@ const AllTodosPage = () => {
 
     useEffect(() => {
         getAll()
-    }, []);
+    }, [fetch]);
 
     return (
         <>
@@ -75,7 +77,7 @@ const AllTodosPage = () => {
                                 description={item.description}
                                 _id={item._id}
                                 _created={item._created}
-                                finished={handleFinishedTodo}
+                                finished={handlePopup && handleFinishedTodo}
                                 unfinished={handleUnfinishedTodo}
                                 state={todos}
                                 setState={setTodos}

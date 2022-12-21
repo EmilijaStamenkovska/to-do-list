@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Routes } from "react-router-dom";
 // Redux
 import { useSelector } from 'react-redux';
@@ -23,11 +23,16 @@ import Popup from './components/widgets/Popup';
 import './assets/style/style.css';
 
 const App = () => {
-    const active = useSelector(state => state.popup.active);
+	const active = useSelector(state => state.popup.active);
+	const [close, setClose] = useState(false);
+
+	const onClose = () => {
+		setClose(!close);
+	};
 
 	return (
 		<>
-			{ active && <Popup /> }
+			{active && <Popup onClick={onClose} />}
 			<Header />
 			<Routes>
 				<Route path='/' element={<HomePage />} />
@@ -48,3 +53,4 @@ const App = () => {
 };
 
 export default App;
+

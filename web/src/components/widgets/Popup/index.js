@@ -5,13 +5,17 @@ import { useSelector } from 'react-redux';
 // Style
 import './style.css';
 
-const Popup = () => {
-    const data = useSelector(state => state.popup);
-
+const Popup = (props) => {
+    const data = useSelector(state => state.popup.message);
+   
     return (
-        <div>
-            <span className="message-container">{data.message}</span>
-        </div>
+        <>
+            <div className="modal-overlay">
+                <span className="modal">{data}</span>
+                <button className="modal_button" onClick={props.onClick}>x</button>
+            </div>
+
+        </>
     );
 };
 

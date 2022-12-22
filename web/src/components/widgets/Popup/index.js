@@ -1,20 +1,25 @@
 // Core
 import React from 'react';
 // Redux
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPopupActivation } from '../../../services/redux/popup-reducer';
 // Style
 import './style.css';
 
-const Popup = (props) => {
+const Popup = () => {
+    const dispatch = useDispatch();
     const data = useSelector(state => state.popup.message);
+
+    const handlePopup = () => {
+        dispatch(setPopupActivation(false));
+    };
    
     return (
         <>
             <div className="modal-overlay">
                 <span className="modal">{data}</span>
-                <button className="modal_button" onClick={props.onClick}>x</button>
-            </div>
-
+                <button className="modal_button" onClick={handlePopup}>x</button>
+            </div> 
         </>
     );
 };

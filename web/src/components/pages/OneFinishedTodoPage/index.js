@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 // Redux
 import { useDispatch } from 'react-redux';
 import { setDeleteTodo, setOneTodo } from '../../../services/redux/todos-reducer';
+import { setPopupActivation, setPopupMessage } from '../../../services/redux/popup-reducer';
 // UI
 import Button from '../../ui/Button';
 import PageTitle from '../../ui/PageTitle';
@@ -43,31 +44,36 @@ const OneFinishedTodoPage = () => {
         }
     };
 
+    const handlePopup = () => {
+        dispatch(setPopupActivation(true));
+        dispatch(setPopupMessage("Changes saved!"));
+    };
+
+    const handlePopupDelete = () => {
+        dispatch(setPopupActivation(true));
+        dispatch(setPopupMessage("Task deleted!"));
+    };
+
     const handleUpdateTodo = async () => {
-        if (window.confirm('Send task to unfinished?')) {
             try {
                 await updateUnfinishedTodos(id);
             } catch (err) {
                 console.log(err);
             }
-            alert('Task sent to unfinished!');
+            handlePopup();
             navigate('/finished-tasks');
-        } else {
-            return;
-        }
     };
 
     const handleDeleteTodo = async () => {
-        if (window.confirm('Are you sure you want to delete this task?')) {
             try {
                 await deleteTodo(id);
                 dispatch(setDeleteTodo(id));
                 setFetch(!fetch);
+                handlePopupDelete();
                 navigate('/finished-tasks');
             } catch (err) {
                 console.log(err);
             }
-        }
     };
 
     useEffect(() => {

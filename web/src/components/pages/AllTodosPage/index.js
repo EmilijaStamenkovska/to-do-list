@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 // Redux
 import { useDispatch } from 'react-redux';
 import { setAllTodos } from '../../../services/redux/todos-reducer';
-import { setPopupActivation, setPopupMessage } from '../../../services/redux/popup-reducer';
 // UI
 import PageTitle from '../../ui/PageTitle/index';
 // Widgets
@@ -29,14 +28,6 @@ const AllTodosPage = () => {
         }
     };
 
-    const handlePopup = () => {
-        let a = dispatch(setPopupActivation(true));
-        console.log(a)
-        let b = dispatch(setPopupMessage("bladfsdfsdbla"));
-        console.log(b)
-    };
-
-    
     const handleFinishedTodo = async (id) => {
         try {
             await updateFinishedTodos(id);
@@ -44,19 +35,13 @@ const AllTodosPage = () => {
         } catch (err) {
             console.log(err);
         }
-        alert('Task sent to finished!'); //demo
     };
 
     const handleUnfinishedTodo = async (id) => {
-        if (window.confirm('Send task to unfinished?')) { //demo
-            try {
-                await updateUnfinishedTodos(id);
-            } catch (err) {
-                console.log(err);
-            }
-            alert('Task sent to unfinished!'); //demo
-        } else {
-            return;
+        try {
+            await updateUnfinishedTodos(id);
+        } catch (err) {
+            console.log(err);
         }
     };
 
@@ -77,7 +62,7 @@ const AllTodosPage = () => {
                                 description={item.description}
                                 _id={item._id}
                                 _created={item._created}
-                                finished={handlePopup && handleFinishedTodo}
+                                finished={handleFinishedTodo}
                                 unfinished={handleUnfinishedTodo}
                                 state={todos}
                                 setState={setTodos}

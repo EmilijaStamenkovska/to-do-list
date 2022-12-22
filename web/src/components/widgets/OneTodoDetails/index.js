@@ -18,31 +18,35 @@ const OneTodoDetails = (props) => {
     const dispatch = useDispatch();
 
     const handlePopup = () => {
+        dispatch(setPopupActivation(true));
+        dispatch(setPopupMessage("Changes saved!"));
     };
+
+    const handlePopupDelete = () => {
+        dispatch(setPopupActivation(true));
+        dispatch(setPopupMessage("Changes saved!"));
+    };
+
     
-    const done = () => {
-        // dispatch(setPopupActivation(true));
-        // dispatch(setPopupMessage("blabla"));
+    const handleFinishedTodo = () => {
         props.finished(props._id);
-    };
+        handlePopup();
+    }
 
     const notDone = () => {
         props.unfinished(props._id)
+        handlePopup();
     };
 
 
     const handleDeleteTodo = async () => {
-        if (window.confirm('Delete task?')) {
             try {
                 await deleteTodo(props._id);
-                alert('Task deleted!');
+                handlePopupDelete();
                 props.setState([...props.state.filter(t => t._id !== props._id)]);
             } catch (err) {
                 console.log(err);
             }
-        } else {
-            return;
-        }
     };
     
 
@@ -59,7 +63,7 @@ const OneTodoDetails = (props) => {
             <div className="one-todo-details__buttons">
                 <Button
                     customClassName="custom-button"
-                    onClick={done}
+                    onClick={handleFinishedTodo}
                     type={props.buttonTypeF ? "disabled" : ""}
                 >
                     done

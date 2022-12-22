@@ -8,6 +8,7 @@ import Button from '../../ui/Button';
 // Redux
 import { useDispatch } from 'react-redux';
 import { setOneTodo } from '../../../services/redux/todos-reducer';
+import { setPopupActivation, setPopupMessage } from '../../../services/redux/popup-reducer';
 // Rest
 import { createTodo } from '../../../services/rest/todos';
 // Data
@@ -41,6 +42,11 @@ const CreateTodosPage = () => {
         return error;
     };
 
+    const handlePopup = () => {
+        dispatch(setPopupActivation(true));
+        dispatch(setPopupMessage("Task created!"));
+    };
+
     const submitTodo = async () => {
         if (validate()) {
             return;
@@ -54,7 +60,7 @@ const CreateTodosPage = () => {
                 fields.not_done
             );
             dispatch(setOneTodo(body));
-            alert('Task created!');
+            handlePopup();
             navigate('/my-tasks');
         } catch (err) {
             console.log(err);

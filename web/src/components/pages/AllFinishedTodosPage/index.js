@@ -28,14 +28,12 @@ const FinishedTodosPage = () => {
     };
 
     const handleUnfinishedTodo = async (id) => {
-        if (window.confirm('Send task to unfinished?')) {
         try {
             await updateUnfinishedTodos(id);
             setAllFinishedTodos([...allFinishedTodos.filter(item => item._id !== id)]);
         } catch (err) {
             console.log(err);
         }
-    }
     };
 
     useEffect(() => {

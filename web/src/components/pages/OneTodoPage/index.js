@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 // Redux
 import { useDispatch } from 'react-redux';
 import { setDeleteTodo, setOneTodo } from '../../../services/redux/todos-reducer';
+import { setPopupActivation, setPopupMessage } from '../../../services/redux/popup-reducer';
 // UI
 import PageTitle from '../../ui/PageTitle/index';
 import Button from '../../ui/Button/index';
@@ -50,6 +51,11 @@ const OneTodoPage = () => {
         setEdit(state => !state);
     };
 
+    const handlePopupDelete = () => {
+        dispatch(setPopupActivation(true));
+        dispatch(setPopupMessage("Task deleted!"));
+    };
+
     const handleUpdateTodo = async () => {
         try {
             let data = await updateTodo(id, fields.title, fields.description);
@@ -61,16 +67,15 @@ const OneTodoPage = () => {
     };
 
     const handleDeleteTodo = async () => {
-        if (window.confirm('Are you sure you want to delete this task?')) {
             try {
                 await deleteTodo(id);
                 dispatch(setDeleteTodo(id));
                 setFetch(!fetch);
+                handlePopupDelete();
                 navigate('/my-tasks');
             } catch (err) {
                 console.log(err);
             }
-        };
     };
 
     useEffect(() => {

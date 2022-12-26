@@ -4,11 +4,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setAllTodos } from '../../../services/redux/todos-reducer';
 // UI
+import Button from '../../ui/Button';
 import PageTitle from '../../ui/PageTitle/index';
 // Widgets
 import OneTodo from '../../widgets/OneTodo';
 // Rest
-import { allTodos, updateFinishedTodos, updateUnfinishedTodos } from '../../../services/rest/todos';
+import { allTodos, newestTodos, updateFinishedTodos, updateUnfinishedTodos } from '../../../services/rest/todos';
 // Style
 import './style.css';
 
@@ -17,41 +18,55 @@ const AllTodosPage = () => {
 
     const [todos, setTodos] = useState([]);
     const [fetch, setFetch] = useState(false);
+	const [isChecked, setIsChecked] = useState(false);
+    
+    const toggleTodos = () => {
+        setIsChecked(state => !state);
+    };
+
+    const getNewest = async () => {
+        try {
+            let data = await newestTodos();
+            setTodos(data);
+            toggleTodos();
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     const getAll = async () => {
         try {
             let data = await allTodos();
             setTodos(data);
             dispatch(setAllTodos(data));
-        } catch (err) {
-            console.log(err);
-        }
-    };
-
-    const handleFinishedTodo = async (id) => {
-        try {
-            await updateFinishedTodos(id);
-            setFetch(!fetch);
-        } catch (err) {
-            console.log(err);
-        }
-    };
-
-    const handleUnfinishedTodo = async (id) => {
-        try {
-            await updateUnfinishedTodos(id);
+            toggleTodos();
         } catch (err) {
             console.log(err);
         }
     };
 
     useEffect(() => {
-        getAll()
+        getNewest();
+        getAll();
     }, [fetch]);
 
     return (
         <>
             <PageTitle title="My Tasks" back="back to profile page" />
+            <div className="all-todos-page__buttons">
+                <Button 
+                    onClick={getNewest} 
+                    type={isChecked ? "disabled" : "secondary"} 
+                    disabled={isChecked ? true : false}>
+                        latest todos
+                </Button>
+                <Button 
+                    onClick={getAll} 
+                    type={isChecked? "secondary" : "disabled"} 
+                    disabled={isChecked ? false : true}>
+                        newest todos
+                </Button>
+            </div>
             <div className="all-todos-page">
                 {
                     todos.map((item, key) => {
@@ -62,8 +77,6 @@ const AllTodosPage = () => {
                                 description={item.description}
                                 _id={item._id}
                                 _created={item._created}
-                                finished={handleFinishedTodo}
-                                unfinished={handleUnfinishedTodo}
                                 state={todos}
                                 setState={setTodos}
                             />

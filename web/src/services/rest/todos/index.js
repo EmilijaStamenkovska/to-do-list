@@ -110,6 +110,30 @@ export const updateTodo = async (id, title, description) => { // not-working
     })
 };
 
+export const newestTodos = async () => {
+    let token = localStorage.getItem('jwt_key');
+
+    return await fetch(
+        `${API_BASE_URL}/api/v1/todos/get-newest`,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        }
+    ).then(res => {
+        if (!res.ok) {
+            return Promise.reject(res);
+        }
+        if (res.headers.get('content-type').includes('application/json')) {
+            return res.json();
+        } else if (res.headers.get('content-type').includes('text/plain')) {
+            return res.text();
+        }
+    })
+};
+
 export const finishedTodos = async () => {
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/finished`,

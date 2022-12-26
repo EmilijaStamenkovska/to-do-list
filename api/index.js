@@ -21,6 +21,7 @@ api.use(
     .unless({
         path: [
             '/api/v1/todos/getAll',
+            '/api/v1/todos/get-newest',
             '/api/v1/todos/:id',
             '/api/v1/todos/finished',
             '/api/v1/todos/not-finished',
@@ -38,24 +39,25 @@ api.use(
 // Routes
 
 // TODOS
-api.post('/api/v1/todos/create', todos.create); // done
-api.get('/api/v1/todos/getAll', todos.getAll); // done
-api.get('/api/v1/todos/finished', todos.finished); // done
-api.get('/api/v1/todos/not-finished', todos.notFinished); // done
-api.get('/api/v1/todos/:id', todos.getOne); // done
+api.post('/api/v1/todos/create', todos.create);
+api.get('/api/v1/todos/getAll', todos.getAll);
+api.get('/api/v1/todos/get-newest', todos.getNewest);
+api.get('/api/v1/todos/finished', todos.finished);
+api.get('/api/v1/todos/not-finished', todos.notFinished);
+api.get('/api/v1/todos/:id', todos.getOne);
 api.put('/api/v1/todos/:id/update', todos.update);
 api.patch('/api/v1/todos/:id/update-finished', todos.updateFinishedTodo);
 api.patch('/api/v1/todos/:id/update-unfinished', todos.updateUnfinishedTodo);
-api.delete('/api/v1/todos/delete/:id', todos.remove); // done
+api.delete('/api/v1/todos/delete/:id', todos.remove);
 
 // USER
-api.post('/api/v1/user/login', user.loginUser); // done
-api.post('/api/v1/user/create-user', user.createUser); // done
-api.get('/api/v1/user/getAll', user.getAll); // done
-api.get('/api/v1/user/:id', user.getOne); // done
+api.post('/api/v1/user/login', user.loginUser);
+api.post('/api/v1/user/create-user', user.createUser);
+api.get('/api/v1/user/getAll', user.getAll);
+api.get('/api/v1/user/:id', user.getOne);
 api.put('/api/v1/user/:id/update', user.updateUser);
 api.post('/api/v1/user/:id/check-password', user.checkPassword);
-api.delete('/api/v1/user/:id/delete', user.removeUser); // done
+api.delete('/api/v1/user/:id/delete', user.removeUser);
 
 api.use(function (err, req, res, next) {
     if (err.username === 'UnauthorizedError') {

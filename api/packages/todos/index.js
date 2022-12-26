@@ -30,6 +30,10 @@ const getAll = async () => {
     return await Todos.find({ _deleted: false }).sort('-_created');
 };
 
+const getNewest = async () => {
+    return await Todos.find({ _deleted: false }).sort('_created');
+};
+
 const getByID = async (id) => {
     return await Todos.find({ _id: id, _deleted: false });
 };
@@ -65,6 +69,7 @@ module.exports = {
     create,
     createUnfinished,
     getAll,
+    getNewest,
     getByID,
     update,
     updateFinished,

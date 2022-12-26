@@ -23,14 +23,14 @@ const ProfilePage = () => {
             <div className="profile-page">
                 <div className="profile-page__user">
                     <span className="profile-page__email">{email}</span>
-                    <p className="profile-page__name">Hi <span className="profile-page__name-user">{username}!</span>ッ Let's create some tasks!</p>
+                    <p className="profile-page__name">Hi <span className="profile-page__name-user">{username}!ッ</span> Let's create some tasks!</p>
                 </div>
                 <div className="tasks">
-                    <Link to="/create-tasks">❥ Create tasks</Link>
-                    <Link to="/my-tasks">❥ All tasks</Link>
-                    {/* <Link to="/important-tasks">❥ Important tasks</Link> */}
-                    <Link to="/finished-tasks">❥ Finished tasks</Link>
-                    <Link to="/unfinished-tasks">❥ Unfinished tasks</Link>
+                    <Link to="/create-tasks">❥ Create</Link>
+                    <Link to="/my-tasks">❥ View All</Link>
+                    <Link to="/important-tasks">❥ Important</Link>
+                    <Link to="/finished-tasks">❥ Finished</Link>
+                    <Link to="/unfinished-tasks">❥ Unfinished</Link>
                     <Link to="/">❥ Back to home page</Link>
                 </div>
                 <div className="profile-page__logout-button-and-delete-user">

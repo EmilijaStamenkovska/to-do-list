@@ -1,3 +1,10 @@
+.all-todos-page__buttons {
+    display: flex;
+    justify-content: center;
+    margin: 15px;
+    gap: 10px;
+}
+
 .all-todos-page {
     display: grid;
     grid-gap: 20px;
@@ -5,6 +12,7 @@
     justify-content: center;
     width: 90%;
     margin: 0 auto;
+    padding-bottom: 20px;
 }
 
     .all-todos-page a {

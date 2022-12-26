@@ -73,7 +73,7 @@ const OneUnfinishedTodoPage = () => {
                 dispatch(setDeleteTodo(id));
                 setFetch(!fetch);
                 handlePopupDelete();
-                navigate('/finished-tasks');
+                navigate('/unfinished-tasks');
             } catch (err) {
                 console.log(err);
             }

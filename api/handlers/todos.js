@@ -64,6 +64,17 @@ const getAll = async (req, res) => {
     }
 };
 
+const getNewest = async (req, res) => {
+
+    try {
+        let t = await todos.getNewest();
+        return res.status(200).send(t);
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send('Cannot Get All Bad Request');
+    }
+};
+
 const getOne = async (req, res) => {
 
     try {
@@ -177,6 +188,7 @@ module.exports = {
     create, // works
     createUnfinishedTodo,
     getAll, // works
+    getNewest,
     getOne, // works
     update, // works
     finished, // works

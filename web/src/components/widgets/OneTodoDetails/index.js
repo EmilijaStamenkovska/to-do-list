@@ -22,28 +22,12 @@ const OneTodoDetails = (props) => {
         dispatch(setPopupMessage("Changes saved!"));
     };
 
-    const handlePopupDelete = () => {
-        dispatch(setPopupActivation(true));
-        dispatch(setPopupMessage("Changes saved!"));
-    };
-
-    
-    const handleFinishedTodo = () => {
-        props.finished(props._id);
-        handlePopup();
-    }
-
-    const notDone = () => {
-        props.unfinished(props._id)
-        handlePopup();
-    };
-
 
     const handleDeleteTodo = async () => {
             try {
                 await deleteTodo(props._id);
-                handlePopupDelete();
                 props.setState([...props.state.filter(t => t._id !== props._id)]);
+                handlePopup();
             } catch (err) {
                 console.log(err);
             }
@@ -58,24 +42,9 @@ const OneTodoDetails = (props) => {
                 className="one-todo-details__link"
             >
                 <span className="one-todo-details__title">{props.title}</span>
+                <p className="one-todo-details__description">{props.description}</p>
                 <span className="one-todo-details__created">Created on: {dateFormat(props._created)}</span>
             </Link>
-            <div className="one-todo-details__buttons">
-                <Button
-                    customClassName="custom-button"
-                    onClick={handleFinishedTodo}
-                    type={props.buttonTypeF ? "disabled" : ""}
-                >
-                    done
-                </Button>
-                <Button
-                    customClassName="custom-button"
-                    onClick={notDone}
-                    type={props.buttonTypeU ? "disabled" : ""}
-                >
-                    not done
-                </Button>
-            </div>
         </div>
     );
 };
@@ -87,10 +56,6 @@ OneTodoDetails.defaultProps = {
     description: '',
     _created: '',
     customClassName: '',
-    finished: () => {},
-    unfinished: () => {},
-    buttonTypeF: false,
-    buttonTypeU: false,
     state: [],
     setState: () => {}
 };
@@ -100,9 +65,6 @@ OneTodoDetails.propTypes = {
     description: PropTypes.string,
     _created: PropTypes.string,
     customClassName: PropTypes.string,
-    finished: PropTypes.func,
-    buttonTypeF: PropTypes.bool,
-    buttonTypeU: PropTypes.bool,
     state: PropTypes.array,
     setState: PropTypes.func
 };

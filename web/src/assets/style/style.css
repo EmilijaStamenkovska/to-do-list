@@ -25,10 +25,15 @@
 
     --color-title: rgb(167, 92, 92);
     --color-background-light: rgb(248, 238, 234);
+    --color-background-transparent: rgb(231, 225, 220);
 
     --color-disabled: rgb(225, 223, 223);
     --color-disabled-primary: rgb(207, 205, 205);
     --color-disabled-secondary: rgb(225, 223, 223);
+
+    --shadow: 2px 15px 7px #625c5c4d;
+    --shadow-border: 0px 2px 16px #16161629;
+    --shadow-border-dark-mode: 0px 4px 16px #91919133;
 }   
 
 html, body, #root {

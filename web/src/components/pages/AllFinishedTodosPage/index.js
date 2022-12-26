@@ -26,16 +26,7 @@ const FinishedTodosPage = () => {
             console.log(err);
         }
     };
-
-    const handleUnfinishedTodo = async (id) => {
-        try {
-            await updateUnfinishedTodos(id);
-            setAllFinishedTodos([...allFinishedTodos.filter(item => item._id !== id)]);
-        } catch (err) {
-            console.log(err);
-        }
-    };
-
+    
     useEffect(() => {
         getAllFinishedTodos();
     }, []);
@@ -53,8 +44,6 @@ const FinishedTodosPage = () => {
                                 description={item.description}
                                 _id={item._id}
                                 _created={item._created}
-                                unfinished={handleUnfinishedTodo}
-                                buttonTypeF={true}
                                 state={allFinishedTodos}
                                 setState={setAllFinishedTodos}
                             />

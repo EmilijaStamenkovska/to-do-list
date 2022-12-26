@@ -90,8 +90,8 @@ const loginUser = async (req, res) => {
         if (!user) {
             return res.status(400).send('Bad request');
         }
-
-        let expirationToken = parseInt((new Date().getTime() + 60 * 60 * 24 * 365 * 1000) / 1000);
+        
+        let expirationToken = (new Date().getTime() + 60 * 60 * 24 * 1000) / 1000;
 
         const compare = bcrypt.compareSync(req.body.password, user.password);
 

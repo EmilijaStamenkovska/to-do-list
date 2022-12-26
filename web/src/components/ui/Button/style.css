@@ -30,8 +30,8 @@
 }
 
 .button.secondary {
-    color: var(--color-primary-light-first);
-    background-color: var(--color-secondary-dark);
+    color: var(--color-title);
+    background-color: var(--color-orange-primary-light);
 }
 
 .button.secondary:hover {
@@ -43,9 +43,9 @@
 }
 
 .button.disabled {
-    /* background-color: var(--color-disabled);
+    background-color: var(--color-disabled);
     color: var(--color-disabled-primary);
     border: 2px solid var(--color-disabled-secondary);
-    cursor: not-allowed; */
-    display: none;
+    cursor: not-allowed;
+    /* display: none; */
 }

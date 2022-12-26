@@ -24,8 +24,17 @@
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
             padding: 0 35px 0 25px;
+        }
+
+        .one-todo-details__description { 
+            font-size: 17px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            color: var(--color-orange-primary-light); 
+            padding: 0 20px;
         }
 
         .x {
@@ -36,11 +45,11 @@
             cursor: pointer;
             padding: 0 !important;
         }
-
+        
         .one-todo-details__created {
+            color: var(--color-title);
             font-size: 15px;
             white-space: nowrap;
-            color: var(--color-title); 
         }
 
         .one-todo-details__buttons {

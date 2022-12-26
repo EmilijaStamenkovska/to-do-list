@@ -2,7 +2,7 @@
 import { API_BASE_URL } from "../../data/constants/index";
 
 export const allTodos = async () => {
-    let token = localStorage.getItem('jwt_key');
+    const token = localStorage.getItem('jwt_key');
 
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/getAll`,
@@ -26,7 +26,7 @@ export const allTodos = async () => {
 };
 
 export const oneTodo = async (id) => {
-    let token = localStorage.getItem('jwt_key');
+    const token = localStorage.getItem('jwt_key');
 
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/${id}`,
@@ -49,13 +49,14 @@ export const oneTodo = async (id) => {
     })
 };
 
-export const createTodo = async (title, description, done, not_done) => {
+export const createTodo = async (title, description, done, not_done, important) => {
     const token = localStorage.getItem('jwt_key');
     let data = {
         title,
         description,
         done,
-        not_done
+        not_done,
+        important
     };
 
     return await fetch(
@@ -111,7 +112,7 @@ export const updateTodo = async (id, title, description) => { // not-working
 };
 
 export const newestTodos = async () => {
-    let token = localStorage.getItem('jwt_key');
+    const token = localStorage.getItem('jwt_key');
 
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/get-newest`,
@@ -135,12 +136,14 @@ export const newestTodos = async () => {
 };
 
 export const finishedTodos = async () => {
+    const token = localStorage.getItem('jwt_key');
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/finished`,
         {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             }
         }
     ).then(res => {
@@ -156,13 +159,14 @@ export const finishedTodos = async () => {
 };
 
 export const notFinishedTodos = async () => {
-
+    const token = localStorage.getItem('jwt_key');
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/not-finished`,
         {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             }
         }
     ).then(res => {
@@ -176,6 +180,29 @@ export const notFinishedTodos = async () => {
         }
     })
 };
+
+export const importantTodos = async () => {
+    const token = localStorage.getItem('jwt_key');
+    return await fetch(
+        `${API_BASE_URL}/api/v1/todos/important`,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        }
+    ).then(res => {
+        if (!res.ok) {
+            return Promise.reject(res);
+        }
+        if (res.headers.get('content-type').includes('application/json')) {
+            return res.json();
+        } else if (res.headers.get('content-type').includes('text/plain')) {
+            return res.text();
+        }
+    })
+}
 
 export const updateUnfinishedTodos = async (id) => {
     const token = localStorage.getItem('jwt_key');
@@ -202,6 +229,26 @@ export const updateFinishedTodos = async (id) => {
 
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/${id}/update-finished`,
+        {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        }
+    ).then(res => {
+        if (!res.ok) {
+            return Promise.reject(res);
+        }
+        return Promise.resolve(true);
+    })
+};
+
+export const updateImportantTodos = async (id) => {
+    const token = localStorage.getItem('jwt_key');
+
+    return await fetch(
+        `${API_BASE_URL}/api/v1/todos/${id}/update-important`,
         {
             method: 'PATCH',
             headers: {

@@ -18,10 +18,10 @@ const OneTodo = (props) => {
                 finished={props.finished}
                 unfinished={props.unfinished}
                 _id={props._id}
-                buttonTypeF={props.buttonTypeF}
-                buttonTypeU={props.buttonTypeU}
                 setState={props.setState}
                 state={props.state}
+                updated={props.updated}
+                important={props.important}
             />
         </div>
     );
@@ -35,10 +35,10 @@ OneTodo.defaultProps = {
     description: '',
     _created: '',
     customClassName: '',
-    buttonTypeF: false,
-    buttonTypeU: false,
     state: [],
-    setState: () => {}
+    setState: () => {},
+    updated: () => { },
+    important: false
 };
 
 OneTodo.propTypes = {
@@ -47,8 +47,8 @@ OneTodo.propTypes = {
     description: PropTypes.string,
     _created: PropTypes.string,
     customClassName: PropTypes.string,
-    buttonTypeF: PropTypes.bool,
-    buttonTypeU: PropTypes.bool,
     state: PropTypes.array,
-    setState: PropTypes.func
+    setState: PropTypes.func,
+    updated: PropTypes.func,
+    important: PropTypes.bool
 };

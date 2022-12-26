@@ -8,7 +8,7 @@ import PageTitle from '../../ui/PageTitle';
 // Widgets
 import OneTodo from '../../widgets/OneTodo';
 // Services
-import { notFinishedTodos, updateFinishedTodos } from '../../../services/rest/todos';
+import { notFinishedTodos } from '../../../services/rest/todos';
 // Style
 import './style.css';
 

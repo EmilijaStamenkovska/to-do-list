@@ -4,6 +4,7 @@ import {
     SET_ONE_FINISHED_TODO,
     SET_FINISHED_TODOS,
     SET_UNFINISHED_TODOS,
+    SET_IMPORTANT_TODOS,
     SET_DELETE_TODO,
     SET_ONE_TODO_UPDATE
 } from './actions';
@@ -15,10 +16,12 @@ const initialState = {
         description: '',
         done: 0,
         not_done: 1,
+        important: 0,
         _created: '',
         _id: '',
         _deleted: false
     },
+    important_todos: [],
     finished_todos: [],
     unfinished_todos: []
     // todo_body_update: {
@@ -60,6 +63,11 @@ export default function Todo(state = initialState, action) {
                 ...state,
                 unfinished_todos: action.payload
             };
+        case SET_IMPORTANT_TODOS:
+        return {
+            ...state,
+            important_todos: action.payload
+        };
         case SET_DELETE_TODO:
             return {
                 ...state,
@@ -108,6 +116,13 @@ export const setFinishedTodos = (data) => {
 export const setUnfinishedTodos = (data) => {
     return {
         type: SET_UNFINISHED_TODOS,
+        payload: data
+    };
+};
+
+export const setImportantTodos = (data) => {
+    return {
+        type: SET_IMPORTANT_TODOS,
         payload: data
     };
 };

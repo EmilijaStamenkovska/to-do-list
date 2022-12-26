@@ -15,38 +15,12 @@ const create = async (req, res) => {
             uid: req.body._id,
             title: req.body.title,
             description: req.body.description,
-            done: req.body.done,
-            not_done: req.body.not_done,
-            _created: new Date().toISOString()
-        });
-        
-        res.status(201).send(data);
-    } catch (err) {
-        console.log(err);
-        return res.status(400).send('Todo Not Created, Bad Request');
-    }
-};
-
-const createUnfinishedTodo = async (req, res) => {
-    try {
-        await validator.validate(req.body, 'CREATE')
-    } catch (err) {
-        console.log(err);
-        return res.status(400).send('CREATE, Bad Request');
-    }
-
-    try {
-        let data = await todos.createUnfinished({
-            uid: req.body._id,
-            title: req.body.title,
-            description: req.body.description,
+            important: 0,
             done: 0,
             not_done: 1,
             _created: new Date().toISOString()
         });
-
         res.status(201).send(data);
-
     } catch (err) {
         console.log(err);
         return res.status(400).send('Todo Not Created, Bad Request');
@@ -124,11 +98,27 @@ const updateFinishedTodo = async (req, res) => {
     }
 };
 
-
 const updateUnfinishedTodo = async (req, res) => {
 
     try {
         let updateTodo = await todos.updateUnfinished(req.params.id);
+
+        if (!updateTodo) {
+            return res.status(404).send('Todo Not Found');
+        }
+
+        return res.status(204).send();
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send('Todo Not Updated, Bad Request');
+    }
+};
+
+
+const updateImportantTodo = async (req, res) => {
+
+    try {
+        let updateTodo = await todos.updateImportant(req.params.id);
 
         if (!updateTodo) {
             return res.status(404).send('Todo Not Found');
@@ -147,26 +137,39 @@ const finished = async (req, res) => {
     try {
         let ft = await todos.finished();
         if (!ft) {
-            return res.status(404).send('Finished Todo Not Found');
+            return res.status(404).send('Finished Todos Not Found');
         }
         return res.status(200).send(ft);
     } catch (err) {
         console.log(err);
-        return res.status(400).send('Finished Todo Bad Request');
+        return res.status(400).send('Finished Todos Bad Request');
     }
-}
+};
 
 const notFinished = async (req, res) => {
 
     try {
         let nft = await todos.not_finished();
         if (!nft) {
-            return res.status(404).send('Not Finished Todo Not Found');
+            return res.status(404).send('Not Finished Todos Not Found');
         }
         return res.status(200).send(nft);
     } catch (err) {
         console.log(err);
-        return res.status(400).send('Not Finished Todo Bad Request');
+        return res.status(400).send('Not Finished Todos Bad Request');
+    }
+};
+
+const important = async (req, res) => {
+    try {
+        let it = await todos.important();
+        if(!it) {
+            return res.status(404).send('Important Todos Not Found');
+        }
+        return res.status(200).send(it);
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send('Important Todos Bad Request');
     }
 };
 
@@ -185,15 +188,17 @@ const remove = async (req, res) => {
 };
 
 module.exports = {
-    create, // works
-    createUnfinishedTodo,
-    getAll, // works
+    create,
+    // createUnfinishedTodo,
+    getAll,
     getNewest,
-    getOne, // works
-    update, // works
-    finished, // works
-    notFinished, // works
-    remove, // works
+    getOne,
+    update,
+    finished,
+    notFinished,
+    important,
+    remove,
     updateFinishedTodo,
-    updateUnfinishedTodo
+    updateUnfinishedTodo,
+    updateImportantTodo
 };

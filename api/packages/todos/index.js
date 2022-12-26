@@ -7,6 +7,7 @@ const Todos = mongoose.model(
         description: String,
         done: Number,
         not_done: Number,
+        important: Number,
         _created: Date,
         _deleted: {
             type: Boolean,
@@ -60,6 +61,14 @@ const not_finished = async () => {
     return await Todos.find({ done: 0, not_done: 1, _deleted: false }).sort('-_created');
 };
 
+const updateImportant = async (id) => {
+    return await Todos.updateOne({ _id: id }, { important: 1 });
+};
+
+const important = async () => {
+    return await Todos.find({ important: 1, _deleted: false }).sort('-_created');
+};
+
 const remove = async (id) => {
     let data = await Todos.updateOne({ _id: id, _deleted: false }, { _deleted: true });
     return data.nModified !== 0;
@@ -70,6 +79,8 @@ module.exports = {
     createUnfinished,
     getAll,
     getNewest,
+    updateImportant,
+    important,
     getByID,
     update,
     updateFinished,

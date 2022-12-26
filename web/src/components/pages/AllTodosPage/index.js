@@ -9,7 +9,7 @@ import PageTitle from '../../ui/PageTitle/index';
 // Widgets
 import OneTodo from '../../widgets/OneTodo';
 // Rest
-import { allTodos, newestTodos, updateFinishedTodos, updateUnfinishedTodos } from '../../../services/rest/todos';
+import { allTodos, newestTodos, updateImportantTodos } from '../../../services/rest/todos';
 // Style
 import './style.css';
 
@@ -18,8 +18,8 @@ const AllTodosPage = () => {
 
     const [todos, setTodos] = useState([]);
     const [fetch, setFetch] = useState(false);
-	const [isChecked, setIsChecked] = useState(false);
-    
+    const [isChecked, setIsChecked] = useState(false);
+
     const toggleTodos = () => {
         setIsChecked(state => !state);
     };
@@ -45,26 +45,36 @@ const AllTodosPage = () => {
         }
     };
 
+    const handleImportantTodo = async (id) => {
+        try {
+            await updateImportantTodos(id);
+            setFetch(!fetch);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     useEffect(() => {
         getNewest();
         getAll();
+        handleImportantTodo();
     }, [fetch]);
 
     return (
         <>
             <PageTitle title="My Tasks" back="back to profile page" />
             <div className="all-todos-page__buttons">
-                <Button 
-                    onClick={getNewest} 
-                    type={isChecked ? "disabled" : "secondary"} 
+                <Button
+                    onClick={getNewest}
+                    type={isChecked ? "disabled" : "secondary"}
                     disabled={isChecked ? true : false}>
-                        latest todos
+                    latest todos
                 </Button>
-                <Button 
-                    onClick={getAll} 
-                    type={isChecked? "secondary" : "disabled"} 
+                <Button
+                    onClick={getAll}
+                    type={isChecked ? "secondary" : "disabled"}
                     disabled={isChecked ? false : true}>
-                        newest todos
+                    newest todos
                 </Button>
             </div>
             <div className="all-todos-page">
@@ -79,6 +89,8 @@ const AllTodosPage = () => {
                                 _created={item._created}
                                 state={todos}
                                 setState={setTodos}
+                                important={item.important}
+                                updated={handleImportantTodo}
                             />
                         )
                     })

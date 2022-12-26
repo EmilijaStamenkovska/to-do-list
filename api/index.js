@@ -25,6 +25,7 @@ api.use(
             '/api/v1/todos/:id',
             '/api/v1/todos/finished',
             '/api/v1/todos/not-finished',
+            '/api/v1/todos/important',
             '/api/v1/todos/create',
             '/api/v1/todos/update/:id',
             '/api/v1/todos/delete/:id', 
@@ -44,10 +45,12 @@ api.get('/api/v1/todos/getAll', todos.getAll);
 api.get('/api/v1/todos/get-newest', todos.getNewest);
 api.get('/api/v1/todos/finished', todos.finished);
 api.get('/api/v1/todos/not-finished', todos.notFinished);
+api.get('/api/v1/todos/important', todos.important);
 api.get('/api/v1/todos/:id', todos.getOne);
 api.put('/api/v1/todos/:id/update', todos.update);
 api.patch('/api/v1/todos/:id/update-finished', todos.updateFinishedTodo);
 api.patch('/api/v1/todos/:id/update-unfinished', todos.updateUnfinishedTodo);
+api.patch('/api/v1/todos/:id/update-important', todos.updateImportantTodo);
 api.delete('/api/v1/todos/delete/:id', todos.remove);
 
 // USER

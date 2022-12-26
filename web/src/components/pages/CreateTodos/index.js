@@ -57,7 +57,8 @@ const CreateTodosPage = () => {
                 fields.title,
                 fields.description,
                 fields.done,
-                fields.not_done
+                fields.not_done,
+                fields.important
             );
             dispatch(setOneTodo(body));
             handlePopup();

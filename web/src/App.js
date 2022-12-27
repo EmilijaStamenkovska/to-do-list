@@ -12,6 +12,7 @@ import CreateTodosPage from './components/pages/CreateTodos';
 import AllTodosPage from './components/pages/AllTodosPage';
 import FinishedTodosPage from './components/pages/AllFinishedTodosPage';
 import UnfinishedTodosPage from './components/pages/AllUnfinishedTodosPage';
+import ImportantTodosPage from './components/pages/AllImportantTodosPage';
 import OneTodoPage from './components/pages/OneTodoPage';
 import OneFinishedTodoPage from './components/pages/OneFinishedTodoPage';
 import OneUnfinishedTodoPage from './components/pages/OneUnfinishedTodoPage';
@@ -41,6 +42,7 @@ const App = () => {
 				<Route path='/my-tasks/:id' element={<OneTodoPage />} />
 				<Route path='/finished-tasks' element={<FinishedTodosPage />} />
 				<Route path='/finished-tasks/:id' element={<OneFinishedTodoPage />} />
+				<Route path='/important-tasks' element={<ImportantTodosPage />} />
 				<Route path='/delete-user' element={<DeleteAccountPage />} />
 			</Routes>
 		</>

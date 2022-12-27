@@ -27,8 +27,8 @@ const ProfilePage = () => {
                 </div>
                 <div className="tasks">
                     <Link to="/create-tasks">❥ Create</Link>
-                    <Link to="/my-tasks">❥ View All</Link>
-                    <Link to="/important-tasks">❥ Important</Link>
+                    <Link to="/my-tasks">❥ All</Link>
+                    <Link to="/important-tasks">❥ Saved</Link>
                     <Link to="/finished-tasks">❥ Finished</Link>
                     <Link to="/unfinished-tasks">❥ Unfinished</Link>
                     <Link to="/">❥ Back to home page</Link>

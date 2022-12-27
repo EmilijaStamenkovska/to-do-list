@@ -19,7 +19,7 @@
     --color-orange-secondary-light: rgb(245, 226, 219);
 
     --color-red-primary: rgb(252, 104, 104);
-    --color-red-secondary: rgb(252, 104, 104);
+    --color-red-secondary: rgb(236, 152, 138);
 
     --color-black-primary: rgb(78, 76, 76);
 
@@ -30,6 +30,7 @@
     --color-disabled: rgb(225, 223, 223);
     --color-disabled-primary: rgb(207, 205, 205);
     --color-disabled-secondary: rgb(225, 223, 223);
+    --color-disabled-light: rgb(241, 228, 217);
 
     --shadow: 2px 15px 7px #625c5c4d;
     --shadow-border: 0px 2px 16px #16161629;

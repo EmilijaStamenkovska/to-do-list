@@ -1,0 +1,13 @@
+.important-todos-page {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 3fr));
+    justify-content: center;
+    width: 90%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+    .important-todos-page a {
+        text-decoration: none;
+    }   

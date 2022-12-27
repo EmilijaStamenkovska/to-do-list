@@ -1,28 +1,28 @@
 //Core
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 // Redux
 import { useDispatch } from 'react-redux';
-import { setFinishedTodos } from '../../../services/redux/todos-reducer';
+import { setImportantTodos } from '../../../services/redux/todos-reducer';
 // UI
 import PageTitle from '../../ui/PageTitle';
 // Widgets
 import OneTodo from '../../widgets/OneTodo';
 // Services
-import { finishedTodos, updateImportantTodos } from '../../../services/rest/todos';
+import { importantTodos, updateImportantTodos } from '../../../services/rest/todos';
 // Style
 import './style.css';
 
-const FinishedTodosPage = () => {
+const ImportantTodosPage = () => {
     const dispatch = useDispatch();
 
-    const [allFinishedTodos, setAllFinishedTodos] = useState([]);
+    const [allImportantTodos, setAllImportantTodos] = useState([]);
     const [fetch, setFetch] = useState(false);
 
-    const getAllFinishedTodos = async () => {
+    const getAllImportantTodos = async () => {
         try {
-            let data = await finishedTodos();
-            setAllFinishedTodos(data);
-            dispatch(setFinishedTodos(data));
+            let data = await importantTodos();
+            setAllImportantTodos(data);
+            dispatch(setImportantTodos(data));
         } catch (err) {
             console.log(err);
         }
@@ -36,17 +36,17 @@ const FinishedTodosPage = () => {
             console.log(err);
         }
     };
-    
+
     useEffect(() => {
-        getAllFinishedTodos();
+        getAllImportantTodos();
     }, [fetch]);
 
     return (
         <>
-            <PageTitle title="Finished Tasks" back="back to profile page" />
-            <div className="finished-todos-page">
+            <PageTitle title="Important Tasks" back="back to profile page" />
+            <div className="important-todos-page">
                 {
-                    allFinishedTodos.map((item, key) => {
+                    allImportantTodos.map((item, key) => {
                         return (
                             <OneTodo
                                 key={key}
@@ -54,8 +54,8 @@ const FinishedTodosPage = () => {
                                 description={item.description}
                                 _id={item._id}
                                 _created={item._created}
-                                state={allFinishedTodos}
-                                setState={setAllFinishedTodos}
+                                state={allImportantTodos}
+                                setState={setAllImportantTodos}
                                 important={item.important}
                                 updated={handleImportantTodo}
                             />
@@ -67,4 +67,4 @@ const FinishedTodosPage = () => {
     );
 };
 
-export default FinishedTodosPage;
+export default ImportantTodosPage;

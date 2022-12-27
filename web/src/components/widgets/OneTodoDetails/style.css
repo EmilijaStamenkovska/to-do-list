@@ -69,15 +69,14 @@
                 cursor: pointer;
             }
 
-
             .important-button {
                 background-color: transparent !important;
             }
 
             .important-span__saved {
                 font-size: 17px;
-                color: var(--color-secondary-light-second);
-                background-color: var(--color-disabled);
-                margin: 0 20px;
+                color: var( --color-red-secondary);
+                background-color: var(--color-orange-secondary-light);
+                margin: 0 45px;
                 border-radius: 20px;
             }

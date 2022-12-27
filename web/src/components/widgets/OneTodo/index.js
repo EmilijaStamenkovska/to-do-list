@@ -38,7 +38,7 @@ OneTodo.defaultProps = {
     state: [],
     setState: () => {},
     updated: () => { },
-    important: false
+    important: 0
 };
 
 OneTodo.propTypes = {
@@ -50,5 +50,5 @@ OneTodo.propTypes = {
     state: PropTypes.array,
     setState: PropTypes.func,
     updated: PropTypes.func,
-    important: PropTypes.bool
+    important: PropTypes.number
 };

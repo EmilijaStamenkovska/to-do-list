@@ -23,7 +23,7 @@ const AllTodosPage = () => {
     const toggleTodos = () => {
         setIsChecked(state => !state);
     };
-
+    
     const getNewest = async () => {
         try {
             let data = await newestTodos();
@@ -33,7 +33,7 @@ const AllTodosPage = () => {
             console.log(err);
         }
     };
-
+    
     const getAll = async () => {
         try {
             let data = await allTodos();
@@ -47,8 +47,8 @@ const AllTodosPage = () => {
 
     const handleImportantTodo = async (id) => {
         try {
-            await updateImportantTodos(id);
-            setFetch(!fetch);
+           await updateImportantTodos(id);
+           setFetch(!fetch);
         } catch (err) {
             console.log(err);
         }
@@ -57,7 +57,6 @@ const AllTodosPage = () => {
     useEffect(() => {
         getNewest();
         getAll();
-        handleImportantTodo();
     }, [fetch]);
 
     return (

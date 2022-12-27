@@ -1,9 +1,9 @@
 // Core
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 // Redux
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setPopupActivation, setPopupMessage } from '../../../services/redux/popup-reducer';
 // UI
 import Button from '../../ui/Button/index';
@@ -49,19 +49,19 @@ const OneTodoDetails = (props) => {
             </Link>
             <>
                 {
-                    props.important == true ?
-                        <span
-                            className='important-span__saved'
-                        >
-                            ✩ saved as important!
-                        </span>
-                        :
+                    props.important === 0 ?
                         <Button
                             onClick={handleImportantTodo}
                             customClassName='important-button'
                         >
-                            ✩ save as important
+                            ✩ save
                         </Button>
+                        :
+                        <span
+                            className='important-span__saved'
+                        >
+                            ✩ saved!
+                        </span>
                 }
             </>
         </div>
@@ -78,7 +78,7 @@ OneTodoDetails.defaultProps = {
     state: [],
     setState: () => { },
     updated: () => { },
-    important: false
+    important: 0
 };
 
 OneTodoDetails.propTypes = {
@@ -89,5 +89,5 @@ OneTodoDetails.propTypes = {
     state: PropTypes.array,
     setState: PropTypes.func,
     updated: PropTypes.func,
-    important: PropTypes.bool
+    important: PropTypes.number
 };

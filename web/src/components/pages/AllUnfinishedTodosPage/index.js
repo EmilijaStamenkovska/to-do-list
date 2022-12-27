@@ -8,7 +8,7 @@ import PageTitle from '../../ui/PageTitle';
 // Widgets
 import OneTodo from '../../widgets/OneTodo';
 // Services
-import { notFinishedTodos } from '../../../services/rest/todos';
+import { notFinishedTodos, updateImportantTodos } from '../../../services/rest/todos';
 // Style
 import './style.css';
 
@@ -16,6 +16,7 @@ const UnfinishedTodosPage = () => {
     const dispatch = useDispatch();
 
     const [allUnfinishedTodos, setAllUnfinishedTodos] = useState([]);
+    const [fetch, setFetch] = useState(false);
 
     const getAllUnfinishedTodos = async () => {
         try {
@@ -27,9 +28,18 @@ const UnfinishedTodosPage = () => {
         }
     };
 
+    const handleImportantTodo = async (id) => {
+        try {
+           await updateImportantTodos(id);
+           setFetch(!fetch);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     useEffect(() => {
         getAllUnfinishedTodos();
-    }, []);
+    }, [fetch]);
 
     return (
         <>
@@ -46,6 +56,8 @@ const UnfinishedTodosPage = () => {
                                 _created={item._created}
                                 state={allUnfinishedTodos}
                                 setState={setAllUnfinishedTodos}
+                                important={item.important}
+                                updated={handleImportantTodo}
                             />
                         )
                     })

@@ -8,7 +8,7 @@ import Button from '../../ui/Button';
 import PageTitle from '../../ui/PageTitle/index';
 // Widgets
 import OneTodo from '../../widgets/OneTodo';
-// Rest
+// Services
 import { allTodos, newestTodos, updateImportantTodos } from '../../../services/rest/todos';
 // Style
 import './style.css';

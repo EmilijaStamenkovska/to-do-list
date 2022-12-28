@@ -12,9 +12,9 @@ const create = async (req, res) => {
 
     try {
         let data = await todos.create({
-            uid: req.body._id,
             title: req.body.title,
             description: req.body.description,
+            uid: req.auth.uid,
             important: 0,
             done: 0,
             not_done: 1,
@@ -30,7 +30,7 @@ const create = async (req, res) => {
 const getAll = async (req, res) => {
 
     try {
-        let t = await todos.getAll();
+        let t = await todos.getAll(req.auth.uid);
         return res.status(200).send(t);
     } catch (err) {
         console.log(err);
@@ -41,7 +41,7 @@ const getAll = async (req, res) => {
 const getNewest = async (req, res) => {
 
     try {
-        let t = await todos.getNewest();
+        let t = await todos.getNewest(req.auth.uid);
         return res.status(200).send(t);
     } catch (err) {
         console.log(err);
@@ -135,7 +135,7 @@ const updateImportantTodo = async (req, res) => {
 const finished = async (req, res) => {
 
     try {
-        let ft = await todos.finished();
+        let ft = await todos.finished(req.auth.uid);
         if (!ft) {
             return res.status(404).send('Finished Todos Not Found');
         }
@@ -149,7 +149,7 @@ const finished = async (req, res) => {
 const notFinished = async (req, res) => {
 
     try {
-        let nft = await todos.not_finished();
+        let nft = await todos.not_finished(req.auth.uid);
         if (!nft) {
             return res.status(404).send('Not Finished Todos Not Found');
         }
@@ -162,7 +162,7 @@ const notFinished = async (req, res) => {
 
 const important = async (req, res) => {
     try {
-        let it = await todos.important();
+        let it = await todos.important(req.auth.uid);
         if(!it) {
             return res.status(404).send('Important Todos Not Found');
         }

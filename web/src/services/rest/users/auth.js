@@ -75,6 +75,30 @@ export const allUsers = async () => {
     })
 };
 
+export const getOne = async (id) => {
+    const token = localStorage.getItem('jwt_key');
+
+    return await fetch(
+        `${API_BASE_URL}/api/v1/user/${id}`,
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        }
+    ).then(res => {
+        if (!res.ok) {
+            return Promise.reject(res);
+        };
+        if (res.headers.get('content-type').includes('application/json')) {
+            return res.json();
+        } else if (res.headers.get('content-type').includes('text/plain')) {
+            return res.text();
+        };
+    })
+};
+
 export const validatePassword = async (uid, password) => {
     const token = localStorage.getItem('jwt_key');
     let payload = {

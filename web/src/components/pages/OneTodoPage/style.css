@@ -7,8 +7,7 @@
 }
 
     .one-todo-page__title {
-        font-size: 20px;
-        text-decoration: underline;
+        font-size: 35px;
         color: var(--color-secondary-light); 
         margin-bottom: 15px;
     }

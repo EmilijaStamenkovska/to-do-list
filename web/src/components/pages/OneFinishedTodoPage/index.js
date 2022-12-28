@@ -28,7 +28,6 @@ const OneFinishedTodoPage = () => {
         try {
             let data = await oneTodo(id);
             let todo_data = data.find(state => state._id === id);
-
             setFields(todo_data);
             dispatch(setOneTodo({
                 title: fields.title,

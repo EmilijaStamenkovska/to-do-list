@@ -39,14 +39,23 @@ const OneTodoDetails = (props) => {
     return (
         <div className={`one-todo-details ${props.customClassName}`}>
             <Button customClassName="x" onClick={handleDeleteTodo}>྾</Button>
-            <Link
-                to={`${props._id}`}
-                className="one-todo-details__link"
-            >
-                <span className="one-todo-details__title">{props.title}</span>
-                <p className="one-todo-details__description">{props.description}</p>
-                <span className="one-todo-details__created">Created on: {dateFormat(props._created)}</span>
-            </Link>
+            {
+                props.active ?
+                    <Link
+                        to={`${props._id}`}
+                        className="one-todo-details__link"
+                    >
+                        <span className="one-todo-details__title">{props.title}</span>
+                        <p className="one-todo-details__description">{props.description}</p>
+                        <span className="one-todo-details__created">Created on: {dateFormat(props._created)}</span>
+                    </Link>
+                    :
+                    <div className="one-todo-details__link">
+                        <span className="one-todo-details__title">{props.title}</span>
+                        <p className="one-todo-details__description">{props.description}</p>
+                        <span className="one-todo-details__created">Created on: {dateFormat(props._created)}</span>
+                    </div>
+            }
             <>
                 {
                     props.important === 0 ?
@@ -78,7 +87,8 @@ OneTodoDetails.defaultProps = {
     state: [],
     setState: () => { },
     updated: () => { },
-    important: 0
+    important: 0,
+    active: true
 };
 
 OneTodoDetails.propTypes = {
@@ -89,5 +99,6 @@ OneTodoDetails.propTypes = {
     state: PropTypes.array,
     setState: PropTypes.func,
     updated: PropTypes.func,
-    important: PropTypes.number
+    important: PropTypes.number,
+    active: PropTypes.bool
 };

@@ -1,14 +1,15 @@
-// export const fieldsInit = {
-//     username: '',
-//     email: '',
-//     password: ''
-// };
-
 export const fieldsInit = {
-    username: 'Qwerty',
-    email: 'qwerty@qwerty.com',
-    password: 'Qwerty123!'
+    username: '',
+    email: '',
+    password: 'Qwerty123!',
+    jwt_key: ''
 };
+
+// export const fieldsInit = {
+//     username: 'Qwerty',
+//     email: 'qwerty@qwerty.com',
+//     password: 'Qwerty123!'
+// };
 
 export const todosFieldsInit = {
     _id: '',

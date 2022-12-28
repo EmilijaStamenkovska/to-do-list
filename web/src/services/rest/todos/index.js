@@ -2,7 +2,7 @@
 import { API_BASE_URL } from "../../data/constants/index";
 
 export const allTodos = async () => {
-    const token = localStorage.getItem('jwt_key');
+    let token = localStorage.getItem('jwt_key');
 
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/getAll`,
@@ -26,7 +26,7 @@ export const allTodos = async () => {
 };
 
 export const oneTodo = async (id) => {
-    const token = localStorage.getItem('jwt_key');
+    let token = localStorage.getItem('jwt_key');
 
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/${id}`,
@@ -50,7 +50,7 @@ export const oneTodo = async (id) => {
 };
 
 export const createTodo = async (title, description, done, not_done, important) => {
-    const token = localStorage.getItem('jwt_key');
+    let token = localStorage.getItem('jwt_key');
     let data = {
         title,
         description,
@@ -83,7 +83,7 @@ export const createTodo = async (title, description, done, not_done, important) 
 };
 
 export const updateTodo = async (id, title, description) => { // not-working
-    const token = localStorage.getItem('jwt_key');
+    let token = localStorage.getItem('jwt_key');
     let data = {
         title,
         description
@@ -112,7 +112,7 @@ export const updateTodo = async (id, title, description) => { // not-working
 };
 
 export const newestTodos = async () => {
-    const token = localStorage.getItem('jwt_key');
+    let token = localStorage.getItem('jwt_key');
 
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/get-newest`,
@@ -136,7 +136,7 @@ export const newestTodos = async () => {
 };
 
 export const finishedTodos = async () => {
-    const token = localStorage.getItem('jwt_key');
+    let token = localStorage.getItem('jwt_key');
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/finished`,
         {
@@ -159,7 +159,7 @@ export const finishedTodos = async () => {
 };
 
 export const notFinishedTodos = async () => {
-    const token = localStorage.getItem('jwt_key');
+    let token = localStorage.getItem('jwt_key');
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/not-finished`,
         {
@@ -182,7 +182,7 @@ export const notFinishedTodos = async () => {
 };
 
 export const importantTodos = async () => {
-    const token = localStorage.getItem('jwt_key');
+    let token = localStorage.getItem('jwt_key');
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/important`,
         {
@@ -205,7 +205,7 @@ export const importantTodos = async () => {
 }
 
 export const updateUnfinishedTodos = async (id) => {
-    const token = localStorage.getItem('jwt_key');
+    let token = localStorage.getItem('jwt_key');
 
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/${id}/update-unfinished`,
@@ -225,7 +225,7 @@ export const updateUnfinishedTodos = async (id) => {
 };
 
 export const updateFinishedTodos = async (id) => {
-    const token = localStorage.getItem('jwt_key');
+    let token = localStorage.getItem('jwt_key');
 
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/${id}/update-finished`,
@@ -245,7 +245,7 @@ export const updateFinishedTodos = async (id) => {
 };
 
 export const updateImportantTodos = async (id) => {
-    const token = localStorage.getItem('jwt_key');
+    let token = localStorage.getItem('jwt_key');
 
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/${id}/update-important`,
@@ -265,7 +265,7 @@ export const updateImportantTodos = async (id) => {
 };
 
 export const deleteTodo = async (id) => {
-    const token = localStorage.getItem('jwt_key');
+    let token = localStorage.getItem('jwt_key');
 
     return await fetch(
         `${API_BASE_URL}/api/v1/todos/delete/${id}`,

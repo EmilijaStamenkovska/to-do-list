@@ -1,29 +1,56 @@
 // Core
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+// Redux
+import { useDispatch } from 'react-redux';
+import { setUserData } from '../../../services/redux/reducers';
 // UI
 import PageTitle from '../../ui/PageTitle';
 import Button from '../../ui/Button';
+// Auth
+import { getOne } from '../../../services/rest/users/auth';
+// Data
+import { fieldsInit } from '../../../services/data/inits/fields';
 // Style
 import './style.css';
 
 const ProfilePage = () => {
     const navigate = useNavigate();
-    const username = localStorage.getItem('username');
-    const email = localStorage.getItem('email');
+    const dispatch = useDispatch();
+    const id = localStorage.getItem('id');
+
+    const [fields, setFields] = useState(fieldsInit);
+
+    const getOneUser = async () => {
+        try {
+            let data = await getOne(id);
+            setFields(data);
+
+            dispatch(setUserData({
+                username: fields.username,
+                email: fields.email
+            }))
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     const onLogout = () => {
         localStorage.clear();
-        navigate('/login');
+        navigate('/');
     };
+
+    useEffect(() => {
+        getOneUser();
+    }, []);
 
     return (
         <>
             <PageTitle title="My Profile" />
             <div className="profile-page">
                 <div className="profile-page__user">
-                    <span className="profile-page__email">{email}</span>
-                    <p className="profile-page__name">Hi <span className="profile-page__name-user">{username}!ッ</span> Let's create some tasks!</p>
+                    <span className="profile-page__email">{fields.email}</span>
+                    <p className="profile-page__name">Hi <span className="profile-page__name-user">{fields.username}!ッ</span> Let's create some tasks!</p>
                 </div>
                 <div className="tasks">
                     <Link to="/create-tasks">❥ Create</Link>

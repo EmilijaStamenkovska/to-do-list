@@ -1,5 +1,6 @@
 //Core
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 // Redux
 import { useDispatch } from 'react-redux';
 import { setImportantTodos } from '../../../services/redux/todos-reducer';
@@ -30,8 +31,8 @@ const ImportantTodosPage = () => {
 
     const handleImportantTodo = async (id) => {
         try {
-           await updateImportantTodos(id);
-           setFetch(!fetch);
+            await updateImportantTodos(id);
+            setFetch(!fetch);
         } catch (err) {
             console.log(err);
         }
@@ -48,17 +49,20 @@ const ImportantTodosPage = () => {
                 {
                     allImportantTodos.map((item, key) => {
                         return (
-                            <OneTodo
-                                key={key}
-                                title={item.title}
-                                description={item.description}
-                                _id={item._id}
-                                _created={item._created}
-                                state={allImportantTodos}
-                                setState={setAllImportantTodos}
-                                important={item.important}
-                                updated={handleImportantTodo}
-                            />
+                            <Link to={`/my-tasks/${item._id}`} key={key}>
+                                <OneTodo
+                                    title={item.title}
+                                    description={item.description}
+                                    _id={item._id}
+                                    _created={item._created}
+                                    state={allImportantTodos}
+                                    setState={setAllImportantTodos}
+                                    important={item.important}
+                                    updated={handleImportantTodo}
+                                    customClassNameLink="important-todos__details"
+                                    active={fetch}
+                                />
+                            </Link>
                         )
                     })
                 }

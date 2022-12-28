@@ -11,7 +11,7 @@ const User = mongoose.model(
             type: Boolean,
             default: false
         },
-        verification_token: String
+        jwt_key: String
     },
     'users'
 );
@@ -34,13 +34,13 @@ const getByEmail = async (email) => {
 };
 
 const update = async (id, userdata) => {
-    let data = await User.updateOne({ _id: id, _deleted: false }, userdata);
-    return data.nModified !== 0;
+    return data = await User.updateOne({ _id: id, _deleted: false }, userdata);
+    // return data.nModified !== 0;
 }
 
 const remove = async (id) => {
-    let data = await User.updateOne({ _id: id, _deleted: false }, { _deleted: true });
-    return data.nModified !== 0;
+    return data = await User.updateOne({ _id: id, _deleted: false }, { _deleted: true });
+    // return data.nModified !== 0;
 };
 
 module.exports = {

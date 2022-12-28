@@ -37,7 +37,7 @@ const createUser = async (req, res) => {
                 password: bcrypt.hashSync(req.body.password),
                 username: req.body.username,
                 _created: new Date().toISOString(),
-                verification_token: token
+                jwt_key: token
             }
 
             let user = await users.create(payload);
@@ -186,11 +186,11 @@ const removeUser = async (req, res) => {
 };
 
 module.exports = {
-    getAll, // works
-    getOne, // works
-    createUser, // works
-    loginUser, // works
-    updateUser, // works
-    removeUser, // works
+    getAll, 
+    getOne, 
+    createUser, 
+    loginUser, 
+    updateUser, 
+    removeUser, 
     checkPassword 
 };

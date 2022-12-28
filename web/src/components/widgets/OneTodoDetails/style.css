@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    height: 150px;
+    height: 180px;
     border-radius: 25px;
     border: 3px solid var(--color-title);
     background-color: var(--color-background-light);
@@ -10,12 +10,13 @@
     font-size: 20px;
     text-decoration: none;
     text-align: center;
+    gap: 15px;
 }
 
     .one-todo-details__link {
         display: flex;
         flex-direction: column;
-        padding: 0 5px 0 5px;
+        padding: 10px 5px 0 5px;
     }
 
         .one-todo-details__title {
@@ -29,12 +30,13 @@
         }
 
         .one-todo-details__description { 
-            font-size: 17px;
+            font-size: 14px;
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
             color: var(--color-orange-primary-light); 
             padding: 0 20px;
+            height: 25px;
         }
 
         .x {

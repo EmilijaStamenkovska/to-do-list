@@ -20,24 +20,12 @@ api.use(
     jwtAuthentication(jwtOptions)
     .unless({
         path: [
-            '/api/v1/todos/getAll',
-            '/api/v1/todos/get-newest',
-            '/api/v1/todos/:id',
-            '/api/v1/todos/finished',
-            '/api/v1/todos/not-finished',
-            '/api/v1/todos/important',
-            '/api/v1/todos/create',
-            '/api/v1/todos/update/:id',
-            '/api/v1/todos/delete/:id', 
             '/api/v1/user/create-user',
-            '/api/v1/user/login',
-            '/api/v1/user/update-user',
-            '/api/v1/user/:id/delete',
-            '/api/v1/user/:id/check-password'
+            '/api/v1/user/login'
         ]
     }));
 
-// Routes
+// Requests
 
 // TODOS
 api.post('/api/v1/todos/create', todos.create);

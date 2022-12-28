@@ -65,9 +65,7 @@ const LoginPage = () => {
             let body = await loginUser(fields.email, fields.password);
 
             const jwt_key = body.jwt;
-            const username = body.userdata.username;
-            const email = body.userdata.email;
-            const id = body.userdata.uid
+            const id = body.userdata.uid;
 
             dispatch(setUserData({
                 email: fields.email,
@@ -76,8 +74,6 @@ const LoginPage = () => {
             dispatch(setToken({ jwt_key: jwt_key }));
 
             localStorage.setItem('jwt_key', jwt_key);
-            localStorage.setItem('username', username);
-            localStorage.setItem('email', email);
             localStorage.setItem('id', id);
 
             navigate('/');

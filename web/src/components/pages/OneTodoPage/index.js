@@ -9,7 +9,7 @@ import { setPopupActivation, setPopupMessage } from '../../../services/redux/pop
 import PageTitle from '../../ui/PageTitle/index';
 import Button from '../../ui/Button/index';
 import Input from '../../ui/Input/index';
-// Rest
+// Services
 import { oneTodo, updateTodo } from '../../../services/rest/todos';
 import { deleteTodo } from '../../../services/rest/todos';
 // Data
@@ -22,7 +22,7 @@ const OneTodoPage = () => {
     const params = useParams();
     const navigate = useNavigate();
     let id = params.id;
-
+    
     const [fields, setFields] = useState(todosFieldsInit);
     const [fetch, setFetch] = useState(false);
     const [edit, setEdit] = useState(false);
@@ -91,9 +91,9 @@ const OneTodoPage = () => {
                         <>
                             <Link
                                 className="one-todo-page__title"
-                                to="/my-tasks"
+                                to={(-1)}
                             >
-                                back to all tasks
+                                ⤺
                             </Link>
                             <p className={`
                             ${fields.description === "" ?

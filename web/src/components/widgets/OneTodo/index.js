@@ -22,6 +22,7 @@ const OneTodo = (props) => {
                 state={props.state}
                 updated={props.updated}
                 important={props.important}
+                active={props.active}
             />
         </div>
     );
@@ -38,7 +39,8 @@ OneTodo.defaultProps = {
     state: [],
     setState: () => {},
     updated: () => { },
-    important: 0
+    important: 0,
+    active: true
 };
 
 OneTodo.propTypes = {
@@ -50,5 +52,6 @@ OneTodo.propTypes = {
     state: PropTypes.array,
     setState: PropTypes.func,
     updated: PropTypes.func,
-    important: PropTypes.number
+    important: PropTypes.number,
+    active: PropTypes.bool
 };

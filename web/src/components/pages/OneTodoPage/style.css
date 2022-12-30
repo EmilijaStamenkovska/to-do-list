@@ -24,6 +24,11 @@
         width: 500px;
     }
 
+    .one-todo-page__description.active:focus {
+        outline: none;
+        border-color: var(--color-primary-light-first);
+    }
+    
     .one-todo-page__description_display-none {
         display: none;
     }

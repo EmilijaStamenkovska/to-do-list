@@ -1,7 +1,7 @@
 const validator = require('../packages/todos/validate');
 const todos = require('../packages/todos/index');
 
-const create = async (req, res) => { 
+const create = async (req, res) => {
 
     try {
         await validator.validate(req.body, 'CREATE');
@@ -70,7 +70,7 @@ const update = async (req, res) => {
     }
 
     try {
-        let updateTodo = await todos.update(req.params.id, req.body);
+        let updateTodo = await todos.update(req.params.id, { ...req.body });
 
         if (!updateTodo) {
             return res.status(404).send('Todo Not Found');
@@ -163,7 +163,7 @@ const notFinished = async (req, res) => {
 const important = async (req, res) => {
     try {
         let it = await todos.important(req.auth.uid);
-        if(!it) {
+        if (!it) {
             return res.status(404).send('Important Todos Not Found');
         }
         return res.status(200).send(it);
@@ -177,7 +177,7 @@ const remove = async (req, res) => {
 
     try {
         const removeTodo = await todos.remove(req.params.id);
-        if(removeTodo) {
+        if (removeTodo) {
             return res.status(204).send();
         }
         return res.status(404).send('Todo not found');

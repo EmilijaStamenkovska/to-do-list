@@ -82,11 +82,14 @@ export const createTodo = async (title, description, done, not_done, important) 
     })
 };
 
-export const updateTodo = async (id, title, description) => { // not-working
+export const updateTodo = async (id, title, description, done, not_done, important) => { // not-working
     let token = localStorage.getItem('jwt_key');
     let data = {
         title,
-        description
+        description,
+        done,
+        not_done,
+        important
     };
 
     return await fetch(
@@ -101,13 +104,9 @@ export const updateTodo = async (id, title, description) => { // not-working
         }
     ).then(res => {
         if (!res.ok) {
-            return Promise.reject('rejected', res);
+            return Promise.reject(res);
         }
-        if (res.headers.get('content-type').includes('application/json')) {
-            return res.json();
-        } else if (res.headers.get('content-type').includes('text/plain')) {
-            return res.text();
-        }
+        return Promise.resolve(true);
     })
 };
 

@@ -9,7 +9,7 @@
 
     .main-page a {
         font-size: 70px;
-        width: 430px;
+        width: 230px;
         white-space: nowrap;
         color: var(--color-orange-secondary); 
     }

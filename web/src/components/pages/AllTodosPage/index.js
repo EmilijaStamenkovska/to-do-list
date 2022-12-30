@@ -64,16 +64,16 @@ const AllTodosPage = () => {
             <PageTitle title="My Tasks" back="back to profile page" />
             <div className="all-todos-page__buttons">
                 <Button
-                    onClick={getNewest}
-                    type={isChecked ? "disabled" : "secondary"}
-                    disabled={isChecked ? true : false}>
-                    latest todos
-                </Button>
-                <Button
                     onClick={getAll}
                     type={isChecked ? "secondary" : "disabled"}
                     disabled={isChecked ? false : true}>
                     newest todos
+                </Button>
+                <Button
+                    onClick={getNewest}
+                    type={isChecked ? "disabled" : "secondary"}
+                    disabled={isChecked ? true : false}>
+                    latest todos
                 </Button>
             </div>
             <div className="all-todos-page">

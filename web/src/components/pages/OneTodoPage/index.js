@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 // Redux
-import { useDispatch } from 'react-redux';
-import { setDeleteTodo, setOneTodo } from '../../../services/redux/todos-reducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDeleteTodo, setOneTodo, setOneTodoUpdate } from '../../../services/redux/todos-reducer';
 import { setPopupActivation, setPopupMessage } from '../../../services/redux/popup-reducer';
 // UI
 import PageTitle from '../../ui/PageTitle/index';
@@ -13,7 +13,9 @@ import Input from '../../ui/Input/index';
 import { oneTodo, updateTodo } from '../../../services/rest/todos';
 import { deleteTodo } from '../../../services/rest/todos';
 // Data
+import { EMPTY_FIELD, MIN_LENGTH } from '../../../services/data/errors/client';
 import { todosFieldsInit } from '../../../services/data/inits/fields';
+import { todosErrorsInit } from '../../../services/data/inits/errors';
 // Style
 import './style.css';
 
@@ -22,8 +24,12 @@ const OneTodoPage = () => {
     const params = useParams();
     const navigate = useNavigate();
     let id = params.id;
-    
+    const todo = useSelector(state => state.todos.todo_body);
+console.log(todo)
     const [fields, setFields] = useState(todosFieldsInit);
+    const [error, setError] = useState(todosErrorsInit);
+    const [title, setTitle] = useState(todo.title);
+    const [description, setDescription] = useState(todo.description);
     const [fetch, setFetch] = useState(false);
     const [edit, setEdit] = useState(false);
 
@@ -45,8 +51,6 @@ const OneTodoPage = () => {
         }
     };
 
-    const handleChange = (e) => { setFields({ ...fields, [e.target.name]: e.target.value }) };
-
     const handleEditTodo = () => {
         setEdit(state => !state);
     };
@@ -56,26 +60,54 @@ const OneTodoPage = () => {
         dispatch(setPopupMessage("Task deleted!"));
     };
 
-    const handleUpdateTodo = async () => {
+    const handlePopup = () => {
+        dispatch(setPopupActivation(true));
+        dispatch(setPopupMessage("Task updated!"));
+    };
+
+    const validate = () => {
+        setError(todosErrorsInit);
+        let error = false;
+
+        if (title.length === 0) {
+            setError(prevstate => ({ ...prevstate, title: { errorMessage: EMPTY_FIELD } }));
+            error = true;
+        }
+        if (title.length < 5 && title.length > 0) {
+            setError(prevstate => ({ ...prevstate, title: { errorMessage: MIN_LENGTH } }));
+            error = true;
+        }
+        return error;
+    };
+
+    const submitEdit = async () => {
+        if (validate()) {
+            return;
+        }
         try {
-            let data = await updateTodo(id, fields.title, fields.description);
-            let todo_data = data.find(state => state._id === id);
-            setFields(todo_data);
+            await updateTodo(id, title, description);
+            dispatch(setOneTodoUpdate({
+                title: title,
+                description: description
+            }))
+            setFetch(!fetch);
+            handlePopup();
+            handleEditTodo();
         } catch (err) {
             console.log(err);
         }
     };
 
     const handleDeleteTodo = async () => {
-            try {
-                await deleteTodo(id);
-                dispatch(setDeleteTodo(id));
-                setFetch(!fetch);
-                handlePopupDelete();
-                navigate('/my-tasks');
-            } catch (err) {
-                console.log(err);
-            }
+        try {
+            await deleteTodo(id);
+            dispatch(setDeleteTodo(id));
+            setFetch(!fetch);
+            handlePopupDelete();
+            navigate('/my-tasks');
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     useEffect(() => {
@@ -84,63 +116,57 @@ const OneTodoPage = () => {
 
     return (
         <>
-            <PageTitle title={fields.title} />
             <div className="one-todo-page">
                 {
-                    !edit ?
-                        <>
-                            <Link
-                                className="one-todo-page__title"
-                                to={(-1)}
-                            >
-                                ⤺
-                            </Link>
-                            <p className={`
-                            ${fields.description === "" ?
-                                    'one-todo-page__description_display-none' :
-                                    'one-todo-page__description'}
-                            `}>
-                                {fields.description}
-                            </p>
-                            <div className="one-todo-page__buttons">
-                                <Button
-                                    onClick={handleEditTodo}
-                                    type="secondary"
-                                >
-                                    Edit
-                                </Button>
-                                <Button
-                                    onClick={handleDeleteTodo}
-                                >
-                                    Delete
-                                </Button>
-                            </div>
-                        </> :
-                        <>
-                            <Input
-                                placeholder={fields.title}
-                                value={fields.title}
-                                onChange={handleChange}
-                                type="title"
-                                name="title"
-                            />
-                            <textarea
-                                placeholder={fields.description}
-                                value={fields.description}
-                                onChange={handleChange}
-                                type="description"
-                                name="description"
-                            />
-                            <div className="one-todo-page__buttons">
-                                <Button
-                                    type="primary"
-                                    onClick={handleUpdateTodo}
-                                >
-                                    Finish
-                                </Button>
-                            </div>
-                        </>
+                    !edit
+                        ?
+                        <PageTitle title={fields.title} />
+                        :
+                        <Input
+                            placeholder={fields.title}
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            type="title"
+                            name="title"
+                            error={error.title}
+                        />
                 }
+                <Link
+                    className="one-todo-page__title"
+                    to={(-1)}
+                >
+                    ⤺
+                </Link>
+                {
+                    !edit
+                        ?
+                        <p className={`${fields.description === "" ? 'one-todo-page__description_display-none' : 'one-todo-page__description'} `}>
+                            {fields.description}
+                        </p>
+                        :
+                        <textarea
+                            placeholder={fields.description}
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            type="description"
+                            name="description"
+                            error={error.description}
+                            className="one-todo-page__description active"
+                        />
+                }
+                <div className="one-todo-page__buttons">
+                    <Button
+                        onClick={!edit ? handleEditTodo : submitEdit}
+                        type="secondary"
+                    >
+                        {`${!edit ? "edit" : "save"}`}
+                    </Button>
+                    <Button
+                        onClick={!edit ? handleDeleteTodo : handleEditTodo}
+                    >
+                        {`${!edit ? "delete" : "cancel"}`}
+                    </Button>
+                </div>
             </div>
         </>
     );

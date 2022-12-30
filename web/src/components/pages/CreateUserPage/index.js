@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { Link } from 'react-router-dom';
 // Redux
 import { useDispatch } from 'react-redux';
-import { setUserData } from '../../../services/redux/reducers';
+import { setUserData } from '../../../services/redux/user-reducer';
 // UI
 import ErrorMessage from '../../ui/ErrorMessage';
 import Button from '../../ui/Button';

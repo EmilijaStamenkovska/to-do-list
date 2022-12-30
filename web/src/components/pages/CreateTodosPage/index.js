@@ -92,7 +92,7 @@ const CreateTodosPage = () => {
                 >
                 </textarea>
                 <Button
-                    type="primary"
+                    type="secondary"
                     onClick={submitTodo}
                     customClassName="create-todos__btn"
                 >

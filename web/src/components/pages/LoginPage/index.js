@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 // Redux
 import { useDispatch } from 'react-redux';
-import { setToken, setUserData } from '../../../services/redux/reducers';
+import { setToken, setUserData } from '../../../services/redux/user-reducer';
 // UI
 import Input from '../../ui/Input/index';
 import Button from '../../ui/Button/index';

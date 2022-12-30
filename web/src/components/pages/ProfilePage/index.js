@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 // Redux
 import { useDispatch } from 'react-redux';
-import { setUserData } from '../../../services/redux/reducers';
+import { setUserData } from '../../../services/redux/user-reducer';
 // UI
 import PageTitle from '../../ui/PageTitle';
 import Button from '../../ui/Button';
@@ -46,7 +46,7 @@ const ProfilePage = () => {
 
     return (
         <>
-            <PageTitle title="My Profile" />
+            <PageTitle title="Profile" />
             <div className="profile-page">
                 <div className="profile-page__user">
                     <span className="profile-page__email">{fields.email}</span>

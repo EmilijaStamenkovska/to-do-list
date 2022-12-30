@@ -24,6 +24,7 @@ const OneTodoDetails = (props) => {
 
     const handleImportantTodo = () => {
         props.updated(props._id);
+        handlePopup("Task saved!");
     };
 
     const handleDeleteTodo = async () => {

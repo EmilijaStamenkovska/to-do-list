@@ -29,11 +29,11 @@ const createUnfinished = async (data) => {
 };
 
 const getAll = async (uid) => {
-    return await Todos.find({ uid }, { _deleted: false }).sort('-_created');
+    return await Todos.find({ uid: uid, _deleted: false }).sort('-_created');
 };
 
 const getNewest = async (uid) => {
-    return await Todos.find({ uid }, { _deleted: false }).sort('_created');
+    return await Todos.find({ uid: uid, _deleted: false }).sort('_created');
 };
 
 const getByID = async (id) => {

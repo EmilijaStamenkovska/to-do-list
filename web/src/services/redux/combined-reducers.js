@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import todosReducer from './todos-reducer';
-import usersReducer from './reducers';
+import userReducer from './user-reducer';
 import popupReducer from './popup-reducer';
 
 export default combineReducers({
-    users: usersReducer,
+    users: userReducer,
     todos: todosReducer,
     popup: popupReducer
 });

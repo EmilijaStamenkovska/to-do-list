@@ -7,11 +7,11 @@
     gap: 10px;
 }
 
-    .one-unfinished-todo-page__title {
-        font-size: 20px;
-        text-decoration: underline;
-        color: var(--color-secondary-light); 
-        margin-bottom: 15px;
+.one-unfinished-todo-page__title {
+    font-size: 20px;
+    text-decoration: underline;
+    color: var(--color-secondary-light); 
+    margin-bottom: 15px;
     }
     
     .one-unfinished-todo-page__first-wrapper {
@@ -21,7 +21,7 @@
         align-items: center;
     }
     
-        .one-unfinished-todo-page__second-wrapper {
+    .one-unfinished-todo-page__second-wrapper {
             display: flex;
             flex-direction: column;
             gap: 50px;

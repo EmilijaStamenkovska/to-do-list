@@ -15,6 +15,7 @@ import { createTodo } from '../../../services/rest/todos';
 import { EMPTY_FIELD, MIN_LENGTH } from '../../../services/data/errors/client';
 import { todosErrorsInit } from '../../../services/data/inits/errors';
 import { todosFieldsInit } from '../../../services/data/inits/fields';
+import { TASK_CREATED } from '../../../services/data/popup';
 // Style
 import './style.css';
 
@@ -42,11 +43,6 @@ const CreateTodosPage = () => {
         return error;
     };
 
-    const handlePopup = () => {
-        dispatch(setPopupActivation(true));
-        dispatch(setPopupMessage("Task created!"));
-    };
-
     const submitTodo = async () => {
         if (validate()) {
             return;
@@ -61,7 +57,8 @@ const CreateTodosPage = () => {
                 fields.important
             );
             dispatch(setOneTodo(body));
-            handlePopup();
+            dispatch(setPopupActivation(true));
+            dispatch(setPopupMessage(TASK_CREATED));
             navigate('/my-tasks');
         } catch (err) {
             console.log(err);

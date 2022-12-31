@@ -9,9 +9,11 @@ import { setPopupActivation, setPopupMessage } from '../../../services/redux/pop
 import Button from '../../ui/Button';
 import PageTitle from '../../ui/PageTitle';
 // Services 
-import { todosFieldsInit } from '../../../services/data/inits/fields';
 import { dateFormat } from '../../../services/format';
 import { deleteTodo, oneTodo, updateUnfinishedTodos } from '../../../services/rest/todos';
+// Data
+import { CHANGES_SAVED, TASK_DELETED } from '../../../services/data/popup';
+import { todosFieldsInit } from '../../../services/data/inits/fields';
 // Style
 import './style.css';
 
@@ -43,36 +45,28 @@ const OneFinishedTodoPage = () => {
         }
     };
 
-    const handlePopup = () => {
-        dispatch(setPopupActivation(true));
-        dispatch(setPopupMessage("Changes saved!"));
-    };
-
-    const handlePopupDelete = () => {
-        dispatch(setPopupActivation(true));
-        dispatch(setPopupMessage("Task deleted!"));
-    };
-
     const handleUpdateTodo = async () => {
-            try {
-                await updateUnfinishedTodos(id);
-            } catch (err) {
-                console.log(err);
-            }
-            handlePopup();
-            navigate('/finished-tasks');
+        try {
+            await updateUnfinishedTodos(id);
+        } catch (err) {
+            console.log(err);
+        }
+        dispatch(setPopupActivation(true));
+        dispatch(setPopupMessage(CHANGES_SAVED));
+        navigate('/finished-tasks');
     };
 
     const handleDeleteTodo = async () => {
-            try {
-                await deleteTodo(id);
-                dispatch(setDeleteTodo(id));
-                setFetch(!fetch);
-                handlePopupDelete();
-                navigate('/finished-tasks');
-            } catch (err) {
-                console.log(err);
-            }
+        try {
+            await deleteTodo(id);
+            dispatch(setDeleteTodo(id));
+            setFetch(!fetch);
+            dispatch(setPopupActivation(true));
+            dispatch(setPopupMessage(TASK_DELETED));
+            navigate('/finished-tasks');
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     useEffect(() => {
@@ -114,15 +108,11 @@ const OneFinishedTodoPage = () => {
                             Delete?
                         </Button>
                     </div>
-                    <p className="one-finished-todo-page__description">
-                        {fields.title}
-                        <br />
-                        Created on: {dateFormat(fields._created)}
-                        <br />
-                        <br />
-                        {fields.description}
-                        <br />
-                    </p>
+                    <div className="one-finished-todo-page__description">
+                        <span>{fields.title}</span>
+                        <span>Created on: {dateFormat(fields._created)}</span>
+                        <p>{fields.description}</p>
+                    </div>
                 </div>
             </div>
         </>

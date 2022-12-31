@@ -12,6 +12,8 @@ import PageTitle from '../../ui/PageTitle';
 import { todosFieldsInit } from '../../../services/data/inits/fields';
 import { dateFormat } from '../../../services/format';
 import { deleteTodo, oneTodo, updateFinishedTodos } from '../../../services/rest/todos';
+// Data
+import { CHANGES_SAVED, TASK_DELETED } from '../../../services/data/popup';
 // Style
 import './style.css';
 
@@ -43,24 +45,11 @@ const OneUnfinishedTodoPage = () => {
         }
     };
 
-    const handlePopup = () => {
-        dispatch(setPopupActivation(true));
-        dispatch(setPopupMessage("Changes saved!"));
-    };
-
-    const handlePopupDelete = () => {
-        dispatch(setPopupActivation(true));
-        dispatch(setPopupMessage("Task deleted!"));
-    };
-
-    const handleEditTodo = async () => {
-        console.log('x')
-    };
-
     const handleUpdateTodo = async () => {
         try {
             await updateFinishedTodos(id);
-            handlePopup();
+            dispatch(setPopupActivation(true));
+            dispatch(setPopupMessage(CHANGES_SAVED));
             navigate('/unfinished-tasks');
         } catch (err) {
             console.log(err);
@@ -68,15 +57,16 @@ const OneUnfinishedTodoPage = () => {
     };
 
     const handleDeleteTodo = async () => {
-            try {
-                await deleteTodo(id);
-                dispatch(setDeleteTodo(id));
-                setFetch(!fetch);
-                handlePopupDelete();
-                navigate('/unfinished-tasks');
-            } catch (err) {
-                console.log(err);
-            }
+        try {
+            await deleteTodo(id);
+            dispatch(setDeleteTodo(id));
+            setFetch(!fetch);
+            dispatch(setPopupActivation(true));
+            dispatch(setPopupMessage(TASK_DELETED));
+            navigate('/unfinished-tasks');
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     useEffect(() => {
@@ -96,13 +86,6 @@ const OneUnfinishedTodoPage = () => {
                 <div className="one-unfinished-todo-page__first-wrapper">
                     <div className="one-unfinished-todo-page__second-wrapper">
                         <Button
-                            onClick={handleEditTodo}
-                            type="secondary"
-                            customClassName="custom-btn__finish"
-                        >
-                            Edit?
-                        </Button>
-                        <Button
                             onClick={handleUpdateTodo}
                             type="secondary"
                             customClassName="custom-btn__finish"
@@ -117,15 +100,11 @@ const OneUnfinishedTodoPage = () => {
                             Delete?
                         </Button>
                     </div>
-                    <p className="one-unfinished-todo-page__description">
-                        {fields.title}
-                        <br />
-                        Created on: {dateFormat(fields._created)}
-                        <br />
-                        <br />
-                        {fields.description}
-                        <br />
-                    </p>
+                    <div className="one-unfinished-todo-page__description">
+                        <span>{fields.title}</span>
+                        <span>Created on: {dateFormat(fields._created)}</span>
+                        <p>{fields.description}</p>
+                    </div>
                 </div>
             </div>
         </>

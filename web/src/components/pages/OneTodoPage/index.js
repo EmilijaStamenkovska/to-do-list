@@ -16,6 +16,7 @@ import { deleteTodo } from '../../../services/rest/todos';
 import { EMPTY_FIELD, MIN_LENGTH } from '../../../services/data/errors/client';
 import { todosFieldsInit } from '../../../services/data/inits/fields';
 import { todosErrorsInit } from '../../../services/data/inits/errors';
+import { TASK_DELETED, TASK_UPDATED } from '../../../services/data/popup';
 // Style
 import './style.css';
 
@@ -25,7 +26,7 @@ const OneTodoPage = () => {
     const navigate = useNavigate();
     let id = params.id;
     const todo = useSelector(state => state.todos.todo_body);
-console.log(todo)
+    
     const [fields, setFields] = useState(todosFieldsInit);
     const [error, setError] = useState(todosErrorsInit);
     const [title, setTitle] = useState(todo.title);
@@ -55,16 +56,6 @@ console.log(todo)
         setEdit(state => !state);
     };
 
-    const handlePopupDelete = () => {
-        dispatch(setPopupActivation(true));
-        dispatch(setPopupMessage("Task deleted!"));
-    };
-
-    const handlePopup = () => {
-        dispatch(setPopupActivation(true));
-        dispatch(setPopupMessage("Task updated!"));
-    };
-
     const validate = () => {
         setError(todosErrorsInit);
         let error = false;
@@ -91,7 +82,8 @@ console.log(todo)
                 description: description
             }))
             setFetch(!fetch);
-            handlePopup();
+            dispatch(setPopupActivation(true));
+            dispatch(setPopupMessage(TASK_UPDATED));
             handleEditTodo();
         } catch (err) {
             console.log(err);
@@ -103,7 +95,8 @@ console.log(todo)
             await deleteTodo(id);
             dispatch(setDeleteTodo(id));
             setFetch(!fetch);
-            handlePopupDelete();
+            dispatch(setPopupActivation(true));
+            dispatch(setPopupMessage(TASK_DELETED));
             navigate('/my-tasks');
         } catch (err) {
             console.log(err);
@@ -140,7 +133,7 @@ console.log(todo)
                 {
                     !edit
                         ?
-                        <p className={`${fields.description === "" ? 'one-todo-page__description_display-none' : 'one-todo-page__description'} `}>
+                        <p className={`${fields.description === "" ? "one-todo-page__description_display-none" : "one-todo-page__description"} `}>
                             {fields.description}
                         </p>
                         :

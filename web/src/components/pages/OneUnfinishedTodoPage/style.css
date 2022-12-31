@@ -17,8 +17,9 @@
     .one-unfinished-todo-page__first-wrapper {
         display: flex;
         flex-direction: row;
-        gap: 60px;
+        justify-content: center;
         align-items: center;
+        width: 90%;
     }
     
     .one-unfinished-todo-page__second-wrapper {
@@ -30,7 +31,7 @@
             .custom-btn__finish {
                 background-color: transparent !important;
                 color: var(--color-orange-secondary) !important; 
-                font-size: 50px;
+                font-size: 40px;
                 font-weight: 100;
                 border: none !important;
                 cursor: pointer;
@@ -41,6 +42,9 @@
             }
             
         .one-unfinished-todo-page__description {
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
             font-size: 20px;
             color: var(--color-secondary-light-first);
             border: 3px solid var(--color-title);

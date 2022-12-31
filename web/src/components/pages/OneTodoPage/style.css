@@ -2,45 +2,46 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90%;
+    width: 500px;
     margin: 0 auto;
 }
 
     .one-todo-page__title {
-        font-size: 35px;
-        color: var(--color-secondary-light); 
-        margin-bottom: 15px;
-    }
-    
-    .one-todo-page__description {
-        font-size: 20px;
-        color: var(--color-secondary-light-first);
-        border: 3px solid var(--color-title);
-        background-color: var(--color-background-light);
-        border-radius: 25px;        
-        height: 400px;
-        overflow: scroll;
-        padding: 20px;
-        width: 500px;
-    }
+            font-size: 35px;
+            color: var(--color-secondary-light); 
+            margin-bottom: 15px;
+        }
+        
+        .one-todo-page__description {
+            font-size: 20px;
+            color: var(--color-secondary-light-first);
+            border: 3px solid var(--color-title);
+            background-color: var(--color-background-light);
+            border-radius: 25px;        
+            height: 400px;
+            overflow: scroll;
+            padding: 20px;
+            width: 90%;
+            margin: 0 auto;
+        }
 
-    .one-todo-page__description.active:focus {
-        outline: none;
-        border-color: var(--color-primary-light-first);
-    }
-    
-    .one-todo-page__description_display-none {
-        display: none;
-    }
-
-        .one-todo-page__description::-webkit-scrollbar {
+        .one-todo-page__description.active:focus {
+            outline: none;
+            border-color: var(--color-primary-light-first);
+        }
+        
+        .one-todo-page__description_display-none {
             display: none;
         }
 
-    .one-todo-page__buttons {
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-        position: absolute;
-        bottom: 20px;
-    }
+            .one-todo-page__description::-webkit-scrollbar {
+                display: none;
+            }
+
+        .one-todo-page__buttons {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            position: absolute;
+            bottom: 20px;
+        }
